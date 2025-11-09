@@ -7,7 +7,7 @@ import operatingUnitRoutes from '../src/routes/control/opertaingUnit/operatingUn
 import storeGroupRoutes from '../src/routes/control/storeGroup/storeGroup.routes';
 import storeRoutes from '../src/routes/control/store/store.routes';
 import terminalRoutes from '../src/routes/control/terminal/terminal.routes';
-
+import authRoutes from '../src/routes/auth/auth.routes';
 
 const app = express();
 
@@ -16,6 +16,10 @@ app.use(cors({ origin: process.env.CLIENT_URL, credentials: true }));
 app.use(express.json({ limit: '10mb' }));
 app.use(cookieParser());
 
+// Auth
+app.use("/api/auth", authRoutes);
+
+// Control routes
 app.use('/api/company', companyRoutes);
 app.use('/api/operatingUnit', operatingUnitRoutes);
 app.use('/api/storeGroup', storeGroupRoutes);
