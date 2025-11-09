@@ -12,8 +12,14 @@ export const addOperatingUnit = async (req: Request, res: Response) => {
         .status(400)
         .json({ error: 'Missing required fields', status: 'fail' });
     }
+    // Check if ou already exists
+    const checkQuery = `SELECT ou_code FROM posdb.ou WHERE ou_code = $1`;
+    const existing = await pool.query(checkQuery, [ou_code]);
 
-    // Replace this with your auth middleware in the future (extract username from JWT)
+    if ((existing.rowCount ?? 0) > 0) {
+      return res.status(400).json({ error: "operating unit with this ID already exists" });
+    }
+
     const currentUser = (req as any).user?.username || 'system';
     const currentTime = new Date();
 
