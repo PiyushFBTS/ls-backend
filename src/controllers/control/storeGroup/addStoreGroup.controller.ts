@@ -70,7 +70,7 @@ export const addStoreGroup = async (req: Request, res: Response) => {
       .status(200)
       .json({ message: 'Store Group created successfully', status: 'success' });
   } catch (error: any) {
-    console.error('❌ Failed to create Store Group:', error);
+    console.error(' Failed to create Store Group:', error);
     return res.status(500).json({
       message: 'Failed to create Store Group',
       error: error.message,

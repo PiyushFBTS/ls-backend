@@ -12,7 +12,7 @@ export const getStoreGroupById = async (req: Request, res: Response) => {
 
     const cacheKey = `storeGroup:${id}`;
 
-    // 1️⃣ Try to get from Redis cache
+    // Try to get from Redis cache
     const cached = await redis.get(cacheKey);
     if (cached) {
       console.log(`Cache hit for ${cacheKey}`);
@@ -21,7 +21,7 @@ export const getStoreGroupById = async (req: Request, res: Response) => {
 
     console.log(`Cache miss for ${cacheKey}`);
 
-    // 2️⃣ Query the database
+    //  Query the database
     const result = await pool.query('SELECT * FROM posdb.store_group WHERE sg_code = $1', [id]);
 
     if (result.rows.length === 0) {
@@ -30,13 +30,13 @@ export const getStoreGroupById = async (req: Request, res: Response) => {
 
     const storeGroup = result.rows[0];
 
-    // 3️⃣ Cache the result (5-minute TTL)
+    // Cache the result (5-minute TTL)
     await redis.setex(cacheKey, 300, JSON.stringify(storeGroup));
 
-    // 4️⃣ Return result
+    //  Return result
     return res.status(200).json(storeGroup);
   } catch (error: any) {
-    console.error('❌ Failed to fetch Store Group by ID:', error);
+    console.error(' Failed to fetch Store Group by ID:', error);
     return res.status(500).json({
       message: 'Failed to Fetch Store Group',
       error: error.message,

@@ -12,7 +12,7 @@ export const updateStoreGroup = async (req: Request, res: Response) => {
 
     const { cmp_code, cmp_name, ou_code, ou_name, sg_code, sg_name } = body;
 
-    // 1️⃣ Validate required fields
+    // Validate required fields
     if (!cmp_code || !cmp_name || !ou_code || !ou_name || !sg_code || !sg_name) {
       return res.status(400).json({
         error: 'Missing required fields',
@@ -20,11 +20,11 @@ export const updateStoreGroup = async (req: Request, res: Response) => {
       });
     }
 
-    // 2️⃣ Get user info (from auth middleware / JWT)
+    //  Get user info (from auth middleware / JWT)
     const currentUser = (req as any).user?.username || 'system';
     const currentTime = new Date();
 
-    // 3️⃣ Update record
+    // Update record
     const query = `
       UPDATE posdb.store_group SET
         cmp_code = $1,
@@ -55,7 +55,7 @@ export const updateStoreGroup = async (req: Request, res: Response) => {
       return res.status(404).json({ error: 'Store Group not found' });
     }
 
-    // 4️⃣ Clear related Redis cache
+    //  Clear related Redis cache
     try {
       await redis.del('storeGroups:all');
       await redis.del(`storeGroup:${sg_code}`);
@@ -64,13 +64,13 @@ export const updateStoreGroup = async (req: Request, res: Response) => {
       console.warn('⚠️ Failed to clear Redis cache for Store Group:', cacheErr);
     }
 
-    // 5️⃣ Return success
+    //  Return success
     return res.status(200).json({
       message: 'Store Group updated successfully',
       status: 'success',
     });
   } catch (error: any) {
-    console.error('❌ Failed to update Store Group:', error);
+    console.error(' Failed to update Store Group:', error);
     return res.status(500).json({
       message: 'Failed to Update Store Group',
       error: error.message,

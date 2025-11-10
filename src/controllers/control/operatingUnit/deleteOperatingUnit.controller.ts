@@ -6,12 +6,12 @@ export const deleteOperatingUnit = async (req: Request, res: Response) => {
   try {
     const { ids } = req.body;
 
-    // 1️⃣ Validate input
+    // Validate input
     if (!Array.isArray(ids) || ids.length === 0) {
       return res.status(400).json({ message: 'No IDs provided' });
     }
 
-    // 2️⃣ Check for dependent stores
+    //  Check for dependent stores
     const storeQuery = `
       SELECT store_code FROM posdb.store WHERE ou_code = ANY($1::integer[])
     `;
@@ -24,7 +24,7 @@ export const deleteOperatingUnit = async (req: Request, res: Response) => {
       });
     }
 
-    // 3️⃣ Delete operating units
+    // Delete operating units
     const deleteQuery = `
       DELETE FROM posdb.ou
       WHERE ou_code = ANY($1::integer[])
@@ -37,7 +37,7 @@ export const deleteOperatingUnit = async (req: Request, res: Response) => {
         .json({ message: 'No Operating Units deleted (not found)' });
     }
 
-    // 4️⃣ Invalidate Redis caches
+    //  Invalidate Redis caches
     try {
       await redis.del('operatingUnits:all');
       const pipeline = redis.pipeline();
@@ -47,13 +47,13 @@ export const deleteOperatingUnit = async (req: Request, res: Response) => {
       console.warn('⚠️ Failed to invalidate OU cache after delete:', cacheErr);
     }
 
-    // 5️⃣ Respond success
+    //  Respond success
     return res.status(200).json({
       message: 'Operating Unit deleted successfully',
       deletedCount: result.rowCount,
     });
   } catch (error: any) {
-    console.error('❌ Failed to delete Operating Unit:', error);
+    console.error(' Failed to delete Operating Unit:', error);
     return res.status(500).json({
       message: 'Failed to Delete Operating Unit',
       error: error.message,

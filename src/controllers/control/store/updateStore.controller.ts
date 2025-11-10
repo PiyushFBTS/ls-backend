@@ -47,12 +47,12 @@ export const updateStore = async (req: Request, res: Response) => {
       ezetap_integration,
     } = body;
 
-    // 1️⃣ Validate required fields
+    // Validate required fields
     if (!store_code) {
       return res.status(400).json({ error: 'Missing store_code for update' });
     }
 
-    // 2️⃣ Update query
+    //  Update query
     const query = `
       UPDATE posdb.store SET
         cmp_code = $1,
@@ -134,7 +134,7 @@ export const updateStore = async (req: Request, res: Response) => {
       return res.status(404).json({ error: 'Store not found' });
     }
 
-    // 3️⃣ Invalidate Redis cache (important!)
+    // Invalidate Redis cache (important!)
     try {
       await redis.del('stores:all');
       await redis.del(`store:${store_code}`);
@@ -145,13 +145,13 @@ export const updateStore = async (req: Request, res: Response) => {
       console.warn('⚠️ Failed to clear Redis cache for updated Store:', cacheErr);
     }
 
-    // 4️⃣ Success response
+    //  Success response
     return res.status(200).json({
       message: 'Store updated successfully',
       status: 'success',
     });
   } catch (error: any) {
-    console.error('❌ Failed to update store:', error);
+    console.error(' Failed to update store:', error);
     return res.status(500).json({
       message: 'Failed to update Store',
       error: error.message,

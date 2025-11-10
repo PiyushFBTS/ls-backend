@@ -6,14 +6,14 @@ export const getTerminalById = async (req: Request, res: Response) => {
   try {
     const { id } = req.params; // terminal_id
 
-    // 1️⃣ Validate input
+    // Validate input
     if (!id) {
       return res.status(400).json({ error: "Terminal ID is required" });
     }
 
     const cacheKey = `terminal:${id}`;
 
-    // 2️⃣ Try Redis cache first
+    // Try Redis cache first
     const cached = await redis.get(cacheKey);
     if (cached) {
       console.log(`🟢 Cache hit for ${cacheKey}`);
@@ -22,7 +22,7 @@ export const getTerminalById = async (req: Request, res: Response) => {
 
     console.log(`🟡 Cache miss for ${cacheKey}`);
 
-    // 3️⃣ Query database
+    // Query database
     const query = `
       SELECT * FROM posdb.terminal
       WHERE terminal_id = $1
@@ -30,20 +30,20 @@ export const getTerminalById = async (req: Request, res: Response) => {
     `;
     const result = await pool.query(query, [id]);
 
-    // 4️⃣ If not found
+    // If not found
     if (result.rows.length === 0) {
       return res.status(404).json({ error: "Terminal not found" });
     }
 
     const terminal = result.rows[0];
 
-    // 5️⃣ Cache the result for 5 minutes
+    // 5Cache the result for 5 minutes
     await redis.setex(cacheKey, 300, JSON.stringify(terminal));
 
-    // 6️⃣ Return the response
+    // Return the response
     return res.status(200).json(terminal);
   } catch (error: any) {
-    console.error("❌ Failed to fetch terminal by ID:", error);
+    console.error(" Failed to fetch terminal by ID:", error);
     return res.status(500).json({
       message: "Failed to Fetch Terminal",
       error: error.message,

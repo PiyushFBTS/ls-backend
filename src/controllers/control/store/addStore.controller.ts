@@ -50,7 +50,7 @@ export const addStore = async (req: Request, res: Response) => {
       ezetap_integration,
     } = body;
 
-    // 1️⃣ Required fields check
+    // Required fields check
     if (
       !cmp_code ||
       !cmp_name ||
@@ -134,10 +134,10 @@ export const addStore = async (req: Request, res: Response) => {
       ezetap_integration,
     ];
 
-    // 3️⃣ Execute query
+    // Execute query
     await pool.query(query, values);
 
-    // 4️⃣ Clear Redis cache
+    //  Clear Redis cache
     try {
       await redis.del('stores:all');
       await redis.del(`stores:company:${cmp_code}`);
@@ -147,13 +147,13 @@ export const addStore = async (req: Request, res: Response) => {
       console.warn('⚠️ Failed to invalidate Redis cache for Store:', cacheErr);
     }
 
-    // 5️⃣ Return success
+    //  Return success
     return res.status(200).json({
       message: 'Store created successfully',
       status: 'success',
     });
   } catch (error: any) {
-    console.error('❌ Failed to create Store:', error);
+    console.error(' Failed to create Store:', error);
     return res.status(500).json({
       message: 'Failed to create Store',
       error: error.message,

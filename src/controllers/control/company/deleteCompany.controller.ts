@@ -6,12 +6,12 @@ export const deleteCompany = async (req: Request, res: Response) => {
   try {
     const { ids } = req.body;
 
-    // 1️⃣ Validate request
+    // Validate request
     if (!Array.isArray(ids) || ids.length === 0) {
       return res.status(400).json({ message: 'No IDs provided' });
     }
 
-    // 2️⃣ Check foreign key dependencies
+    //  Check foreign key dependencies
     const userQuery = `
       SELECT user_code FROM posdb.users WHERE cmp_code = ANY($1::text[])
     `;
@@ -36,7 +36,7 @@ export const deleteCompany = async (req: Request, res: Response) => {
       });
     }
 
-    // 3️⃣ Delete companies
+    // Delete companies
     const deleteQuery = `
       DELETE FROM posdb.company
       WHERE cmp_code = ANY($1::text[])
@@ -47,7 +47,7 @@ export const deleteCompany = async (req: Request, res: Response) => {
       return res.status(404).json({ message: 'No companies deleted (not found)' });
     }
 
-    // 4️⃣ Invalidate Redis cache
+    //  Invalidate Redis cache
     try {
       await redis.del('companies:all');
       const pipeline = redis.pipeline();
@@ -57,13 +57,13 @@ export const deleteCompany = async (req: Request, res: Response) => {
       console.warn('⚠️ Failed to invalidate cache after deletion:', cacheErr);
     }
 
-    // 5️⃣ Success response
+    //  Success response
     return res.status(200).json({
       message: 'Company deleted successfully',
       deletedCount: result.rowCount,
     });
   } catch (error: any) {
-    console.error('❌ Failed to delete company:', error);
+    console.error(' Failed to delete company:', error);
     return res.status(500).json({
       message: 'Failed to Delete Company',
       error: error.message,

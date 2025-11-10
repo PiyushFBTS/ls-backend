@@ -12,7 +12,7 @@ export const getOperatingUnitById = async (req: Request, res: Response) => {
 
     const cacheKey = `operatingUnit:${id}`;
 
-    // 1️⃣ Try cache first
+    // Try cache first
     const cached = await redis.get(cacheKey);
     if (cached) {
       console.log(`Cache hit for ${cacheKey}`);
@@ -21,7 +21,7 @@ export const getOperatingUnitById = async (req: Request, res: Response) => {
 
     console.log(`Cache miss for ${cacheKey}`);
 
-    // 2️⃣ Query the database
+    //  Query the database
     const result = await pool.query('SELECT * FROM posdb.ou WHERE ou_code = $1', [id]);
 
     if (result.rows.length === 0) {
@@ -30,13 +30,13 @@ export const getOperatingUnitById = async (req: Request, res: Response) => {
 
     const operatingUnit = result.rows[0];
 
-    // 3️⃣ Store in Redis (cache for 5 minutes)
+    // Store in Redis (cache for 5 minutes)
     await redis.setex(cacheKey, 300, JSON.stringify(operatingUnit));
 
-    // 4️⃣ Return result
+    //  Return result
     return res.status(200).json(operatingUnit);
   } catch (error: any) {
-    console.error('❌ Failed to fetch Operating Unit by ID:', error);
+    console.error(' Failed to fetch Operating Unit by ID:', error);
     return res.status(500).json({
       message: 'Failed to Fetch Operating Unit',
       error: error.message,

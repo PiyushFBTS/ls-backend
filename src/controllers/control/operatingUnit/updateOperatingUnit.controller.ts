@@ -20,11 +20,11 @@ export const updateOperatingUnit = async (req: Request, res: Response) => {
         .json({ error: 'Missing required fields', status: 'fail' });
     }
 
-    // 🧠 Replace with actual user from JWT/session middleware later
+    //  Replace with actual user from JWT/session middleware later
     const currentUser = (req as any).user?.username || 'system';
     const currentTime = new Date();
 
-    // 1️⃣ Check if company exists
+    // Check if company exists
     const cmpQuery = `SELECT cmp_code, cmp_name FROM posdb.company WHERE cmp_code = $1`;
     const cmpResult = await pool.query(cmpQuery, [cmp_code]);
 
@@ -32,7 +32,7 @@ export const updateOperatingUnit = async (req: Request, res: Response) => {
       return res.status(404).json({ error: 'Company not found' });
     }
 
-    // 2️⃣ Update Operating Unit
+    //  Update Operating Unit
     const query = `
       UPDATE posdb.ou SET
         cmp_code = $1,
@@ -59,7 +59,7 @@ export const updateOperatingUnit = async (req: Request, res: Response) => {
       return res.status(404).json({ error: 'Operating Unit not found' });
     }
 
-    // 3️⃣ Invalidate Redis cache (list + by-company + by-id)
+    // Invalidate Redis cache (list + by-company + by-id)
     try {
       await redis.del('operatingUnits:all');
       await redis.del(`operatingUnit:${ou_code}`);
@@ -68,13 +68,13 @@ export const updateOperatingUnit = async (req: Request, res: Response) => {
       console.warn('⚠️ Failed to invalidate Redis cache after OU update:', cacheErr);
     }
 
-    // 4️⃣ Respond success
+    //  Respond success
     return res.status(200).json({
       message: 'Operating Unit updated successfully',
       status: 'success',
     });
   } catch (error: any) {
-    console.error('❌ Failed to update Operating Unit:', error);
+    console.error(' Failed to update Operating Unit:', error);
     return res.status(500).json({
       message: 'Failed to Update Operating Unit',
       error: error.message,

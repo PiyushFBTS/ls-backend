@@ -37,7 +37,7 @@ export const addTerminal = async (req: Request, res: Response) => {
     const values = [cmp_code, cmp_name, ou_code, ou_name, store_code, store_name, terminal_id];
     await pool.query(insertQuery, values);
 
-    // 4️⃣ Invalidate related Redis caches
+    //  Invalidate related Redis caches
     try {
       await redis.del("terminals:all");
       await redis.del(`terminals:store:${store_code}`);
@@ -47,13 +47,13 @@ export const addTerminal = async (req: Request, res: Response) => {
       console.warn("⚠️ Failed to clear Redis cache after terminal insert:", cacheErr);
     }
 
-    // 5️⃣ Return success
+    //  Return success
     return res.status(200).json({
       message: "Terminal created successfully",
       status: "success",
     });
   } catch (error: any) {
-    console.error("❌ Failed to create Terminal:", error);
+    console.error(" Failed to create Terminal:", error);
     return res.status(500).json({
       message: "Failed to create Terminal",
       error: error.message,

@@ -14,7 +14,7 @@ export const updateTerminal = async (req: Request, res: Response) => {
       terminal_id,
     } = req.body;
 
-    // 1️⃣ Validate input
+    // Validate input
     if (!terminal_id) {
       return res.status(400).json({ error: "Terminal ID is required" });
     }
@@ -23,12 +23,12 @@ export const updateTerminal = async (req: Request, res: Response) => {
       return res.status(400).json({ error: "Missing required fields" });
     }
 
-    // 2️⃣ Check database connection
+    //  Check database connection
     if (!pool) {
       return res.status(500).json({ error: "Database connection not available" });
     }
 
-    // 3️⃣ Update query
+    // Update query
     const query = `
       UPDATE posdb.terminal SET
         cmp_code = $1,
@@ -52,12 +52,12 @@ export const updateTerminal = async (req: Request, res: Response) => {
 
     const result = await pool.query(query, values);
 
-    // 4️⃣ Handle not found
+    //  Handle not found
     if (result.rowCount === 0) {
       return res.status(404).json({ error: "Terminal not found" });
     }
 
-    // 5️⃣ Invalidate Redis cache
+    //  Invalidate Redis cache
     try {
       await redis.del(`terminal:${terminal_id}`);
       await redis.del(`terminals:store:${store_code}`);
@@ -68,13 +68,13 @@ export const updateTerminal = async (req: Request, res: Response) => {
       console.warn("⚠️ Failed to invalidate terminal cache:", cacheErr);
     }
 
-    // 6️⃣ Respond success
+    //  Respond success
     return res.status(200).json({
       message: "Terminal updated successfully",
       status: "success",
     });
   } catch (error: any) {
-    console.error("❌ Failed to update terminal:", error);
+    console.error(" Failed to update terminal:", error);
     return res.status(500).json({
       message: "Failed to Update Terminal",
       error: error.message,

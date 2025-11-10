@@ -65,7 +65,7 @@ export const addOperatingUnit = async (req: Request, res: Response) => {
       status: 'success',
     });
   } catch (error: any) {
-    console.error('❌ Failed to create Operating Unit:', error);
+    console.error(' Failed to create Operating Unit:', error);
     return res.status(500).json({
       message: 'Failed to create Operating Unit',
       error: error.message,
