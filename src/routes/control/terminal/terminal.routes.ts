@@ -13,6 +13,6 @@ router.post("/addTerminal", validate(TerminalSchema), addTerminal);
 router.post("/deleteTerminal", deleteTerminal);
 router.get("/getTerminalByCompany/:id", getTerminalsByCompany);
 router.get("/getTerminal/:id", getTerminalById);
-router.put("/updateTerminal", updateTerminal);
+router.put("/updateTerminal/:id", updateTerminal);
 
 export default router;

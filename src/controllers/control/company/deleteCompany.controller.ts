@@ -54,7 +54,7 @@ export const deleteCompany = async (req: Request, res: Response) => {
       ids.forEach((id) => pipeline.del(`company:${id}`));
       await pipeline.exec();
     } catch (cacheErr) {
-      console.warn('⚠️ Failed to invalidate cache after deletion:', cacheErr);
+      console.warn(' Failed to invalidate cache after deletion:', cacheErr);
     }
 
     //  Success response

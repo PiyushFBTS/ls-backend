@@ -40,15 +40,7 @@ export const updateTerminal = async (req: Request, res: Response) => {
       WHERE terminal_id = $7
     `;
 
-    const values = [
-      cmp_code,
-      cmp_name,
-      ou_code,
-      ou_name,
-      store_code,
-      store_name,
-      terminal_id,
-    ];
+    const values = [cmp_code, cmp_name, ou_code, ou_name, store_code, store_name, terminal_id];
 
     const result = await pool.query(query, values);
 
@@ -65,7 +57,7 @@ export const updateTerminal = async (req: Request, res: Response) => {
       await redis.del(`terminals:ou:${ou_code}`);
       await redis.del("terminals:all");
     } catch (cacheErr) {
-      console.warn("⚠️ Failed to invalidate terminal cache:", cacheErr);
+      console.warn(" Failed to invalidate terminal cache:", cacheErr);
     }
 
     //  Respond success

@@ -44,7 +44,7 @@ export const addTerminal = async (req: Request, res: Response) => {
       await redis.del(`terminals:company:${cmp_code}`);
       await redis.del(`terminals:ou:${ou_code}`);
     } catch (cacheErr) {
-      console.warn("⚠️ Failed to clear Redis cache after terminal insert:", cacheErr);
+      console.warn(" Failed to clear Redis cache after terminal insert:", cacheErr);
     }
 
     //  Return success

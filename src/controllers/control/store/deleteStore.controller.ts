@@ -44,7 +44,7 @@ export const deleteStore = async (req: Request, res: Response) => {
       ids.forEach((id) => pipeline.del(`store:${id}`));
       await pipeline.exec();
     } catch (cacheErr) {
-      console.warn('⚠️ Failed to invalidate Store cache after deletion:', cacheErr);
+      console.warn(' Failed to invalidate Store cache after deletion:', cacheErr);
     }
 
     //  Success response

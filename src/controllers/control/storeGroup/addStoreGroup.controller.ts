@@ -63,7 +63,7 @@ export const addStoreGroup = async (req: Request, res: Response) => {
       await redis.del(`storeGroups:company:${cmp_code}`);
       await redis.del(`storeGroups:ou:${ou_code}`);
     } catch (cacheErr) {
-      console.warn('⚠️ Failed to invalidate Redis cache:', cacheErr);
+      console.warn(' Failed to invalidate Redis cache:', cacheErr);
     }
 
     return res

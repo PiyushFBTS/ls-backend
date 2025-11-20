@@ -22,6 +22,6 @@ router.post('/deleteStoreGroup', deleteStoreGroup);
 router.get('/getStoreGroup/:id', getStoreGroupById);
 
 // PUT: Update Store Group
-router.put('/updateStoreGroup', updateStoreGroup);
+router.put('/updateStoreGroup/:id', updateStoreGroup);
 
 export default router;

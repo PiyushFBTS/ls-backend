@@ -57,7 +57,7 @@ export const addOperatingUnit = async (req: Request, res: Response) => {
       await redis.del('operatingUnits:all');
       await redis.del(`operatingUnits:company:${cmp_code}`);
     } catch (cacheErr) {
-      console.warn('⚠️ Failed to invalidate OU cache:', cacheErr);
+      console.warn(' Failed to invalidate OU cache:', cacheErr);
     }
 
     return res.status(200).json({

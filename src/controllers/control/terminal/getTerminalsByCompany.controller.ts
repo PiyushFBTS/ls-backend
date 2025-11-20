@@ -4,7 +4,7 @@ import { redis } from "../../../db/redis";
 
 export const getTerminalsByCompany = async (req: Request, res: Response) => {
   try {
-    const { id } = req.params; // company code (cmp_code)
+    const { id } = req.params;
 
     if (!id) {
       return res.status(400).json({ error: "Company code (cmp_code) is required" });

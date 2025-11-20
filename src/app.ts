@@ -7,6 +7,8 @@ import operatingUnitRoutes from '../src/routes/control/opertaingUnit/operatingUn
 import storeGroupRoutes from '../src/routes/control/storeGroup/storeGroup.routes';
 import storeRoutes from '../src/routes/control/store/store.routes';
 import terminalRoutes from '../src/routes/control/terminal/terminal.routes';
+import userRoutes from '../src/routes/user/user.routes';
+import roleRoutes from '../src/routes/user/role.routes';
 import authRoutes from '../src/routes/auth/auth.routes';
 
 const app = express();
@@ -25,6 +27,11 @@ app.use('/api/operatingUnit', operatingUnitRoutes);
 app.use('/api/storeGroup', storeGroupRoutes);
 app.use('/api/store', storeRoutes);
 app.use("/api/terminal", terminalRoutes);
+
+// user
+app.use("/api/user", userRoutes);
+app.use("/api/role", roleRoutes);
+
 
 app.get('/', (_, res) => res.send('Backend running 🚀'));
 

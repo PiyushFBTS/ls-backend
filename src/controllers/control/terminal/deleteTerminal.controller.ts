@@ -30,7 +30,7 @@ export const deleteTerminal = async (req: Request, res: Response) => {
       await pipeline.exec();
       console.log("🧹 Redis terminal cache cleared");
     } catch (cacheErr) {
-      console.warn("⚠️ Failed to invalidate Redis cache after terminal deletion:", cacheErr);
+      console.warn(" Failed to invalidate Redis cache after terminal deletion:", cacheErr);
     }
 
     //  Return success

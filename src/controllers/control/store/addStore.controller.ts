@@ -144,7 +144,7 @@ export const addStore = async (req: Request, res: Response) => {
       await redis.del(`stores:ou:${ou_code}`);
       await redis.del(`stores:storeGroup:${sg_code}`);
     } catch (cacheErr) {
-      console.warn('⚠️ Failed to invalidate Redis cache for Store:', cacheErr);
+      console.warn(' Failed to invalidate Redis cache for Store:', cacheErr);
     }
 
     //  Return success

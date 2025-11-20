@@ -13,7 +13,7 @@ const router = Router();
 router.post('/addOperatingUnit', validate(operatingUnitSchema), addOperatingUnit);
 router.get('/getOperatingUnit/:id', getOperatingUnitById);
 router.get('/getOperatingUnitByCompany/:id', getOperatingUnitByCompany);
-router.put('/updateOperatingUnit', updateOperatingUnit);
+router.put('/updateOperatingUnit/:id', updateOperatingUnit);
 router.post('/deleteOperatingUnit', deleteOperatingUnit);
 
 export default router;

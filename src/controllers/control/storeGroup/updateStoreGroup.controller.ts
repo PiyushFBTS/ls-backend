@@ -61,7 +61,7 @@ export const updateStoreGroup = async (req: Request, res: Response) => {
       await redis.del(`storeGroup:${sg_code}`);
       await redis.del(`storeGroups:company:${cmp_code}`);
     } catch (cacheErr) {
-      console.warn('⚠️ Failed to clear Redis cache for Store Group:', cacheErr);
+      console.warn(' Failed to clear Redis cache for Store Group:', cacheErr);
     }
 
     //  Return success

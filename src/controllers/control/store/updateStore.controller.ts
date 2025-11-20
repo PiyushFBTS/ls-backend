@@ -142,7 +142,7 @@ export const updateStore = async (req: Request, res: Response) => {
       await redis.del(`stores:storeGroup:${sg_code}`);
       await redis.del(`stores:ou:${ou_code}`);
     } catch (cacheErr) {
-      console.warn('⚠️ Failed to clear Redis cache for updated Store:', cacheErr);
+      console.warn(' Failed to clear Redis cache for updated Store:', cacheErr);
     }
 
     //  Success response

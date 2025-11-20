@@ -29,7 +29,7 @@ export const deleteStoreGroup = async (req: Request, res: Response) => {
       ids.forEach((id) => pipeline.del(`storeGroup:${id}`));
       await pipeline.exec();
     } catch (cacheErr) {
-      console.warn('⚠️ Failed to invalidate Store Group cache:', cacheErr);
+      console.warn(' Failed to invalidate Store Group cache:', cacheErr);
     }
 
     //  Return success

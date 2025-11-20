@@ -44,7 +44,7 @@ export const deleteOperatingUnit = async (req: Request, res: Response) => {
       ids.forEach((id) => pipeline.del(`operatingUnit:${id}`));
       await pipeline.exec();
     } catch (cacheErr) {
-      console.warn('⚠️ Failed to invalidate OU cache after delete:', cacheErr);
+      console.warn(' Failed to invalidate OU cache after delete:', cacheErr);
     }
 
     //  Respond success
