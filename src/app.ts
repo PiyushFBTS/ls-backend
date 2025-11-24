@@ -12,6 +12,8 @@ import roleRoutes from '../src/routes/user/role.routes';
 import authRoutes from '../src/routes/auth/auth.routes';
 import moduleRoutes from '../src/routes/module/module.routes';
 import permissionRoutes from '../src/routes/permissions/permission.route';
+import controlDropDown from './routes/dropDown/control/controlDropDown.routes';
+import addressDropDown from './routes/dropDown/address/addressDropDown.routes';
 
 const app = express();
 
@@ -39,6 +41,10 @@ app.use("/api/module", moduleRoutes)
 
 //Permission
 app.use("/api/permission", permissionRoutes)
+
+//dropdown
+app.use("/api/controlDropDown",controlDropDown)
+app.use("/api/addressDropDown",addressDropDown)
 
 
 
