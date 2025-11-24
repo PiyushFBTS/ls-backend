@@ -10,6 +10,8 @@ import terminalRoutes from '../src/routes/control/terminal/terminal.routes';
 import userRoutes from '../src/routes/user/user.routes';
 import roleRoutes from '../src/routes/user/role.routes';
 import authRoutes from '../src/routes/auth/auth.routes';
+import moduleRoutes from '../src/routes/module/module.routes';
+import permissionRoutes from '../src/routes/permissions/permission.route';
 
 const app = express();
 
@@ -31,6 +33,14 @@ app.use("/api/terminal", terminalRoutes);
 // user
 app.use("/api/user", userRoutes);
 app.use("/api/role", roleRoutes);
+
+//module
+app.use("/api/module", moduleRoutes)
+
+//Permission
+app.use("/api/permission", permissionRoutes)
+
+
 
 
 app.get('/', (_, res) => res.send('Backend running 🚀'));
