@@ -14,6 +14,9 @@ import moduleRoutes from '../src/routes/module/module.routes';
 import permissionRoutes from '../src/routes/permissions/permission.route';
 import controlDropDown from './routes/dropDown/control/controlDropDown.routes';
 import addressDropDown from './routes/dropDown/address/addressDropDown.routes';
+import commonDropDown from './routes/common/commonDropDown.routes';
+import currencyMaster from './routes/item/currencyMaster.Routes';
+import gstGroup from './routes/item/gstGroup.Routes';
 
 const app = express();
 
@@ -45,6 +48,13 @@ app.use("/api/permission", permissionRoutes)
 //dropdown
 app.use("/api/controlDropDown",controlDropDown)
 app.use("/api/addressDropDown",addressDropDown)
+
+//common
+app.use("/api/commonDropDown",commonDropDown)
+
+//Item
+app.use("/api/currencyMaster",currencyMaster)
+app.use("/api/gstGroup",gstGroup)
 
 
 
