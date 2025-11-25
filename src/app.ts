@@ -19,6 +19,8 @@ import currencyMaster from './routes/item/currencyMaster.Routes';
 import gstGroup from './routes/item/gstGroup.Routes';
 import itemHierarchy from './routes/item/itemHierarchy.routes';
 import item from './routes/item/item.routes';
+import itemSales from './routes/item/itemSales.Routes';
+import ItemUnitOfMeasure from './routes/item/itemUnitOfMeasure.Routes';
 
 const app = express();
 
@@ -59,6 +61,8 @@ app.use("/api/currencyMaster",currencyMaster)
 app.use("/api/gstGroup",gstGroup)
 app.use("/api/itemHierarchy",itemHierarchy)
 app.use("/api/item",item)
+app.use("/api/itemSales",itemSales)
+app.use("/api/ItemUnitOfMeasure",ItemUnitOfMeasure)
 
 
 
