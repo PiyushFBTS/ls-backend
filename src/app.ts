@@ -17,6 +17,8 @@ import addressDropDown from './routes/dropDown/address/addressDropDown.routes';
 import commonDropDown from './routes/common/commonDropDown.routes';
 import currencyMaster from './routes/item/currencyMaster.Routes';
 import gstGroup from './routes/item/gstGroup.Routes';
+import itemHierarchy from './routes/item/itemHierarchy.routes';
+import item from './routes/item/item.routes';
 
 const app = express();
 
@@ -55,6 +57,8 @@ app.use("/api/commonDropDown",commonDropDown)
 //Item
 app.use("/api/currencyMaster",currencyMaster)
 app.use("/api/gstGroup",gstGroup)
+app.use("/api/itemHierarchy",itemHierarchy)
+app.use("/api/item",item)
 
 
 
