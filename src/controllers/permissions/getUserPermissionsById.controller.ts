@@ -12,11 +12,8 @@ export const getUserPermissions = async (req: Request, res: Response) => {
         const cached = await redis.get(cacheKey);
 
         if (cached) {
-            console.log('Cache hit: user_permissions');
             return res.status(200).json(JSON.parse(cached));
         }
-
-        console.log('Cache miss: user_permissions');
 
         const permissionsQuery = await pool.query(
             `

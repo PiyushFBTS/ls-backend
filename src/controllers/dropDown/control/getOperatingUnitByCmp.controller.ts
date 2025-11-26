@@ -15,11 +15,8 @@ export const getOperatingUnitByCmp = async (req: Request, res: Response) => {
     // Check Redis cache
     const cached = await redis.get(cacheKey);
     if (cached) {
-      console.log('Cache hit: ou_by_company');
       return res.status(200).json(JSON.parse(cached));
     }
-
-    console.log('Cache miss: ou_by_company');
 
     const result = await pool.query(
       `SELECT cmp_code, cmp_name, ou_code, ou_name 

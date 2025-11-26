@@ -9,11 +9,8 @@ export const getAllCountry = async (req: Request, res: Response) => {
     // Check Redis cache
     const cached = await redis.get(cacheKey);
     if (cached) {
-      console.log('Cache hit: country:all');
       return res.status(200).json(JSON.parse(cached));
     }
-
-    console.log('Cache miss: country:all');
 
     const result = await pool.query(
       `SELECT country_code, country_name 

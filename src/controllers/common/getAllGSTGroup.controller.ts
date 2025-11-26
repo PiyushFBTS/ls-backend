@@ -9,11 +9,8 @@ export const getAllGSTGroup = async (req: Request, res: Response) => {
     // Check Redis cache
     const cached = await redis.get(cacheKey);
     if (cached) {
-      console.log("Cache hit: gst_group");
       return res.status(200).json(JSON.parse(cached));
     }
-
-    console.log("Cache miss: gst_group");
 
     const result = await pool.query(
       `

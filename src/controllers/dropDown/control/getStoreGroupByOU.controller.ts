@@ -15,11 +15,8 @@ export const getStoreGroupByOU = async (req: Request, res: Response) => {
     // Check Redis cache
     const cached = await redis.get(cacheKey);
     if (cached) {
-      console.log('Cache hit: store_group_by_ou');
       return res.status(200).json(JSON.parse(cached));
     }
-
-    console.log('Cache miss: store_group_by_ou');
 
     const result = await pool.query(
       `

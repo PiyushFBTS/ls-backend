@@ -7,16 +7,13 @@ export const getVat = async (req: Request, res: Response) => {
   try {
     const cacheKey = "vat:all";
 
-    // 1️⃣ Check Redis cache
+    // Check Redis cache
     const cached = await redis.get(cacheKey);
     if (cached) {
-      console.log("Cache hit: vat:all");
       return res.status(200).json(JSON.parse(cached));
     }
 
-    console.log("Cache miss: vat:all");
-
-    // 2️⃣ Fetch from DB
+    // Fetch from DB
     const query = `
       SELECT * 
       FROM posdb.vat 
@@ -27,10 +24,10 @@ export const getVat = async (req: Request, res: Response) => {
 
     const data = result.rows;
 
-    // 3️⃣ Cache result for 5 minutes (300 seconds)
+    // Cache result for 5 minutes (300 seconds)
     await redis.setex(cacheKey, 300, JSON.stringify(data));
 
-    // 4️⃣ Return response
+    //Return response
     return res.status(200).json(data);
 
   } catch (error: any) {

@@ -37,7 +37,6 @@ export const updateUnitOfMeasure = async (req: Request, res: Response) => {
         try {
             await redis.del("uom:all"); // List cache
             await redis.del(`uom:${cmp_code}:${uom_code}`); // Single UOM cache
-            console.log("Redis cache cleared for UOM update");
         } catch (cacheErr) {
             console.warn("Failed to clear UOM cache:", cacheErr);
         }

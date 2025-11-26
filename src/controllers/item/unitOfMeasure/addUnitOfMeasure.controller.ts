@@ -5,9 +5,7 @@ import { UnitOfMeasureFormType } from "../../../schemas/item/unitOfMeasure.schem
 
 export const addUnitOfMeasure = async (req: Request, res: Response) => {
     try {
-        const body = req.body as UnitOfMeasureFormType ;
-
-        console.log("body", body);
+        const body = req.body as UnitOfMeasureFormType;
 
         const { uom_code, uom_description, decimal_allowed, cmp_name, cmp_code } = body;
 

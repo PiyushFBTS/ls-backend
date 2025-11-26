@@ -15,11 +15,8 @@ export const getGSTGroupById = async (req: Request, res: Response) => {
     // Try Redis cache
     const cached = await redis.get(cacheKey);
     if (cached) {
-      console.log("Cache hit: gst_group");
       return res.status(200).json(JSON.parse(cached));
     }
-
-    console.log("Cache miss: gst_group");
 
     const result = await pool.query(
       `SELECT * FROM posdb.gst_group WHERE gst_group_code = $1`,

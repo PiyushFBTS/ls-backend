@@ -15,11 +15,8 @@ export const getItemSalesByCompany = async (req: Request, res: Response) => {
     // Check Redis cache
     const cached = await redis.get(cacheKey);
     if (cached) {
-      console.log("Cache hit: itemSalesByCompany");
       return res.status(200).json(JSON.parse(cached));
     }
-
-    console.log("Cache miss: itemSalesByCompany");
 
     const result = await pool.query(
       `SELECT * FROM posdb.sales_price WHERE cmp_code = $1`,
