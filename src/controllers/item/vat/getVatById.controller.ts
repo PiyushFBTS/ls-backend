@@ -34,17 +34,10 @@ export const getVatById = async (req: Request, res: Response) => {
 
     const vat = result.rows[0];
 
-<<<<<<< HEAD
-    // 3️⃣ Store in Redis for 5 minutes
-    await redis.setex(cacheKey, 300, JSON.stringify(vat));
-
-    // 4️⃣ Send response
-=======
     //Store in Redis for 5 minutes
     await redis.setex(cacheKey, 300, JSON.stringify(vat));
 
     //Send response
->>>>>>> 457e74e05b42124af2b389d0f5825b2dd73ae48a
     return res.status(200).json(vat);
 
   } catch (error: any) {
