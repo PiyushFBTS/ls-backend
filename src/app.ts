@@ -23,6 +23,7 @@ import itemSales from './routes/item/itemSales.Routes';
 import ItemUnitOfMeasure from './routes/item/itemUnitOfMeasure.Routes';
 import ItemVariant from './routes/item/itemVariant.Routes';
 import unitOfMeasure from './routes/item/unitOfMeasure.Routes';
+import vat from './routes/item/vat.Routes';
 
 const app = express();
 
@@ -67,6 +68,7 @@ app.use("/api/itemSales",itemSales)
 app.use("/api/itemUnitOfMeasure",ItemUnitOfMeasure)
 app.use("/api/itemVariant",ItemVariant)
 app.use("/api/unitOfMeasure",unitOfMeasure)
+app.use("/api/vat",vat)
 
 
 

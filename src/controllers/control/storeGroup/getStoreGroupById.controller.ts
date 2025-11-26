@@ -4,44 +4,55 @@ import { redis } from '../../../db/redis';
 
 export const getStoreGroupById = async (req: Request, res: Response) => {
   try {
-    const { id } = req.params;
+    const { sg_code, cmp_code } = req.query;
 
-    if (!id) {
-      return res.status(400).json({ error: 'Store Group ID (sg_code) is required' });
+    // Validate required query parameters
+    if (!sg_code || !cmp_code) {
+      return res.status(400).json({
+        error: "Missing required query params: sg_code, cmp_code",
+      });
     }
 
-    const cacheKey = `storeGroup:${id}`;
+    const cacheKey = `storeGroup:${cmp_code}:${sg_code}`;
 
-    // Try to get from Redis cache
+    // Check Redis cache first
     const cached = await redis.get(cacheKey);
     if (cached) {
-      console.log(`Cache hit for ${cacheKey}`);
+      console.log(`Cache hit: ${cacheKey}`);
       return res.status(200).json(JSON.parse(cached));
     }
 
-    console.log(`Cache miss for ${cacheKey}`);
+    console.log(`Cache miss: ${cacheKey}`);
 
-    //  Query the database
-    const result = await pool.query('SELECT * FROM posdb.store_group WHERE sg_code = $1', [id]);
+    // Query database with composite key
+    const query = `
+      SELECT *
+      FROM posdb.store_group
+      WHERE sg_code = $1 
+        AND cmp_code = $2
+    `;
+
+    const result = await pool.query(query, [sg_code, cmp_code]);
 
     if (result.rows.length === 0) {
-      return res.status(404).json({ error: 'Store Group not found' });
+      return res.status(404).json({ error: "Store Group not found" });
     }
 
     const storeGroup = result.rows[0];
 
-    // Cache the result (5-minute TTL)
+    // Cache for 5 minutes
     await redis.setex(cacheKey, 300, JSON.stringify(storeGroup));
 
-    //  Return result
     return res.status(200).json(storeGroup);
+
   } catch (error: any) {
-    console.error(' Failed to fetch Store Group by ID:', error);
+    console.error("Failed to fetch Store Group:", error);
+
     return res.status(500).json({
-      message: 'Failed to Fetch Store Group',
+      message: "Failed to Fetch Store Group",
       error: error.message,
-      status: 'fail',
-      timestamp: new Date().toLocaleString('en-IN'),
+      status: "fail",
+      timestamp: new Date().toLocaleString("en-IN"),
     });
   }
 };

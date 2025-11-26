@@ -9,11 +9,15 @@ import { ItemFormSchema } from "../../schemas/item/item.schema";
 
 const router = express.Router();
 
-
+// add new Item
 router.post("/addItem", validate(ItemFormSchema), addItem);
+// delete Item
 router.post("/deleteItem", deleteItem);
+// get Item by company
 router.get("/getItemsByCompany/:id", getItemsByCompany);
+// get item by Id 
 router.get("/getItemById", getItemById);
+// update Item
 router.put("/updateItem", validate(ItemFormSchema), updateItem);
 
 export default router;

@@ -11,9 +11,9 @@ import { operatingUnitSchema } from '../../../schemas/control/operatingUnit/oper
 const router = Router();
 
 router.post('/addOperatingUnit', validate(operatingUnitSchema), addOperatingUnit);
-router.get('/getOperatingUnit/:id', getOperatingUnitById);
+router.get('/getOperatingUnitById', getOperatingUnitById);
 router.get('/getOperatingUnitByCompany/:id', getOperatingUnitByCompany);
-router.put('/updateOperatingUnit/:id', updateOperatingUnit);
+router.put('/updateOperatingUnit', updateOperatingUnit);
 router.post('/deleteOperatingUnit', deleteOperatingUnit);
 
 export default router;

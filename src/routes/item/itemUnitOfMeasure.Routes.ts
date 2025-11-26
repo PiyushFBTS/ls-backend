@@ -10,11 +10,15 @@ import { ItemUnitOfMeasureFormSchema } from "../../schemas/item/itemUnitOfMeasur
 const router = express.Router();
 
 
-
+// add new UnitOfMeasure
 router.post("/addItemUnitOfMeasure", validate(ItemUnitOfMeasureFormSchema), addItemUnitOfMeasure);
+// delete UnitOfMeasure
 router.post("/deleteItemUnitOfMeasure", deleteUnitOfMeasure);
+// get UnitOfMeasure by Id
 router.get("/getItemUnitOfMeasureById", getItemUnitOfMeasureById);
+// get UnitOfMeasure by company
 router.get("/getItemUnitOfMeasureByCompany/:id", getItemUnitOfMeasureByCompany);
+// update UnitOfMeasure
 router.put("/updateItemUnitOfMeasure", updateItemUnitOfMeasure);
 
 export default router;

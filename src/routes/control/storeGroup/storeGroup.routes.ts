@@ -19,7 +19,7 @@ router.get('/getStoreGroupByCompany/:id', getStoreGroupByCompany);
 router.post('/deleteStoreGroup', deleteStoreGroup);
 
 // GET: Fetch  store groups for a specific ID
-router.get('/getStoreGroup/:id', getStoreGroupById);
+router.get('/getStoreGroupById', getStoreGroupById);
 
 // PUT: Update Store Group
 router.put('/updateStoreGroup/:id', updateStoreGroup);

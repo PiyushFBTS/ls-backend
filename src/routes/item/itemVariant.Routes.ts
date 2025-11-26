@@ -10,11 +10,15 @@ import { ItemVariantSchema } from "../../schemas/item/itemVariant.schema";
 const router = express.Router();
 
 
-
+// add Item Variant
 router.post("/addItemVariant", validate(ItemVariantSchema), addItemVariant);
+// deleet Item Variant
 router.post("/deleteItemVariant", deleteItemVariant);
+// get Item Variant by Id
 router.get("/getItemVariantById", getItemVariantById);
+// get Item Variantby Company
 router.get("/getItemVariantByCompany/:id", getItemVariantByCompany);
+// update Item Variant
 router.put("/updateItemVariant", updateItemVariant);
 
 export default router;

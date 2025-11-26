@@ -4,15 +4,18 @@ import { redis } from '../../../db/redis';
 
 export const getOperatingUnitById = async (req: Request, res: Response) => {
   try {
-    const { id } = req.params;
+    const { ou_code, cmp_code } = req.query;
 
-    if (!id) {
-      return res.status(400).json({ error: 'Operating Unit ID is required' });
+    // Validate required params
+    if (!ou_code || !cmp_code) {
+      return res.status(400).json({
+        error: "Missing required query params: ou_code, cmp_code",
+      });
     }
 
-    const cacheKey = `operatingUnit:${id}`;
+    const cacheKey = `operatingUnit:${cmp_code}:${ou_code}`;
 
-    // Try cache first
+    // Check Redis cache
     const cached = await redis.get(cacheKey);
     if (cached) {
       console.log(`Cache hit for ${cacheKey}`);
@@ -21,27 +24,36 @@ export const getOperatingUnitById = async (req: Request, res: Response) => {
 
     console.log(`Cache miss for ${cacheKey}`);
 
-    //  Query the database
-    const result = await pool.query('SELECT * FROM posdb.ou WHERE ou_code = $1', [id]);
+    // Query DB
+    const query = `
+      SELECT *
+      FROM posdb.ou
+      WHERE ou_code = $1 AND cmp_code = $2
+    `;
+
+    const result = await pool.query(query, [ou_code, cmp_code]);
 
     if (result.rows.length === 0) {
-      return res.status(404).json({ error: 'Operating Unit not found' });
+      return res.status(404).json({
+        error: "Operating Unit not found",
+      });
     }
 
-    const operatingUnit = result.rows[0];
+    const ou = result.rows[0];
 
-    // Store in Redis (cache for 5 minutes)
-    await redis.setex(cacheKey, 300, JSON.stringify(operatingUnit));
+    // Cache for 5 mins
+    await redis.setex(cacheKey, 300, JSON.stringify(ou));
 
-    //  Return result
-    return res.status(200).json(operatingUnit);
+    return res.status(200).json(ou);
+
   } catch (error: any) {
-    console.error(' Failed to fetch Operating Unit by ID:', error);
+    console.error("Failed to fetch Operating Unit:", error);
+
     return res.status(500).json({
-      message: 'Failed to Fetch Operating Unit',
+      message: "Failed to Fetch Operating Unit",
       error: error.message,
-      status: 'fail',
-      timestamp: new Date().toLocaleString('en-IN'),
+      status: "fail",
+      timestamp: new Date().toLocaleString("en-IN"),
     });
   }
 };

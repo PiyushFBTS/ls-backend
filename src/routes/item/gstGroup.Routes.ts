@@ -8,12 +8,15 @@ import { updateGSTGroup } from "../../controllers/item/gstGroup/updateGSTGroup.c
 const router = express.Router();
 
 
+// add new Gst
 router.post("/addGST", addGST);
+// delete gst
 router.post("/deleteGST", deleteGSTGroup);
-
+// get all gst 
 router.get("/getGST/all", getGSTGroup);
+// get gst by Id
 router.get("/getGSTById/:id", getGSTGroupById);
-
+// update Item
 router.put("/updateGST", updateGSTGroup);
 
 export default router;

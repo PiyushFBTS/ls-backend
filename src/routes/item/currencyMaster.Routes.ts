@@ -7,10 +7,15 @@ import { updateCurrency } from "../../controllers/item/currencyMaster/updateCurr
 
 const router = express.Router();
 
+// add new currency
 router.post("/addCurrency", addCurrency);
+// delete currency
 router.post("/deleteCurrency", deleteCurrency);
+// get all currency
 router.get("/getCurrency/all", getCurrency);
+// get currency by id
 router.get("/getCurrencyById/:id", getCurrencyById)
+// update currency
 router.put("/updateCurrency", updateCurrency);
 
 
