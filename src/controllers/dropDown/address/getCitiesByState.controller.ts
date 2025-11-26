@@ -15,11 +15,8 @@ export const getCitiesByState = async (req: Request, res: Response) => {
     // Check Redis cache
     const cached = await redis.get(cacheKey);
     if (cached) {
-      console.log("Cache hit: cities_by_state");
       return res.status(200).json(JSON.parse(cached));
     }
-
-    console.log("Cache miss: cities_by_state");
 
     const result = await pool.query(
       `

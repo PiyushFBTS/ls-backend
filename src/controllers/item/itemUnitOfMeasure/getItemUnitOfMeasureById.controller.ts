@@ -17,12 +17,8 @@ export const getItemUnitOfMeasureById = async (req: Request, res: Response) => {
     // Check Redis cache
     const cached = await redis.get(cacheKey);
     if (cached) {
-      console.log("Cache hit: item_uom_by_id");
       return res.status(200).json(JSON.parse(cached));
     }
-
-    console.log("Cache miss: item_uom_by_id");
-
     const query = `
       SELECT *
       FROM posdb.item_unit_of_measure

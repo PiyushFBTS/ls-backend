@@ -9,11 +9,9 @@ export const getCompany = async (req: Request, res: Response) => {
     // Try Redis cache
     const cached = await redis.get(cacheKey);
     if (cached) {
-      console.log('Cache hit: company');
       return res.status(200).json(JSON.parse(cached));
     }
 
-    console.log('Cache miss: company');
 
     const result = await pool.query(`
       SELECT cmp_code, cmp_name 

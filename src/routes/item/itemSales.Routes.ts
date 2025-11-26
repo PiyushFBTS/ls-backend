@@ -9,10 +9,15 @@ import { ItemSalesFormSchema } from "../../schemas/item/itemSales.schema";
 
 const router = express.Router();
 
+// add new item sales prices
 router.post("/addItemSales", validate(ItemSalesFormSchema), addItemSales);
+// delete item sales prices
 router.post("/deleteItemSales", deleteItemSales);
+//get item sales prices by company
 router.get("/getItemSalesByCmp/:id", getItemSalesByCompany);
+// get  new item sales prices by Id
 router.get("/getItemSalesById", getItemSalesById);
+// update item sales prices
 router.put("/updateItemSales", updateItemSales);
 
 export default router;

@@ -12,11 +12,9 @@ export const getUserSessionDataById = async (req: Request, res: Response) => {
     const cached = await redis.get(cacheKey);
 
     if (cached) {
-      console.log('Cache hit: user_session');
       return res.status(200).json(JSON.parse(cached));
     }
 
-    console.log('Cache miss: user_session');
 
     const queryResult = await pool.query(
       `

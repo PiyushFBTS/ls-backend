@@ -4,44 +4,45 @@ import { redis } from "../../../db/redis";
 
 export const getTerminalById = async (req: Request, res: Response) => {
   try {
-    const { id } = req.params; // terminal_id
+    const { terminal_id, cmp_code } = req.query;
 
-    // Validate input
-    if (!id) {
-      return res.status(400).json({ error: "Terminal ID is required" });
+    // Validate required query params
+    if (!terminal_id || !cmp_code) {
+      return res.status(400).json({
+        error: "Missing required query parameters: terminal_id, cmp_code",
+      });
     }
 
-    const cacheKey = `terminal:${id}`;
+    const cacheKey = `terminal:${cmp_code}:${terminal_id}`;
 
     // Try Redis cache first
     const cached = await redis.get(cacheKey);
-    if (cached) {
-      console.log(`🟢 Cache hit for ${cacheKey}`);
+    if (cached) {;
       return res.status(200).json(JSON.parse(cached));
     }
 
-    console.log(`🟡 Cache miss for ${cacheKey}`);
-
-    // Query database
+    // DB query with composite key
     const query = `
-      SELECT * FROM posdb.terminal
+      SELECT *
+      FROM posdb.terminal
       WHERE terminal_id = $1
+        AND cmp_code = $2
       LIMIT 1
     `;
-    const result = await pool.query(query, [id]);
 
-    // If not found
+    const result = await pool.query(query, [terminal_id, cmp_code]);
+
     if (result.rows.length === 0) {
       return res.status(404).json({ error: "Terminal not found" });
     }
 
     const terminal = result.rows[0];
 
-    // 5Cache the result for 5 minutes
+    // Cache result (5-minute TTL)
     await redis.setex(cacheKey, 300, JSON.stringify(terminal));
 
-    // Return the response
     return res.status(200).json(terminal);
+
   } catch (error: any) {
     console.error(" Failed to fetch terminal by ID:", error);
     return res.status(500).json({

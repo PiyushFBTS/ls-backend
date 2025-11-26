@@ -1,16 +1,11 @@
+// controllers/vat/getAllVAT.ts
 import { Request, Response } from "express";
 import { pool } from "../../../db";
 import { redis } from "../../../db/redis";
 
-export const getItemSalesByCompany = async (req: Request, res: Response) => {
+export const getVat = async (req: Request, res: Response) => {
   try {
-    const { id } = req.params;
-
-    if (!id) {
-      return res.status(400).json({ error: "Company code is required" });
-    }
-
-    const cacheKey = `sales_price:company:${id}`;
+    const cacheKey = "vat:all";
 
     // Check Redis cache
     const cached = await redis.get(cacheKey);
@@ -18,22 +13,28 @@ export const getItemSalesByCompany = async (req: Request, res: Response) => {
       return res.status(200).json(JSON.parse(cached));
     }
 
-    const result = await pool.query(
-      `SELECT * FROM posdb.sales_price WHERE cmp_code = $1`,
-      [id]
-    );
+    // Fetch from DB
+    const query = `
+      SELECT * 
+      FROM posdb.vat 
+      ORDER BY vat_code ASC
+    `;
+
+    const result = await pool.query(query);
 
     const data = result.rows;
 
-    // Cache for 5 minutes
+    // Cache result for 5 minutes (300 seconds)
     await redis.setex(cacheKey, 300, JSON.stringify(data));
 
+    //Return response
     return res.status(200).json(data);
+
   } catch (error: any) {
-    console.error("Failed to fetch Item Sales:", error);
+    console.error("Failed to fetch VAT:", error);
 
     return res.status(500).json({
-      message: "Failed to Fetch Sales",
+      message: "Failed to Fetch VAT",
       error: error.message,
       status: "fail",
       timestamp: new Date().toLocaleString("en-IN")

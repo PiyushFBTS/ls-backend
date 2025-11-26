@@ -14,14 +14,11 @@ export const getUnitOfMeasureById = async (req: Request, res: Response) => {
 
     const cacheKey = `uom:id:${cmp_code}:${uom_code}`;
 
-    // 🔹 Check Redis Cache
+    // Check Redis Cache
     const cached = await redis.get(cacheKey);
     if (cached) {
-      console.log("Cache hit: UOM by composite key");
       return res.status(200).json(JSON.parse(cached));
     }
-
-    console.log("Cache miss: UOM by composite key");
 
     const query = `
       SELECT *
