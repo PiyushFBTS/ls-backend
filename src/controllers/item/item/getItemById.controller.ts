@@ -4,13 +4,16 @@ import { redis } from "../../../db/redis";
 
 export const getItemById = async (req: Request, res: Response) => {
   try {
-    const { id } = req.params; // item_code
+    const { item_code, cmp_code } = req.query;
 
-    if (!id) {
-      return res.status(400).json({ error: "Missing item_code" });
+    // Validate inputs
+    if (!item_code || !cmp_code) {
+      return res.status(400).json({
+        error: "Missing required query parameters: item_code, cmp_code",
+      });
     }
 
-    const cacheKey = `item:${id}`;
+    const cacheKey = `item:${cmp_code}:${item_code}`;
 
     // Check Redis cache
     const cached = await redis.get(cacheKey);
@@ -21,10 +24,14 @@ export const getItemById = async (req: Request, res: Response) => {
 
     console.log("Cache miss: item_by_id");
 
-    const result = await pool.query(
-      `SELECT * FROM posdb.item WHERE item_code = $1`,
-      [id]
-    );
+    const query = `
+      SELECT *
+      FROM posdb.item
+      WHERE item_code = $1
+      AND cmp_code = $2
+    `;
+
+    const result = await pool.query(query, [item_code, cmp_code]);
 
     if (result.rows.length === 0) {
       return res.status(404).json({ error: "Item not found" });
@@ -32,7 +39,7 @@ export const getItemById = async (req: Request, res: Response) => {
 
     const item = result.rows[0];
 
-    // Convert PostgreSQL bytea buffer → base64 URL
+    // Convert picture bytea to base64 if exists
     if (item.picture && Buffer.isBuffer(item.picture)) {
       const base64 = item.picture.toString("base64");
       item.picture = `data:image/jpeg;base64,${base64}`;
@@ -45,7 +52,6 @@ export const getItemById = async (req: Request, res: Response) => {
 
   } catch (error: any) {
     console.error("Error fetching Item:", error);
-
     return res.status(500).json({
       message: "Failed to Fetch Item",
       error: error.message,

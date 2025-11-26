@@ -21,6 +21,8 @@ import itemHierarchy from './routes/item/itemHierarchy.routes';
 import item from './routes/item/item.routes';
 import itemSales from './routes/item/itemSales.Routes';
 import ItemUnitOfMeasure from './routes/item/itemUnitOfMeasure.Routes';
+import ItemVariant from './routes/item/itemVariant.Routes';
+import unitOfMeasure from './routes/item/unitOfMeasure.Routes';
 
 const app = express();
 
@@ -62,7 +64,9 @@ app.use("/api/gstGroup",gstGroup)
 app.use("/api/itemHierarchy",itemHierarchy)
 app.use("/api/item",item)
 app.use("/api/itemSales",itemSales)
-app.use("/api/ItemUnitOfMeasure",ItemUnitOfMeasure)
+app.use("/api/itemUnitOfMeasure",ItemUnitOfMeasure)
+app.use("/api/itemVariant",ItemVariant)
+app.use("/api/unitOfMeasure",unitOfMeasure)
 
 
 

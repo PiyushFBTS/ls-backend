@@ -4,22 +4,21 @@ import { redis } from "../../../db/redis";
 
 export const getItemSalesById = async (req: Request, res: Response) => {
   try {
-    const { id } = req.params;
+    const { sales_code, item_code, starting_date, cmp_code } = req.query;
 
-    if (!id) {
-      return res.status(400).json({ error: "Missing id param" });
-    }
-
-    // Composite key format: "S001__ITEM01__2024-01-01"
-    const [salesCode, itemCode, startingDate] = id.split("__");
-
-    if (!salesCode || !itemCode || !startingDate) {
+    // Validate inputs
+    if (!sales_code || !item_code || !starting_date || !cmp_code) {
       return res.status(400).json({
-        error: "Invalid composite key format. Expected: sales__item__date",
+        error: "Missing required query parameters: sales_code, item_code, starting_date,cmp_code",
       });
     }
 
-    const cacheKey = `sales_price:item:${salesCode}:${itemCode}:${startingDate}`;
+    // Convert starting_date → yyyy-mm-dd (works with PostgreSQL DATE column)
+    const formattedDate = new Date(starting_date as string)
+      .toISOString()
+      .split("T")[0];
+
+    const cacheKey = `sales_price:item:${cmp_code}:${sales_code}:${item_code}:${formattedDate}`;
 
     // Check Redis cache
     const cached = await redis.get(cacheKey);
@@ -37,15 +36,17 @@ export const getItemSalesById = async (req: Request, res: Response) => {
         item_unit_of_measure_code, item_variant_code,
         cmp_code, cmp_name
       FROM posdb.sales_price
-      WHERE sales_code = $1
-        AND item_code = $2
-        AND starting_date = $3
+      WHERE cmp_code = $1
+        AND sales_code = $2
+        AND item_code = $3
+        AND starting_date = $4
     `;
 
     const result = await pool.query(query, [
-      salesCode,
-      itemCode,
-      startingDate,
+      cmp_code,
+      sales_code,
+      item_code,
+      formattedDate
     ]);
 
     if (result.rowCount === 0) {
@@ -58,6 +59,7 @@ export const getItemSalesById = async (req: Request, res: Response) => {
     await redis.setex(cacheKey, 300, JSON.stringify(data));
 
     return res.status(200).json(data);
+
   } catch (error: any) {
     console.error("Failed to fetch item sales:", error);
 
