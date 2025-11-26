@@ -15,11 +15,8 @@ export const getCurrencyById = async (req: Request, res: Response) => {
     // Try Redis cache
     const cached = await redis.get(cacheKey);
     if (cached) {
-      console.log("Cache hit: currency");
       return res.status(200).json(JSON.parse(cached));
     }
-
-    console.log("Cache miss: currency");
 
     const result = await pool.query(
       `SELECT * FROM posdb.currency_master WHERE currency_code = $1`,

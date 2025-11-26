@@ -18,11 +18,9 @@ export const getStoreGroupById = async (req: Request, res: Response) => {
     // Check Redis cache first
     const cached = await redis.get(cacheKey);
     if (cached) {
-      console.log(`Cache hit: ${cacheKey}`);
       return res.status(200).json(JSON.parse(cached));
     }
 
-    console.log(`Cache miss: ${cacheKey}`);
 
     // Query database with composite key
     const query = `

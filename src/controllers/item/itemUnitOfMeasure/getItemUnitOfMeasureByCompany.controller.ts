@@ -15,11 +15,8 @@ export const getItemUnitOfMeasureByCompany = async (req: Request, res: Response)
     // Check Redis cache
     const cached = await redis.get(cacheKey);
     if (cached) {
-      console.log("Cache hit: item_UnitOfMeasure _by_company");
       return res.status(200).json(JSON.parse(cached));
     }
-
-    console.log("Cache miss: item_UnitOfMeasure _by_company");
 
     const result = await pool.query(
       `

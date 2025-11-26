@@ -15,16 +15,13 @@ export const getStoreById = async (req: Request, res: Response) => {
 
     const cacheKey = `store:${cmp_code}:${store_code}`;
 
-    // 🔹 Try Redis cache first
+    // Try Redis cache first
     const cached = await redis.get(cacheKey);
     if (cached) {
-      console.log(`Cache hit for ${cacheKey}`);
       return res.status(200).json(JSON.parse(cached));
     }
 
-    console.log(`Cache miss for ${cacheKey}`);
-
-    // 🔹 Database query using composite key
+    // Database query using composite key
     const query = `
       SELECT *
       FROM posdb.store
@@ -41,7 +38,7 @@ export const getStoreById = async (req: Request, res: Response) => {
 
     const store = result.rows[0];
 
-    // 🔹 Cache result for 5 minutes
+    // Cache result for 5 minutes
     await redis.setex(cacheKey, 300, JSON.stringify(store));
 
     return res.status(200).json(store);

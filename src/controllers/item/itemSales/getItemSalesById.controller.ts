@@ -23,11 +23,8 @@ export const getItemSalesById = async (req: Request, res: Response) => {
     // Check Redis cache
     const cached = await redis.get(cacheKey);
     if (cached) {
-      console.log("Cache hit: itemSalesById");
       return res.status(200).json(JSON.parse(cached));
     }
-
-    console.log("Cache miss: itemSalesById");
 
     const query = `
       SELECT 

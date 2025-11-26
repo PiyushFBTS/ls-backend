@@ -15,14 +15,12 @@ export const getItemVariantById = async (req: Request, res: Response) => {
 
     const cacheKey = `item_variant:id:${cmp_code}:${item_variant_code}`;
 
-    // 🔹 Check Redis cache
+    // Check Redis cache
     const cached = await redis.get(cacheKey);
     if (cached) {
-      console.log("Cache hit: item_variant_by_composite_id");
       return res.status(200).json(JSON.parse(cached));
     }
 
-    console.log("Cache miss: item_variant_by_composite_id");
 
     const query = `
       SELECT *

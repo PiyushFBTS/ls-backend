@@ -10,12 +10,9 @@ export const getAllCompanies = async (req: Request, res: Response) => {
     // Try to get cached data
     const cached = await redis.get(cacheKey);
     if (cached) {
-      console.log('Cache hit: companies');
       return res.status(200).json(JSON.parse(cached));
     }
 
-    //  Cache miss → query Postgres
-    console.log('Cache miss: companies');
     const result = await pool.query(
       'SELECT * FROM posdb.company ORDER BY cmp_name ASC'
     );

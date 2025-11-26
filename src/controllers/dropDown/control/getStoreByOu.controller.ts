@@ -15,11 +15,8 @@ export const getStoreByOu = async (req: Request, res: Response) => {
     // Try Redis cache
     const cached = await redis.get(cacheKey);
     if (cached) {
-      console.log('Cache hit: store_by_ou');
       return res.status(200).json(JSON.parse(cached));
     }
-
-    console.log('Cache miss: store_by_ou');
 
     const result = await pool.query(
       `

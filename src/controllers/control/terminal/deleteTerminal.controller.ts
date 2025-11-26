@@ -48,7 +48,6 @@ export const deleteTerminal = async (req: Request, res: Response) => {
         pipeline.del(`terminal:${r.cmp_code}:${r.terminal_id}`)
       );
       await pipeline.exec();
-      console.log("🧹 Redis terminal cache cleared");
     } catch (cacheErr) {
       console.warn("Failed to invalidate terminal cache:", cacheErr);
     }

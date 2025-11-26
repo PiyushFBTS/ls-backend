@@ -22,11 +22,9 @@ export const getCompanyById = async (req: Request, res: Response) => {
         // 1) Try cache
         const cached = await redis.get(cacheKey);
         if (cached) {
-            console.log(`Cache hit for ${cacheKey}`);
             const cachedObj = JSON.parse(cached);
             return res.status(200).json(cachedObj);
         }
-        console.log(`Cache miss for ${cacheKey}`);
 
         // 2) Query DB
         const result = await pool.query('SELECT * FROM posdb.company WHERE cmp_code = $1', [id]);

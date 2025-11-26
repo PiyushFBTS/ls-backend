@@ -10,12 +10,8 @@ export const getAllModules = async (req: Request, res: Response) => {
     // Try to get cached data
     const cached = await redis.get(cacheKey);
     if (cached) {
-      console.log('Cache hit: modules');
       return res.status(200).json(JSON.parse(cached));
     }
-
-    // Cache miss → query Postgres
-    console.log('Cache miss: modules');
 
     const result = await pool.query(
       `SELECT module_code, module_name 

@@ -15,11 +15,8 @@ export const getItemVariantByCompany = async (req: Request, res: Response) => {
     // Check Redis cache
     const cached = await redis.get(cacheKey);
     if (cached) {
-      console.log("Cache hit: item_variant_by_company");
       return res.status(200).json(JSON.parse(cached));
     }
-
-    console.log("Cache miss: item_variant_by_company");
 
     const query = `
       SELECT * 

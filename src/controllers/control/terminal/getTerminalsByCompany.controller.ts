@@ -15,11 +15,8 @@ export const getTerminalsByCompany = async (req: Request, res: Response) => {
     // Check Redis cache
     const cached = await redis.get(cacheKey);
     if (cached) {
-      console.log(`🟢 Cache hit for ${cacheKey}`);
       return res.status(200).json(JSON.parse(cached));
     }
-
-    console.log(`🟡 Cache miss for ${cacheKey}`);
 
     //  Query from PostgreSQL
     const query = `

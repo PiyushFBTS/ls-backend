@@ -15,16 +15,13 @@ export const getTerminalById = async (req: Request, res: Response) => {
 
     const cacheKey = `terminal:${cmp_code}:${terminal_id}`;
 
-    // 🔹 Try Redis cache first
+    // Try Redis cache first
     const cached = await redis.get(cacheKey);
-    if (cached) {
-      console.log(`🟢 Cache hit for ${cacheKey}`);
+    if (cached) {;
       return res.status(200).json(JSON.parse(cached));
     }
 
-    console.log(`🟡 Cache miss for ${cacheKey}`);
-
-    // 🔹 DB query with composite key
+    // DB query with composite key
     const query = `
       SELECT *
       FROM posdb.terminal
@@ -41,13 +38,13 @@ export const getTerminalById = async (req: Request, res: Response) => {
 
     const terminal = result.rows[0];
 
-    // 🔹 Cache result (5-minute TTL)
+    // Cache result (5-minute TTL)
     await redis.setex(cacheKey, 300, JSON.stringify(terminal));
 
     return res.status(200).json(terminal);
 
   } catch (error: any) {
-    console.error("❌ Failed to fetch terminal by ID:", error);
+    console.error(" Failed to fetch terminal by ID:", error);
     return res.status(500).json({
       message: "Failed to Fetch Terminal",
       error: error.message,

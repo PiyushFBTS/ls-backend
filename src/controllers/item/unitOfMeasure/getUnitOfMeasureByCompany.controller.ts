@@ -15,11 +15,8 @@ export const getUnitOfMeasureByCompany = async (req: Request, res: Response) => 
     // Check Redis cache
     const cached = await redis.get(cacheKey);
     if (cached) {
-      console.log("Cache hit: UOM by Company");
       return res.status(200).json(JSON.parse(cached));
     }
-
-    console.log("Cache miss: UOM by Company");
 
     const query = `
       SELECT * 
