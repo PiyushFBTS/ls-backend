@@ -12,7 +12,7 @@ const router = express.Router();
 router.post("/addItemSales", validate(ItemSalesFormSchema), addItemSales);
 router.post("/deleteItemSales", deleteItemSales);
 router.get("/getItemSalesByCmp/:id", getItemSalesByCompany);
-router.get("/getItemSalesById/:id", getItemSalesById);
+router.get("/getItemSalesById", getItemSalesById);
 router.put("/updateItemSales", updateItemSales);
 
 export default router;

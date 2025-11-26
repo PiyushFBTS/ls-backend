@@ -13,7 +13,7 @@ const router = express.Router();
 router.post("/addItem", validate(ItemFormSchema), addItem);
 router.post("/deleteItem", deleteItem);
 router.get("/getItemsByCompany/:id", getItemsByCompany);
-router.get("/getItemById/:id", getItemById);
+router.get("/getItemById", getItemById);
 router.put("/updateItem", validate(ItemFormSchema), updateItem);
 
 export default router;

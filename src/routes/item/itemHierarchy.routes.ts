@@ -15,7 +15,7 @@ router.post("/deleteItemHierarchy", deleteItemHierarchy);
 
 router.get("/getItemHierarchyByCmp/:id", getItemHierarchyByCmp);
 
-router.get("/getItemHierarchyById/:id", getItemHierarchyById);
+router.get("/getItemHierarchyById", getItemHierarchyById);
 
 router.put("/updateItemHierarchy", updateItemHierarchy);
 
