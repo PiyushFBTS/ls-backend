@@ -25,8 +25,11 @@ import ItemVariant from './routes/item/itemVariant.Routes';
 import unitOfMeasure from './routes/item/unitOfMeasure.Routes';
 import vat from './routes/item/vat.Routes';
 import vendorMaster from './routes/vendor/vendorMaster.Routes';
-import VendorAssesseeCode from './routes/vendor/VendorAssesseeCode.Routes';
+import vendorAssesseeCode from './routes/vendor/vendorAssesseeCode.Routes';
 import vendorContact from './routes/vendor/vendorContact.Routes';
+import vendorPaymentTerms from './routes/vendor/vendorPaymentTerms.Routes';
+import vendorPriceList from './routes/vendor/vendorPriceList.Routes';
+import vendorSection from './routes/vendor/vendorSection.Routes';
 
 const app = express();
 
@@ -75,8 +78,11 @@ app.use("/api/vat",vat)
 
 // vendor
 app.use("/api/vendorMaster",vendorMaster)
-app.use("/api/VendorAssesseeCode",VendorAssesseeCode)
+app.use("/api/VendorAssesseeCode",vendorAssesseeCode)
 app.use("/api/vendorContact",vendorContact)
+app.use("/api/vendorPaymentTerms",vendorPaymentTerms)
+app.use("/api/vendorPriceList",vendorPriceList)
+app.use("/api/vendorSection",vendorSection)
 
 
 app.get('/', (_, res) => res.send('Backend running 🚀'));
