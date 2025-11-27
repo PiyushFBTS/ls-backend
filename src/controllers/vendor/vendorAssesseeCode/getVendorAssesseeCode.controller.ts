@@ -6,26 +6,17 @@ export const getVendorAssesseeCode = async (req: Request, res: Response) => {
   try {
     const cacheKey = "vendor:assessee:codes";
 
-    // -----------------------------------------
-    // 1️⃣ CHECK CACHE
-    // -----------------------------------------
     const cached = await redis.get(cacheKey);
     if (cached) {
       return res.status(200).json(JSON.parse(cached));
     }
 
-    // -----------------------------------------
-    // 2️⃣ FETCH FROM DATABASE
-    // -----------------------------------------
     const result = await pool.query(
       "SELECT * FROM posdb.vendor_assessee_code ORDER BY assessee_code ASC"
     );
 
     const data = result.rows;
 
-    // -----------------------------------------
-    // 3️⃣ STORE IN CACHE FOR 5 MIN
-    // -----------------------------------------
     await redis.setex(cacheKey, 300, JSON.stringify(data));
 
     return res.status(200).json(data);

@@ -142,9 +142,6 @@ export const updateVendorMaster = async (req: Request, res: Response) => {
 
     await pool.query(query, values);
 
-    /* ----------------------------------
-     * 🧹 REDIS CACHE CLEARING
-     * ----------------------------------*/
     await redis.del("vendor_master:all");
     await redis.del(`vendor_master:vendor:${vendor_code}`);
     await redis.del(`vendor_master:cmp:${cmp_code}`);

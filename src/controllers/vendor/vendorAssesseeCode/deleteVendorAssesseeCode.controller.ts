@@ -25,7 +25,6 @@ export const deleteVendorAssesseeCode = async (req: Request, res: Response) => {
           });
         }
 
-        // 1️⃣ Check if record exists
         const existsQuery = `
           SELECT 1
           FROM posdb.vendor_assessee_code
@@ -38,18 +37,15 @@ export const deleteVendorAssesseeCode = async (req: Request, res: Response) => {
           continue;
         }
 
-        // 2️⃣ Delete the record
         const deleteQuery = `
           DELETE FROM posdb.vendor_assessee_code
           WHERE assessee_code = $1
         `;
         await client.query(deleteQuery, [id]);
 
-        // 3️⃣ Clear Redis for this specific code
         await redis.del(`vendor_assessee_code:${id}`);
       }
 
-      // 4️⃣ Clear list cache
       await redis.del("vendor_assessee_code:all");
 
       await client.query("COMMIT");

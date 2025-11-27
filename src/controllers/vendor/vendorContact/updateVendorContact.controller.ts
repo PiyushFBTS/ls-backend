@@ -10,37 +10,16 @@ export const updateVendorContact = async (req: Request, res: Response) => {
       });
     }
 
-    const {
-      cmp_code,
-      contact_code,
-      cmp_name,
-      job_title,
-      name,
-      search_name,
-      address,
-      address_2,
-      county,
-      state,
-      city,
-      post_code,
-      phone_no,
-      mobile_phone_no,
-      email,
-      image,
-    } = req.body;
+    const { cmp_code, contact_code, cmp_name, job_title, name, search_name,
+      address, address_2, county, state, city, post_code, phone_no,
+      mobile_phone_no, email, image } = req.body;
 
-    // ------------------------------------------------------
-    // 🔍 Validate required fields
-    // ------------------------------------------------------
     if (!cmp_code || !contact_code) {
       return res.status(400).json({
         error: "Missing required fields: cmp_code or contact_code",
       });
     }
 
-    // ------------------------------------------------------
-    // 🖼️ Convert Base64 image → Buffer
-    // ------------------------------------------------------
     let imageBuffer: Buffer | null = null;
 
     if (image && typeof image === "string" && image.startsWith("data:image")) {
@@ -54,9 +33,6 @@ export const updateVendorContact = async (req: Request, res: Response) => {
       }
     }
 
-    // ------------------------------------------------------
-    // 🕒 Generate IST timestamps
-    // ------------------------------------------------------
     const now = new Date();
     const istOffset = 5.5 * 60 * 60 * 1000;
     const istTime = new Date(now.getTime() + istOffset);
@@ -64,9 +40,6 @@ export const updateVendorContact = async (req: Request, res: Response) => {
     const last_date_modified = istTime.toISOString().split("T")[0];
     const last_time_modified = istTime.toISOString().split("T")[1].split(".")[0];
 
-    // ------------------------------------------------------
-    // 📝 SQL Update Query
-    // ------------------------------------------------------
     const query = `
       UPDATE posdb.vendor_contact
       SET
@@ -120,9 +93,6 @@ export const updateVendorContact = async (req: Request, res: Response) => {
       });
     }
 
-    // ------------------------------------------------------
-    // 🧹 REDIS CACHE CLEARING
-    // ------------------------------------------------------
     await redis.del("vendorContacts:all");                          // All contacts list
     await redis.del(`vendorContacts:company:${cmp_code}`);          // Contacts for company
     await redis.del(`vendorContact:${cmp_code}:${contact_code}`);   // Single contact

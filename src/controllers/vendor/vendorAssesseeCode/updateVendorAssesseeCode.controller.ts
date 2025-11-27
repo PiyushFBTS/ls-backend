@@ -38,9 +38,6 @@ export const updateVendorAssesseeCode = async (req: Request, res: Response) => {
       });
     }
 
-    /** ----------------------------------
-     *  REDIS CACHE CLEARING
-     * ----------------------------------*/
     await redis.del("vendorAssesseeCodes:all");            // list cache
     await redis.del(`vendorAssesseeCode:${assessee_code}`); // single record cache
 

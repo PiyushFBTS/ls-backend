@@ -15,13 +15,11 @@ export const getVendorContactById = async (req: Request, res: Response) => {
 
     const cacheKey = `vendor_contact:${cmp_code}:${contact_code}`;
 
-    // 1️⃣ Check Redis Cache
     const cached = await redis.get(cacheKey);
     if (cached) {
       return res.status(200).json(JSON.parse(cached));
     }
 
-    // 2️⃣ Fetch From DB
     const result = await pool.query(
       `SELECT * FROM posdb.vendor_contact 
        WHERE contact_code = $1 AND cmp_code = $2`,
@@ -36,7 +34,6 @@ export const getVendorContactById = async (req: Request, res: Response) => {
 
     const data = result.rows[0];
 
-    // 3️⃣ Cache for 5 min
     await redis.setex(cacheKey, 300, JSON.stringify(data));
 
     return res.status(200).json(data);

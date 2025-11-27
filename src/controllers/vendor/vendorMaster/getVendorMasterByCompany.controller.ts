@@ -12,17 +12,11 @@ export const getVendorMasterByCompany = async (req: Request, res: Response) => {
 
     const cacheKey = `vendor:master:company:${id}`;
 
-    // -----------------------------------------
-    // 1️⃣ CHECK REDIS CACHE
-    // -----------------------------------------
     const cached = await redis.get(cacheKey);
     if (cached) {
       return res.status(200).json(JSON.parse(cached));
     }
 
-    // -----------------------------------------
-    // 2️⃣ FETCH FROM DATABASE
-    // -----------------------------------------
     const result = await pool.query(
       "SELECT * FROM posdb.vendor_master WHERE cmp_code = $1",
       [id]
@@ -30,9 +24,6 @@ export const getVendorMasterByCompany = async (req: Request, res: Response) => {
 
     const vendorMaster = result.rows;
 
-    // -----------------------------------------
-    // 3️⃣ STORE IN REDIS (5 min TTL)
-    // -----------------------------------------
     await redis.setex(cacheKey, 300, JSON.stringify(vendorMaster));
 
     return res.status(200).json(vendorMaster);

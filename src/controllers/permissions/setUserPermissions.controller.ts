@@ -45,7 +45,7 @@ export const setUserPermissions = async (req: Request, res: Response) => {
 
     await client.query('COMMIT');
 
-    // 🔥 OPTIONAL BUT RECOMMENDED:
+    //  OPTIONAL BUT RECOMMENDED:
     // Clear Redis cache for this role (if stored earlier)
     await redis.del(`user_permissions:${role_code}`);
     await redis.del(`role_permissions:${role_code}`);

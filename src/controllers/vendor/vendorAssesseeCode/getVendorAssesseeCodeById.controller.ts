@@ -13,13 +13,11 @@ export const getVendorAssesseeCodeById = async (req: Request, res: Response) => 
 
     const cacheKey = `vendor_assessee:${id}`;
 
-    // 1️⃣ Check Redis Cache
     const cached = await redis.get(cacheKey);
     if (cached) {
       return res.status(200).json(JSON.parse(cached));
     }
 
-    // 2️⃣ Fetch from DB
     const result = await pool.query(
       "SELECT * FROM posdb.vendor_assessee_code WHERE assessee_code = $1",
       [id]
@@ -33,7 +31,6 @@ export const getVendorAssesseeCodeById = async (req: Request, res: Response) => 
 
     const data = result.rows[0];
 
-    // 3️⃣ Save to Redis (5 minutes)
     await redis.setex(cacheKey, 300, JSON.stringify(data));
 
     return res.status(200).json(data);

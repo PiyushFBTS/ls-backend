@@ -29,7 +29,7 @@ export const deleteVendorMaster = async (req: Request, res: Response) => {
       for (const item of items) {
         const { cmp_code, vendor_code } = item;
 
-        // 1️⃣ Check if vendor exists
+        //  Check if vendor exists
         const existsQuery = `
           SELECT 1
           FROM posdb.vendor_master
@@ -45,18 +45,18 @@ export const deleteVendorMaster = async (req: Request, res: Response) => {
           continue;
         }
 
-        // 2️⃣ Delete from DB
+        // Delete from DB
         const deleteQuery = `
           DELETE FROM posdb.vendor_master
           WHERE cmp_code = $1 AND vendor_code = $2
         `;
         await client.query(deleteQuery, [cmp_code, vendor_code]);
 
-        // 3️⃣ Clear individual Redis keys
+        // 3Clear individual Redis keys
         await redis.del(`vendor_master:${cmp_code}:${vendor_code}`);
       }
 
-      // 4️⃣ Clear list cache
+      // Clear list cache
       await redis.del("vendor_master:all");
 
       await client.query("COMMIT");

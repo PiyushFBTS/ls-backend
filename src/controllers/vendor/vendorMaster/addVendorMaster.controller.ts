@@ -13,7 +13,6 @@ export const addVendorMaster = async (req: Request, res: Response) => {
 
     const body = req.body as VendorMasterFormValues;
 
-    // ----- Basic validation -----
     if (!body.vendor_code || !body.name || !body.cmp_code) {
       return res.status(400).json({
         error: "Missing required fields: vendor_code, name, cmp_code",
@@ -21,7 +20,6 @@ export const addVendorMaster = async (req: Request, res: Response) => {
       });
     }
 
-    // ----- Check if vendor_code already exists -----
     const exists = await pool.query(
       `SELECT vendor_code FROM posdb.vendor_master WHERE vendor_code = $1`,
       [body.vendor_code]
@@ -46,7 +44,6 @@ export const addVendorMaster = async (req: Request, res: Response) => {
 
     const last_date_modified = istTime.toISOString().split("T")[0];
 
-    // ----- List of DB columns -----
     const columns = [
       "cmp_code",
       "cmp_name",
@@ -100,7 +97,6 @@ export const addVendorMaster = async (req: Request, res: Response) => {
       "last_date_modified",
     ];
 
-    // ----- Build dynamic SQL values -----
     const values = columns.map((col) => {
       if (col === "last_modified_date_time") return last_modified_date_time;
       if (col === "last_date_modified") return last_date_modified;
@@ -109,7 +105,6 @@ export const addVendorMaster = async (req: Request, res: Response) => {
 
     const placeholders = columns.map((_, i) => `$${i + 1}`).join(", ");
 
-    // ----- Execute Insert Query -----
     const query = `
       INSERT INTO posdb.vendor_master (${columns.join(", ")})
       VALUES (${placeholders})

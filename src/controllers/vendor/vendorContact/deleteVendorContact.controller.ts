@@ -29,7 +29,6 @@ export const deleteVendorContact = async (req: Request, res: Response) => {
       for (const item of items) {
         const { cmp_code, contact_code } = item;
 
-        // 1️⃣ Check if record exists
         const checkQuery = `
           SELECT 1 
           FROM posdb.vendor_contact
@@ -42,18 +41,15 @@ export const deleteVendorContact = async (req: Request, res: Response) => {
           continue;
         }
 
-        // 2️⃣ Delete the record
         const deleteQuery = `
           DELETE FROM posdb.vendor_contact
           WHERE cmp_code = $1 AND contact_code = $2
         `;
         await client.query(deleteQuery, [cmp_code, contact_code]);
 
-        // 3️⃣ Delete individual Redis cache
         await redis.del(`vendor_contact:${cmp_code}:${contact_code}`);
       }
 
-      // 4️⃣ Clear list cache
       await redis.del("vendor_contact:all");
 
       await client.query("COMMIT");

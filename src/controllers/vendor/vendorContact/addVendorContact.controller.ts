@@ -100,7 +100,7 @@ export const addVendorContact = async (req: Request, res: Response) => {
 
         await pool.query(query, values);
 
-        // 🔥 Redis Cache Invalidation
+        //  Redis Cache Invalidation
         try {
             await redis.del("vendorContacts:all"); // All vendor contacts
             await redis.del(`vendorContacts:company:${cmp_code}`); // Contacts for specific company
