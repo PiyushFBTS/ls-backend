@@ -1,0 +1,110 @@
+import { Request, Response } from "express";
+import { pool } from "../../../db";
+import { redis } from "../../../db/redis";
+import { VendorMasterFormValues } from "../../../schemas/vendor/vendorMaster.schema";
+
+export const addVendorMaster = async (req: Request, res: Response) => {
+  try {
+    if (!pool) {
+      return res.status(500).json({ error: "Database connection not available" });
+    }
+
+    const body = req.body as VendorMasterFormValues;
+
+    // Prepare IST timestamps
+    const now = new Date();
+    const istOffsetMs = 5.5 * 60 * 60 * 1000;
+    const istTime = new Date(now.getTime() + istOffsetMs);
+
+    const last_modified_date_time = istTime.toISOString().replace("T", " ").split(".")[0];
+    const last_date_modified = istTime.toISOString().split("T")[0];
+
+    const columns = [
+      "cmp_code",
+      "cmp_name",
+      "vendor_code",
+      "name",
+      "search_name",
+      "address",
+      "address_2",
+      "city",
+      "contact",
+      "phone_no",
+      "currency_code",
+      "language_code",
+      "registration_no",
+      "payment_terms_code",
+      "country_region_code",
+      "blocked",
+      "pay_to_vendor_no",
+      "payment_method_code",
+      "vat_registration_no",
+      "post_code",
+      "county",
+      "eori_number",
+      "email",
+      "home_page",
+      "primary_contact_no",
+      "mobile_phone_no",
+      "location_code",
+      "gst_registration_no",
+      "gst_vendor_type",
+      "aggregate_turnover",
+      "arn_no",
+      "transporter",
+      "subcontractor",
+      "assessee_code",
+      "pan_no",
+      "pan_status",
+      "pan_reference_no",
+      "state_code",
+      "tax_code",
+      "fssi_code",
+      "fssi_expiry_date",
+      "msme_no",
+      "msme_status",
+      "msme_type",
+      "msme_applicable",
+      "email_2",
+      "api_gst_reg_no",
+      "status",
+      "last_modified_date_time",
+      "last_date_modified"
+    ];
+
+    const values = columns.map((col) => {
+      if (col === "last_modified_date_time") return last_modified_date_time;
+      if (col === "last_date_modified") return last_date_modified;
+      return body[col as keyof VendorMasterFormValues] ?? null;
+    });
+
+    const placeholders = columns.map((_, i) => `$${i + 1}`).join(", ");
+
+    const query = `
+      INSERT INTO posdb.vendor_master (${columns.join(", ")})
+      VALUES (${placeholders})
+    `;
+
+    await pool.query(query, values);
+
+    // Clear cache
+    try {
+      await redis.del("vendor_master:all");
+      if (body.cmp_code) await redis.del(`vendor_master:cmp:${body.cmp_code}`);
+      if (body.vendor_code) await redis.del(`vendor_master:vendor:${body.vendor_code}`);
+    } catch (err) {
+      console.error("Redis error:", err);
+    }
+
+    return res.status(200).json({ message: "Vendor added successfully" });
+
+  } catch (error: any) {
+
+    return res.status(500).json({
+      message: "Failed to create Vendor",
+      error: error.message,
+      status: "fail",
+      timestamp: new Date().toLocaleString("en-IN"),
+    });
+  }
+};

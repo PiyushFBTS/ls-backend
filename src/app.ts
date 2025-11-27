@@ -24,6 +24,9 @@ import ItemUnitOfMeasure from './routes/item/itemUnitOfMeasure.Routes';
 import ItemVariant from './routes/item/itemVariant.Routes';
 import unitOfMeasure from './routes/item/unitOfMeasure.Routes';
 import vat from './routes/item/vat.Routes';
+import vendorMaster from './routes/vendor/vendorMaster.Routes';
+import VendorAssesseeCode from './routes/vendor/VendorAssesseeCode.Routes';
+import vendorContact from './routes/vendor/vendorContact.Routes';
 
 const app = express();
 
@@ -70,7 +73,10 @@ app.use("/api/itemVariant",ItemVariant)
 app.use("/api/unitOfMeasure",unitOfMeasure)
 app.use("/api/vat",vat)
 
-
+// vendor
+app.use("/api/vendorMaster",vendorMaster)
+app.use("/api/VendorAssesseeCode",VendorAssesseeCode)
+app.use("/api/vendorContact",vendorContact)
 
 
 app.get('/', (_, res) => res.send('Backend running 🚀'));
