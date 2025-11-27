@@ -1,14 +1,24 @@
 import { Request, Response } from "express";
 import { pool } from "../../../db";
+import { redis } from "../../../db/redis";
 
 export const getVendorPriceListById = async (req: Request, res: Response) => {
   try {
-    const { price_list_code, cmp_code } = req.query; // price_list_code + cmp_code
+    const { price_list_code, cmp_code } = req.query;
 
+    // Validate inputs
     if (!price_list_code || !cmp_code) {
       return res.status(400).json({
         error: "Both price_list_code (id) and cmp_code are required",
       });
+    }
+
+    const cacheKey = `vendor_price_list:${cmp_code}:${price_list_code}`;
+
+
+    const cached = await redis.get(cacheKey);
+    if (cached) {
+      return res.status(200).json(JSON.parse(cached));
     }
 
     const result = await pool.query(
@@ -26,7 +36,11 @@ export const getVendorPriceListById = async (req: Request, res: Response) => {
       });
     }
 
-    return res.status(200).json(result.rows[0]);
+    const data = result.rows[0];
+
+    await redis.setex(cacheKey, 300, JSON.stringify(data));
+
+    return res.status(200).json(data);
 
   } catch (error: any) {
     console.error("Error fetching Vendor Price List:", error);

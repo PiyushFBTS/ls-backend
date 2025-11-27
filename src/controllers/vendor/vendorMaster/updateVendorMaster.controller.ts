@@ -20,7 +20,7 @@ export const updateVendorMaster = async (req: Request, res: Response) => {
       msme_type, msme_applicable, email_2, api_gst_reg_no, status
     } = body;
 
-    // Validate key identifiers
+    // Validate required identifiers
     if (!cmp_code || !vendor_code) {
       return res.status(400).json({
         message: "cmp_code and vendor_code are required for update",
@@ -142,18 +142,17 @@ export const updateVendorMaster = async (req: Request, res: Response) => {
 
     await pool.query(query, values);
 
-    // Clear caches
-    try {
-      await redis.del("vendor_master:all");
-      await redis.del(`vendor_master:vendor:${vendor_code}`);
-      await redis.del(`vendor_master:cmp:${cmp_code}`);
-    } catch (cacheErr) {
-      console.error("Redis cache clear error:", cacheErr);
-    }
+    /* ----------------------------------
+     * 🧹 REDIS CACHE CLEARING
+     * ----------------------------------*/
+    await redis.del("vendor_master:all");
+    await redis.del(`vendor_master:vendor:${vendor_code}`);
+    await redis.del(`vendor_master:cmp:${cmp_code}`);
 
     return res.status(200).json({ message: "Vendor updated successfully" });
 
   } catch (error: any) {
+    console.error("Vendor update error:", error);
     return res.status(500).json({
       message: "Failed to update vendor",
       error: error.message,

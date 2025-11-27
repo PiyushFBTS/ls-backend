@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { pool } from "../../../db";
+import { redis } from "../../../db/redis";
 
 export const deleteVendorContact = async (req: Request, res: Response) => {
   try {
@@ -10,66 +11,75 @@ export const deleteVendorContact = async (req: Request, res: Response) => {
     }
 
     // Validate each item
-    const invalid = items.find(
-      (item) => !item.cmp_code || !item.contact_code
-    );
-
-    if (invalid) {
-      return res.status(400).json({
-        message: "Each record must include cmp_code and contact_code",
-      });
+    for (const item of items) {
+      if (!item.cmp_code || !item.contact_code) {
+        return res.status(400).json({
+          message: "Each record must include cmp_code and contact_code",
+        });
+      }
     }
 
-    const checkQuery = `
-      SELECT cmp_code, contact_code
-      FROM posdb.vendor_contact
-      WHERE (cmp_code, contact_code) IN (
-        ${items.map((_, i) => `($${i * 2 + 1}, $${i * 2 + 2})`).join(", ")}
-      )
-    `;
+    const client = await pool.connect();
 
-    const checkValues: any[] = [];
-    items.forEach((item) => {
-      checkValues.push(item.cmp_code, item.contact_code);
-    });
+    try {
+      await client.query("BEGIN");
 
-    const checkResult = await pool.query(checkQuery, checkValues);
+      const notFound: Array<{ cmp_code: string; contact_code: string }> = [];
 
-    const existingSet = new Set(
-      checkResult.rows.map((row) => `${row.cmp_code}-${row.contact_code}`)
-    );
+      for (const item of items) {
+        const { cmp_code, contact_code } = item;
 
-    // Find missing records
-    const missing = items.filter(
-      (i) => !existingSet.has(`${i.cmp_code}-${i.contact_code}`)
-    );
+        // 1️⃣ Check if record exists
+        const checkQuery = `
+          SELECT 1 
+          FROM posdb.vendor_contact
+          WHERE cmp_code = $1 AND contact_code = $2
+        `;
+        const checkResult = await client.query(checkQuery, [cmp_code, contact_code]);
 
-    if (missing.length > 0) {
-      return res.status(404).json({
-        message: "Some Vendor Contact records were not found",
-        missing,
+        if (checkResult.rowCount === 0) {
+          notFound.push({ cmp_code, contact_code });
+          continue;
+        }
+
+        // 2️⃣ Delete the record
+        const deleteQuery = `
+          DELETE FROM posdb.vendor_contact
+          WHERE cmp_code = $1 AND contact_code = $2
+        `;
+        await client.query(deleteQuery, [cmp_code, contact_code]);
+
+        // 3️⃣ Delete individual Redis cache
+        await redis.del(`vendor_contact:${cmp_code}:${contact_code}`);
+      }
+
+      // 4️⃣ Clear list cache
+      await redis.del("vendor_contact:all");
+
+      await client.query("COMMIT");
+
+      return res.status(200).json({
+        message: "Vendor Contact deletion completed",
+        deletedCount: items.length - notFound.length,
+        notFound,
+        status: "success",
       });
+
+    } catch (err) {
+      await client.query("ROLLBACK");
+      console.error("Error during vendor contact deletion:", err);
+
+      return res.status(500).json({
+        message: "Database delete failed",
+        error: err,
+        status: "fail",
+      });
+    } finally {
+      client.release();
     }
-
-    const deleteQuery = `
-      DELETE FROM posdb.vendor_contact
-      WHERE (cmp_code, contact_code) IN (
-        ${items.map((_, i) => `($${i * 2 + 1}, $${i * 2 + 2})`).join(", ")}
-      )
-    `;
-
-    const deleteValues: any[] = [];
-    items.forEach((item) => {
-      deleteValues.push(item.cmp_code, item.contact_code);
-    });
-
-    await pool.query(deleteQuery, deleteValues);
-
-    return res.status(200).json({
-      message: "Vendor Contact deleted successfully",
-    });
 
   } catch (error: any) {
+    console.error("Failed to delete Vendor Contact:", error);
 
     return res.status(500).json({
       message: "Failed to delete Vendor Contact",

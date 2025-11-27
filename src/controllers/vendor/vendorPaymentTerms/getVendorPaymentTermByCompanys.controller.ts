@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { pool } from "../../../db";
+import { redis } from "../../../db/redis";
 
 export const getVendorPaymentTermsByCompany = async (req: Request, res: Response) => {
   try {
@@ -11,12 +12,23 @@ export const getVendorPaymentTermsByCompany = async (req: Request, res: Response
       });
     }
 
+    const cacheKey = `vendor:payment_terms:company:${id}`;
+
+    const cached = await redis.get(cacheKey);
+    if (cached) {
+      return res.status(200).json(JSON.parse(cached));
+    }
+
     const result = await pool.query(
       "SELECT * FROM posdb.vendor_payment_terms WHERE cmp_code = $1",
       [id]
     );
 
-    return res.status(200).json(result.rows);
+    const paymentTerms = result.rows;
+
+    await redis.setex(cacheKey, 300, JSON.stringify(paymentTerms));
+
+    return res.status(200).json(paymentTerms);
 
   } catch (error: any) {
     console.error("Error fetching Vendor Payment Terms:", error);

@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { pool } from "../../../db";
+import { redis } from "../../../db/redis";
 
 export const getVendorSectionById = async (req: Request, res: Response) => {
   try {
@@ -11,6 +12,15 @@ export const getVendorSectionById = async (req: Request, res: Response) => {
       });
     }
 
+    const cacheKey = `vendor_section:${id}`;
+
+    // 1️⃣ Check Redis Cache
+    const cached = await redis.get(cacheKey);
+    if (cached) {
+      return res.status(200).json(JSON.parse(cached));
+    }
+
+    // 2️⃣ Fetch from DB
     const result = await pool.query(
       "SELECT * FROM posdb.vendor_section WHERE section_code = $1",
       [id]
@@ -22,7 +32,12 @@ export const getVendorSectionById = async (req: Request, res: Response) => {
       });
     }
 
-    return res.status(200).json(result.rows[0]);
+    const data = result.rows[0];
+
+    // 3️⃣ Cache for 5 minutes
+    await redis.setex(cacheKey, 300, JSON.stringify(data));
+
+    return res.status(200).json(data);
 
   } catch (error: any) {
     console.error("Error fetching Vendor Section:", error);

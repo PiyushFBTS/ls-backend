@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { pool } from "../../../db";
+import { redis } from "../../../db/redis";
 
 export const getVendorPriceListByCompany = async (req: Request, res: Response) => {
   try {
@@ -11,12 +12,24 @@ export const getVendorPriceListByCompany = async (req: Request, res: Response) =
       });
     }
 
+    const cacheKey = `vendor:price_list:company:${id}`;
+
+    const cached = await redis.get(cacheKey);
+    if (cached) {
+      return res.status(200).json(JSON.parse(cached));
+    }
+
     const result = await pool.query(
       "SELECT * FROM posdb.vendor_price_list WHERE cmp_code = $1",
       [id]
     );
 
-    return res.status(200).json(result.rows);
+    const priceList = result.rows;
+
+
+    await redis.setex(cacheKey, 300, JSON.stringify(priceList));
+
+    return res.status(200).json(priceList);
 
   } catch (error: any) {
     console.error("Error fetching Vendor Price List:", error);

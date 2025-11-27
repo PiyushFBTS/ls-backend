@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { pool } from "../../../db";
-import { VendorPriceListFormValues } from "../../../schemas/vendor/vendorPriceLIst.schema"
+import { redis } from "../../../db/redis";
+import { VendorPriceListFormValues } from "../../../schemas/vendor/vendorPriceLIst.schema";
 
 export const addVendorPriceList = async (req: Request, res: Response) => {
     try {
@@ -12,18 +13,56 @@ export const addVendorPriceList = async (req: Request, res: Response) => {
 
         const body = req.body as VendorPriceListFormValues;
 
-        const { cmp_code, cmp_name, price_list_code, description, assign_to_group,
-            assign_to_type, assign_to_no, assign_to_parent_no_projects, assign_to_id,
-            price_type, defines, currency_code, starting_date, ending_date,
-            price_includes_vat, vat_bus_posting_gr_price, allow_line_disc,
-            allow_invoice_disc, no_series, status, filter_source_no,
-            allow_updating_default, assign_to_no_alt, assign_to_parent_no_alt,
-            approval_status
-        } = body
+        const {
+            cmp_code,
+            cmp_name,
+            price_list_code,
+            description,
+            assign_to_group,
+            assign_to_type,
+            assign_to_no,
+            assign_to_parent_no_projects,
+            assign_to_id,
+            price_type,
+            defines,
+            currency_code,
+            starting_date,
+            ending_date,
+            price_includes_vat,
+            vat_bus_posting_gr_price,
+            allow_line_disc,
+            allow_invoice_disc,
+            no_series,
+            status,
+            filter_source_no,
+            allow_updating_default,
+            assign_to_no_alt,
+            assign_to_parent_no_alt,
+            approval_status,
+        } = body;
 
+        // Required validations
         if (!cmp_code || !price_list_code) {
             return res.status(400).json({
                 error: "cmp_code and price_list_code are required",
+                status: "fail",
+            });
+        }
+
+        // --- Duplicate Price List Check ---
+        const exists = await pool.query(
+            `
+      SELECT price_list_code 
+      FROM posdb.vendor_price_list 
+      WHERE price_list_code = $1
+    `,
+            [price_list_code]
+        );
+
+        if ((exists.rowCount ?? 0) > 0) {
+            return res.status(400).json({
+                error: "Vendor Price List with this price_list_code already exists",
+                status: "fail",
             });
         }
 
@@ -73,13 +112,23 @@ export const addVendorPriceList = async (req: Request, res: Response) => {
             allow_updating_default,
             assign_to_no_alt,
             assign_to_parent_no_alt,
-            approval_status
+            approval_status,
         ];
 
         await pool.query(query, values);
 
+        // --- Redis Cache Invalidation ---
+        try {
+            await redis.del("vendor_price_list:all");
+            await redis.del(`vendor_price_list:cmp:${cmp_code}`);
+            await redis.del(`vendor_price_list:code:${price_list_code}`);
+        } catch (cacheErr) {
+            console.warn("Failed to invalidate Vendor Price List cache:", cacheErr);
+        }
+
         return res.status(200).json({
             message: "Vendor Price List added successfully",
+            status: "success",
         });
 
     } catch (error: any) {

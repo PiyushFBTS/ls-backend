@@ -6,19 +6,47 @@ import { VendorMasterFormValues } from "../../../schemas/vendor/vendorMaster.sch
 export const addVendorMaster = async (req: Request, res: Response) => {
   try {
     if (!pool) {
-      return res.status(500).json({ error: "Database connection not available" });
+      return res.status(500).json({
+        error: "Database connection not available",
+      });
     }
 
     const body = req.body as VendorMasterFormValues;
 
-    // Prepare IST timestamps
+    // ----- Basic validation -----
+    if (!body.vendor_code || !body.name || !body.cmp_code) {
+      return res.status(400).json({
+        error: "Missing required fields: vendor_code, name, cmp_code",
+        status: "fail",
+      });
+    }
+
+    // ----- Check if vendor_code already exists -----
+    const exists = await pool.query(
+      `SELECT vendor_code FROM posdb.vendor_master WHERE vendor_code = $1`,
+      [body.vendor_code]
+    );
+
+    if ((exists.rowCount ?? 0) > 0) {
+      return res.status(400).json({
+        error: "Vendor with this vendor_code already exists",
+        status: "fail",
+      });
+    }
+
+    // ----- Prepare IST timestamps -----
     const now = new Date();
     const istOffsetMs = 5.5 * 60 * 60 * 1000;
     const istTime = new Date(now.getTime() + istOffsetMs);
 
-    const last_modified_date_time = istTime.toISOString().replace("T", " ").split(".")[0];
+    const last_modified_date_time = istTime
+      .toISOString()
+      .replace("T", " ")
+      .split(".")[0];
+
     const last_date_modified = istTime.toISOString().split("T")[0];
 
+    // ----- List of DB columns -----
     const columns = [
       "cmp_code",
       "cmp_name",
@@ -69,9 +97,10 @@ export const addVendorMaster = async (req: Request, res: Response) => {
       "api_gst_reg_no",
       "status",
       "last_modified_date_time",
-      "last_date_modified"
+      "last_date_modified",
     ];
 
+    // ----- Build dynamic SQL values -----
     const values = columns.map((col) => {
       if (col === "last_modified_date_time") return last_modified_date_time;
       if (col === "last_date_modified") return last_date_modified;
@@ -80,6 +109,7 @@ export const addVendorMaster = async (req: Request, res: Response) => {
 
     const placeholders = columns.map((_, i) => `$${i + 1}`).join(", ");
 
+    // ----- Execute Insert Query -----
     const query = `
       INSERT INTO posdb.vendor_master (${columns.join(", ")})
       VALUES (${placeholders})
@@ -87,19 +117,21 @@ export const addVendorMaster = async (req: Request, res: Response) => {
 
     await pool.query(query, values);
 
-    // Clear cache
+    // ----- Redis Cache Invalidation -----
     try {
       await redis.del("vendor_master:all");
-      if (body.cmp_code) await redis.del(`vendor_master:cmp:${body.cmp_code}`);
-      if (body.vendor_code) await redis.del(`vendor_master:vendor:${body.vendor_code}`);
-    } catch (err) {
-      console.error("Redis error:", err);
+      await redis.del(`vendor_master:cmp:${body.cmp_code}`);
+      await redis.del(`vendor_master:vendor:${body.vendor_code}`);
+    } catch (cacheErr) {
+      console.warn("Redis cache invalidation failed:", cacheErr);
     }
 
-    return res.status(200).json({ message: "Vendor added successfully" });
+    return res.status(200).json({
+      message: "Vendor added successfully",
+      status: "success",
+    });
 
   } catch (error: any) {
-
     return res.status(500).json({
       message: "Failed to create Vendor",
       error: error.message,

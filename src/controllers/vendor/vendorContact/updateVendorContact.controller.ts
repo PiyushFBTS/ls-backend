@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { pool } from "../../../db";
+import { redis } from "../../../db/redis";
 
 export const updateVendorContact = async (req: Request, res: Response) => {
   try {
@@ -38,7 +39,7 @@ export const updateVendorContact = async (req: Request, res: Response) => {
     }
 
     // ------------------------------------------------------
-    // 🖼️ Convert Base64 image → Buffer (if provided)
+    // 🖼️ Convert Base64 image → Buffer
     // ------------------------------------------------------
     let imageBuffer: Buffer | null = null;
 
@@ -57,11 +58,11 @@ export const updateVendorContact = async (req: Request, res: Response) => {
     // 🕒 Generate IST timestamps
     // ------------------------------------------------------
     const now = new Date();
-    const istOffset = 5.5 * 60 * 60 * 1000; // UTC + 5:30
+    const istOffset = 5.5 * 60 * 60 * 1000;
     const istTime = new Date(now.getTime() + istOffset);
 
-    const last_date_modified = istTime.toISOString().split("T")[0]; // YYYY-MM-DD
-    const last_time_modified = istTime.toISOString().split("T")[1].split(".")[0]; // HH:MM:SS
+    const last_date_modified = istTime.toISOString().split("T")[0];
+    const last_time_modified = istTime.toISOString().split("T")[1].split(".")[0];
 
     // ------------------------------------------------------
     // 📝 SQL Update Query
@@ -111,9 +112,7 @@ export const updateVendorContact = async (req: Request, res: Response) => {
 
     const result = await pool.query(query, values);
 
-    // ------------------------------------------------------
-    // ❌ No record found
-    // ------------------------------------------------------
+
     if (result.rowCount === 0) {
       return res.status(404).json({
         message: "Vendor contact not found",
@@ -121,13 +120,19 @@ export const updateVendorContact = async (req: Request, res: Response) => {
       });
     }
 
+    // ------------------------------------------------------
+    // 🧹 REDIS CACHE CLEARING
+    // ------------------------------------------------------
+    await redis.del("vendorContacts:all");                          // All contacts list
+    await redis.del(`vendorContacts:company:${cmp_code}`);          // Contacts for company
+    await redis.del(`vendorContact:${cmp_code}:${contact_code}`);   // Single contact
+
     return res.status(200).json({
       message: "Vendor contact updated successfully",
       status: "success",
     });
 
   } catch (error: any) {
-
     return res.status(500).json({
       message: "Failed to update vendor contact",
       error: error.message,

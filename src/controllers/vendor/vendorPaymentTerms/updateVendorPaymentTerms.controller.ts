@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { pool } from "../../../db";
+import { redis } from "../../../db/redis";
 
 export const updateVendorPaymentTerms = async (req: Request, res: Response) => {
   try {
@@ -21,18 +22,12 @@ export const updateVendorPaymentTerms = async (req: Request, res: Response) => {
       payment_terms_code,
     } = req.body;
 
-    // ----------------------------------------------------
-    // 🔍 Validate
-    // ----------------------------------------------------
     if (!cmp_code || !payment_terms_code) {
       return res.status(400).json({
         error: "cmp_code and payment_terms_code are required",
       });
     }
 
-    // ----------------------------------------------------
-    // 🕒 IST Timestamp
-    // ----------------------------------------------------
     const now = new Date();
     const istOffset = 5.5 * 60 * 60 * 1000;
     const istTime = new Date(now.getTime() + istOffset);
@@ -42,9 +37,6 @@ export const updateVendorPaymentTerms = async (req: Request, res: Response) => {
       .replace("T", " ")
       .split(".")[0];
 
-    // ----------------------------------------------------
-    // 📝 SQL Update Query
-    // ----------------------------------------------------
     const query = `
       UPDATE posdb.vendor_payment_terms
       SET
@@ -74,15 +66,16 @@ export const updateVendorPaymentTerms = async (req: Request, res: Response) => {
 
     const result = await pool.query(query, values);
 
-    // ----------------------------------------------------
-    // ❌ If record does not exist
-    // ----------------------------------------------------
     if (result.rowCount === 0) {
       return res.status(404).json({
         message: "Vendor Payment Terms not found",
         status: "fail",
       });
     }
+
+    await redis.del("vendorPaymentTerms:all");                                // all payment terms
+    await redis.del(`vendorPaymentTerms:company:${cmp_code}`);                // by company
+    await redis.del(`vendorPaymentTerms:${cmp_code}:${payment_terms_code}`);  // single record
 
     return res.status(200).json({
       message: "Vendor Payment Terms updated successfully",

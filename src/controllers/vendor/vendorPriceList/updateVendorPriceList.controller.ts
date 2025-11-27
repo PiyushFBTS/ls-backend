@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { pool } from "../../../db";
+import { redis } from "../../../db/redis";
 
 export const updateVendorPriceList = async (req: Request, res: Response) => {
   try {
@@ -10,45 +11,20 @@ export const updateVendorPriceList = async (req: Request, res: Response) => {
     }
 
     const {
-      cmp_name,
-      description,
-      assign_to_group,
-      assign_to_type,
-      assign_to_no,
-      assign_to_parent_no_projects,
-      assign_to_id,
-      price_type,
-      defines,
-      currency_code,
-      starting_date,
-      ending_date,
-      price_includes_vat,
-      vat_bus_posting_gr_price,
-      allow_line_disc,
-      allow_invoice_disc,
-      no_series,
-      status,
-      filter_source_no,
-      allow_updating_default,
-      assign_to_no_alt,
-      assign_to_parent_no_alt,
-      approval_status,
-      cmp_code,
-      price_list_code,
+      cmp_name, description, assign_to_group, assign_to_type, assign_to_no,
+      assign_to_parent_no_projects, assign_to_id, price_type, defines,
+      currency_code, starting_date, ending_date, price_includes_vat,
+      vat_bus_posting_gr_price, allow_line_disc, allow_invoice_disc,
+      no_series, status, filter_source_no, allow_updating_default, assign_to_no_alt,
+      assign_to_parent_no_alt, approval_status, cmp_code, price_list_code,
     } = req.body;
 
-    // -------------------------------------------------------------------
-    // 🔍 Validate required fields
-    // -------------------------------------------------------------------
     if (!cmp_code || !price_list_code) {
       return res.status(400).json({
         error: "cmp_code and price_list_code are required",
       });
     }
 
-    // -------------------------------------------------------------------
-    // 📝 SQL Update Query
-    // -------------------------------------------------------------------
     const query = `
       UPDATE posdb.vendor_price_list
       SET
@@ -108,15 +84,16 @@ export const updateVendorPriceList = async (req: Request, res: Response) => {
 
     const result = await pool.query(query, values);
 
-    // -------------------------------------------------------------------
-    // ❌ Check if record exists
-    // -------------------------------------------------------------------
     if (result.rowCount === 0) {
       return res.status(404).json({
         message: "Vendor Price List not found",
         status: "fail",
       });
     }
+
+    await redis.del("vendorPriceList:all");                                     // all lists
+    await redis.del(`vendorPriceList:company:${cmp_code}`);                     // company wise
+    await redis.del(`vendorPriceList:${cmp_code}:${price_list_code}`);          // single list
 
     return res.status(200).json({
       message: "Vendor Price List updated successfully",

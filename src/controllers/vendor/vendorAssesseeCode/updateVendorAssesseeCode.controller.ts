@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { pool } from "../../../db";
+import { redis } from "../../../db/redis";
 
 export const updateVendorAssesseeCode = async (req: Request, res: Response) => {
   try {
@@ -36,6 +37,12 @@ export const updateVendorAssesseeCode = async (req: Request, res: Response) => {
         message: "Vendor Assessee Code not found",
       });
     }
+
+    /** ----------------------------------
+     *  REDIS CACHE CLEARING
+     * ----------------------------------*/
+    await redis.del("vendorAssesseeCodes:all");            // list cache
+    await redis.del(`vendorAssesseeCode:${assessee_code}`); // single record cache
 
     return res.status(200).json({
       message: "Vendor Assessee Code updated successfully",

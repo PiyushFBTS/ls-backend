@@ -1,15 +1,28 @@
 import { Request, Response } from "express";
 import { pool } from "../../../db";
+import { redis } from "../../../db/redis";
 
 export const getVendorSection = async (req: Request, res: Response) => {
   try {
+    const cacheKey = "vendor:sections";
+
+
+    const cached = await redis.get(cacheKey);
+    if (cached) {
+      return res.status(200).json(JSON.parse(cached));
+    }
+
     const result = await pool.query(`
       SELECT * 
       FROM posdb.vendor_section 
       ORDER BY section_code ASC
     `);
 
-    return res.status(200).json(result.rows);
+    const sections = result.rows;
+
+    await redis.setex(cacheKey, 300, JSON.stringify(sections));
+
+    return res.status(200).json(sections);
 
   } catch (error: any) {
     console.error("Error fetching Vendor Sections:", error);

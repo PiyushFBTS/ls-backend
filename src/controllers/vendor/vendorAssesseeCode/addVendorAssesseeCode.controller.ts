@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { pool } from "../../../db";
-import { VendorAssesseeCodeFormValues } from "../../../schemas/vendor/vendorAssesseeCode.schema"
+import { redis } from "../../../db/redis";
+import { VendorAssesseeCodeFormValues } from "../../../schemas/vendor/vendorAssesseeCode.schema";
 
 export const addVendorAssesseeCode = async (req: Request, res: Response) => {
   try {
@@ -10,12 +11,29 @@ export const addVendorAssesseeCode = async (req: Request, res: Response) => {
       });
     }
 
-    const { assessee_code, description, type } = req.body as VendorAssesseeCodeFormValues;
+    const { assessee_code, description, type } =
+      req.body as VendorAssesseeCodeFormValues;
 
     // Basic validation
     if (!assessee_code || !description || !type) {
       return res.status(400).json({
         message: "assessee_code, description and type are required",
+        status: "fail",
+      });
+    }
+
+    // Check if code already exists
+    const checkQuery = `
+      SELECT assessee_code 
+      FROM posdb.vendor_assessee_code
+      WHERE assessee_code = $1
+    `;
+    const exists = await pool.query(checkQuery, [assessee_code]);
+
+    if ((exists.rowCount ?? 0) > 0) {
+      return res.status(400).json({
+        error: "Vendor Assessee Code already exists",
+        status: "fail",
       });
     }
 
@@ -27,8 +45,17 @@ export const addVendorAssesseeCode = async (req: Request, res: Response) => {
 
     await pool.query(query, [assessee_code, description, type]);
 
+    // Invalidate Redis cache
+    try {
+      await redis.del("vendorAssesseeCodes:all");
+      await redis.del(`vendorAssesseeCodes:type:${type}`);
+    } catch (cacheErr) {
+      console.warn(" Failed to invalidate Vendor Assessee cache:", cacheErr);
+    }
+
     return res.status(200).json({
       message: "Vendor Assessee Code added successfully",
+      status: "success",
     });
 
   } catch (error: any) {

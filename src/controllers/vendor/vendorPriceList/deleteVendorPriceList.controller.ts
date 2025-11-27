@@ -1,87 +1,86 @@
 import { Request, Response } from "express";
 import { pool } from "../../../db";
+import { redis } from "../../../db/redis";
 
 export const deleteVendorPriceList = async (req: Request, res: Response) => {
   try {
     const { items } = req.body;
 
-    // Validate request
     if (!Array.isArray(items) || items.length === 0) {
       return res.status(400).json({
         message: "No records provided",
       });
     }
 
-    // Validate fields inside each item
-    const invalid = items.find(
-      (i) => !i.price_list_code || !i.cmp_code
-    );
-
-    if (invalid) {
-      return res.status(400).json({
-        message: "Each item must include price_list_code and cmp_code",
-      });
+    // Validate each entry
+    for (const item of items) {
+      if (!item.price_list_code || !item.cmp_code) {
+        return res.status(400).json({
+          message: "Each item must include price_list_code and cmp_code",
+        });
+      }
     }
 
-    // ------------------------------------------------------
-    // 1️⃣ CHECK IF RECORDS EXIST BEFORE DELETING
-    // ------------------------------------------------------
-    const checkQuery = `
-      SELECT price_list_code, cmp_code
-      FROM posdb.vendor_price_list
-      WHERE (price_list_code, cmp_code) IN (
-        ${items.map((_, i) => `($${i * 2 + 1}, $${i * 2 + 2})`).join(", ")}
-      )
-    `;
+    const client = await pool.connect();
 
-    const checkValues: any[] = [];
-    items.forEach((item) => {
-      checkValues.push(item.price_list_code, item.cmp_code);
-    });
+    try {
+      await client.query("BEGIN");
 
-    const checkResult = await pool.query(checkQuery, checkValues);
+      const notFound: Array<{ price_list_code: string; cmp_code: string }> = [];
 
-    const existsSet = new Set(
-      checkResult.rows.map(
-        (r) => `${r.price_list_code}-${r.cmp_code}`
-      )
-    );
+      for (const item of items) {
+        const { price_list_code, cmp_code } = item;
 
-    // Find missing entries
-    const missing = items.filter(
-      (i) => !existsSet.has(`${i.price_list_code}-${i.cmp_code}`)
-    );
+        const existsQuery = `
+          SELECT 1
+          FROM posdb.vendor_price_list
+          WHERE price_list_code = $1 AND cmp_code = $2
+        `;
 
-    if (missing.length > 0) {
-      return res.status(404).json({
-        message: "Some Vendor Price List records were not found",
-        missing,
+        const existsRes = await client.query(existsQuery, [
+          price_list_code,
+          cmp_code,
+        ]);
+
+        if (existsRes.rowCount === 0) {
+          notFound.push({ price_list_code, cmp_code });
+          continue;
+        }
+
+        const deleteQuery = `
+          DELETE FROM posdb.vendor_price_list
+          WHERE price_list_code = $1 AND cmp_code = $2
+        `;
+        await client.query(deleteQuery, [price_list_code, cmp_code]);
+
+        await redis.del(`vendor_price_list:${cmp_code}:${price_list_code}`);
+      }
+
+      await redis.del("vendor_price_list:all");
+
+      await client.query("COMMIT");
+
+      return res.status(200).json({
+        message: "Vendor Price List deletion completed",
+        deletedCount: items.length - notFound.length,
+        notFound,
+        status: "success",
       });
+
+    } catch (err) {
+      await client.query("ROLLBACK");
+      console.error("Error during Vendor Price List deletion:", err);
+
+      return res.status(500).json({
+        message: "Database delete failed",
+        error: err,
+        status: "fail",
+      });
+    } finally {
+      client.release();
     }
-
-    // ------------------------------------------------------
-    // 2️⃣ DELETE MATCHING COMBINATIONS
-    // ------------------------------------------------------
-    const deleteQuery = `
-      DELETE FROM posdb.vendor_price_list
-      WHERE (price_list_code, cmp_code) IN (
-        ${items.map((_, i) => `($${i * 2 + 1}, $${i * 2 + 2})`).join(", ")}
-      )
-    `;
-
-    const deleteValues: any[] = [];
-    items.forEach((item) => {
-      deleteValues.push(item.price_list_code, item.cmp_code);
-    });
-
-    await pool.query(deleteQuery, deleteValues);
-
-    return res.status(200).json({
-      message: "Vendor Price List deleted successfully",
-    });
-
   } catch (error: any) {
-    console.error("Error deleting Vendor Price List:", error);
+    console.error("Failed to delete Vendor Price List:", error);
 
     return res.status(500).json({
       message: "Failed to delete Vendor Price List",
