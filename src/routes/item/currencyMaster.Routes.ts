@@ -12,7 +12,7 @@ router.post("/addCurrency", addCurrency);
 // delete currency
 router.post("/deleteCurrency", deleteCurrency);
 // get all currency
-router.get("/getCurrency/all", getCurrency);
+router.get("/getCurrency", getCurrency);
 // get currency by id
 router.get("/getCurrencyById/:id", getCurrencyById)
 // update currency

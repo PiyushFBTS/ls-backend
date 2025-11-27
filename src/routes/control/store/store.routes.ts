@@ -23,6 +23,6 @@ router.post('/deleteStore', deleteStore);
 router.get('/getStoreById', getStoreById);
 
 // Update Store
-router.put('/updateStore/:id', updateStore);
+router.put('/updateStore', updateStore);
 
 export default router;

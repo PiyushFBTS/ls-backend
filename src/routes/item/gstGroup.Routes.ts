@@ -13,7 +13,7 @@ router.post("/addGST", addGST);
 // delete gst
 router.post("/deleteGST", deleteGSTGroup);
 // get all gst 
-router.get("/getGST/all", getGSTGroup);
+router.get("/getGST", getGSTGroup);
 // get gst by Id
 router.get("/getGSTById/:id", getGSTGroupById);
 // update Item

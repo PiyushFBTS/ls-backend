@@ -4,35 +4,46 @@ import { redis } from "../../../db/redis";
 
 export const getItemHierarchyById = async (req: Request, res: Response) => {
   try {
-    const { id } = req.params; // category_code
+    const { category_code, cmp_code } = req.query;
 
-    if (!id) {
-      return res.status(400).json({ error: "Missing category_code" });
+    // Validate required params
+    if (!category_code || !cmp_code) {
+      return res.status(400).json({
+        error: "Missing required query params: category_code and cmp_code",
+      });
     }
 
-    const cacheKey = `item_hierarchy:${id}`;
+    const cacheKey = `item_hierarchy:${cmp_code}:${category_code}`;
 
-    // Try Redis cache
+    //Check Redis cache
     const cached = await redis.get(cacheKey);
     if (cached) {
+      console.log(`Cache hit: ${cacheKey}`);
       return res.status(200).json(JSON.parse(cached));
     }
 
-    const result = await pool.query(
-      `SELECT * FROM posdb.item_hierarchy WHERE category_code = $1`,
-      [id]
-    );
+    console.log(`Cache miss: ${cacheKey}`);
+
+    // Query DB with composite key
+    const query = `
+      SELECT * FROM posdb.item_hierarchy 
+      WHERE category_code = $1 AND cmp_code = $2
+    `;
+
+    const result = await pool.query(query, [category_code, cmp_code]);
 
     if (result.rows.length === 0) {
-      return res.status(404).json({ error: "Item Hierarchy not found" });
+      return res
+        .status(404)
+        .json({ error: "Item Hierarchy not found for given company" });
     }
 
-    const itemHierarchy = result.rows[0];
+    const data = result.rows[0];
 
     // Cache for 5 minutes
-    await redis.setex(cacheKey, 300, JSON.stringify(itemHierarchy));
+    await redis.setex(cacheKey, 300, JSON.stringify(data));
 
-    return res.status(200).json(itemHierarchy);
+    return res.status(200).json(data);
 
   } catch (error: any) {
     console.error("Error fetching Item Hierarchy:", error);
