@@ -2,7 +2,7 @@ import express from "express";
 import { addVendorSection } from "../../controllers/vendor/vendorSection/addVendorSection.controller"
 import { deleteVendorSection } from "../../controllers/vendor/vendorSection/deleteVendorSection.controller"
 import { getVendorSection } from "../../controllers/vendor/vendorSection/getVendorSection.controller"
-import { getVendorSectionById } from "../../controllers/vendor/vendorSection/getVendorSectionByID.controller"
+import { getVendorSectionById } from "../../controllers/vendor/vendorSection/getVendorSectionById.controller"
 import { updateVendorSection } from "../../controllers/vendor/vendorSection/updateVendorSection.controller"
 import { validate } from "../../middlewares/validate";
 import { VendorSectionFormSchema } from "../../schemas/vendor/vendorSection.schema";
