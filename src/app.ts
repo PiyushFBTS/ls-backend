@@ -24,12 +24,13 @@ import ItemUnitOfMeasure from './routes/item/itemUnitOfMeasure.routes';
 import ItemVariant from './routes/item/itemVariant.routes';
 import unitOfMeasure from './routes/item/unitOfMeasure.routes';
 import vat from './routes/item/vat.routes';
-import vendorMaster from './routes/vendor/vendorMaster.Routes';
-import vendorAssesseeCode from './routes/vendor/vendorAssesseeCode.Routes';
-import vendorContact from './routes/vendor/vendorContact.Routes';
-import vendorPaymentTerms from './routes/vendor/vendorPaymentTerms.Routes';
-import vendorPriceList from './routes/vendor/vendorPriceList.Routes';
-import vendorSection from './routes/vendor/vendorSection.Routes';
+import vendorMaster from './routes/vendor/vendorMaster.routes';
+import vendorAssesseeCode from './routes/vendor/vendorAssesseeCode.routes';
+import vendorContact from './routes/vendor/vendorContact.routes';
+import vendorPaymentTerms from './routes/vendor/vendorPaymentTerms.routes';
+import vendorPriceList from './routes/vendor/vendorPriceList.routes';
+import vendorSection from './routes/vendor/vendorSection.routes';
+import pos from './routes/pos/pos.routes';
 
 const app = express();
 
@@ -84,6 +85,8 @@ app.use("/api/vendorPaymentTerms",vendorPaymentTerms)
 app.use("/api/vendorPriceList",vendorPriceList)
 app.use("/api/vendorSection",vendorSection)
 
+//pos
+app.use("/api/pos",pos)
 
 app.get('/', (_, res) => res.send('Backend running 🚀'));
 
