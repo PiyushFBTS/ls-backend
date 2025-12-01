@@ -30,6 +30,7 @@ import vendorContact from './routes/vendor/vendorContact.routes';
 import vendorPaymentTerms from './routes/vendor/vendorPaymentTerms.routes';
 import vendorPriceList from './routes/vendor/vendorPriceList.routes';
 import vendorSection from './routes/vendor/vendorSection.routes';
+import location from './routes/purchase/location.routes';
 import pos from './routes/pos/pos.routes';
 
 const app = express();
@@ -60,33 +61,38 @@ app.use("/api/module", moduleRoutes)
 app.use("/api/permission", permissionRoutes)
 
 //dropdown
-app.use("/api/controlDropDown",controlDropDown)
-app.use("/api/addressDropDown",addressDropDown)
+app.use("/api/controlDropDown", controlDropDown)
+app.use("/api/addressDropDown", addressDropDown)
 
 //common
-app.use("/api/commonDropDown",commonDropDown)
+app.use("/api/commonDropDown", commonDropDown)
 
 //Item
-app.use("/api/currencyMaster",currencyMaster)
-app.use("/api/gstGroup",gstGroup)
-app.use("/api/itemHierarchy",itemHierarchy)
-app.use("/api/item",item)
-app.use("/api/itemSales",itemSales)
-app.use("/api/itemUnitOfMeasure",ItemUnitOfMeasure)
-app.use("/api/itemVariant",ItemVariant)
-app.use("/api/unitOfMeasure",unitOfMeasure)
-app.use("/api/vat",vat)
+app.use("/api/currencyMaster", currencyMaster)
+app.use("/api/gstGroup", gstGroup)
+app.use("/api/itemHierarchy", itemHierarchy)
+app.use("/api/item", item)
+app.use("/api/itemSales", itemSales)
+app.use("/api/itemUnitOfMeasure", ItemUnitOfMeasure)
+app.use("/api/itemVariant", ItemVariant)
+app.use("/api/unitOfMeasure", unitOfMeasure)
+app.use("/api/vat", vat)
 
 // vendor
-app.use("/api/vendorMaster",vendorMaster)
-app.use("/api/VendorAssesseeCode",vendorAssesseeCode)
-app.use("/api/vendorContact",vendorContact)
-app.use("/api/vendorPaymentTerms",vendorPaymentTerms)
-app.use("/api/vendorPriceList",vendorPriceList)
-app.use("/api/vendorSection",vendorSection)
+app.use("/api/vendorMaster", vendorMaster)
+app.use("/api/VendorAssesseeCode", vendorAssesseeCode)
+app.use("/api/vendorContact", vendorContact)
+app.use("/api/vendorPaymentTerms", vendorPaymentTerms)
+app.use("/api/vendorPriceList", vendorPriceList)
+app.use("/api/vendorSection", vendorSection)
 
 //pos
-app.use("/api/pos",pos)
+app.use("/api/pos", pos)
+
+
+// purchase routes
+app.use('/api/purchase', location)
+
 
 app.get('/', (_, res) => res.send('Backend running 🚀'));
 
