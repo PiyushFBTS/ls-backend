@@ -4,10 +4,10 @@ import { redis } from '../../../db/redis/index';
 
 export const addLocation = async (req: Request, res: Response) => {
     try {
-        const { location_code, name, address1, county, state, city, post_code, phone, gst } = req.body;
+        const { location_code, name, address1, county, state, city, post_code, phone, gst, cmp_name, cmp_code } = req.body;
 
         // Basic validation (you can replace with Zod later)
-        if (!location_code || !name || !address1 || !county || !state || !city || !post_code || !phone || !gst) {
+        if (!location_code || !name || !address1 || !county || !state || !city || !post_code || !phone || !gst || !cmp_name || !cmp_code) {
             return res
                 .status(400)
                 .json({ error: 'Missing required fields', status: 'fail' });
@@ -31,15 +31,18 @@ export const addLocation = async (req: Request, res: Response) => {
         city,
         post_code,
         phone,
-        gst
+        gst,
+        cmp_name,
+        cmp_code
       ) VALUES (
         $1, $2, $3, $4,
-        $5, $6, $7, $8 ,$9
+        $5, $6, $7, $8,
+        $9, $10, $11
       )
     `;
 
         const values = [
-            location_code, name, address1, county, state, city, post_code, phone, gst
+            location_code, name, address1, county, state, city, post_code, phone, gst , cmp_name, cmp_code
         ];
 
         await pool.query(query, values);

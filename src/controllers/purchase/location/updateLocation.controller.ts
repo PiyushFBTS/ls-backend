@@ -19,7 +19,9 @@ export const updateLocation = async (req: Request, res: Response) => {
       city,
       post_code,
       phone,
-      gst
+      gst,
+      cmp_name,
+      cmp_code
     } = body;
 
     const query = `
@@ -31,7 +33,9 @@ export const updateLocation = async (req: Request, res: Response) => {
         city = $6,
         post_code = $7,
         phone = $8,
-        gst = $9
+        gst = $9,
+        cmp_name = $10,
+        cmp_code = $11
       WHERE location_code = $1
       RETURNING location_code
     `;
@@ -45,7 +49,9 @@ export const updateLocation = async (req: Request, res: Response) => {
       city ?? null,
       post_code ?? null,
       phone ?? null,
-      gst ?? null
+      gst ?? null ,
+      cmp_name ,
+      cmp_code 
     ];
 
     const result = await pool.query(query, values);

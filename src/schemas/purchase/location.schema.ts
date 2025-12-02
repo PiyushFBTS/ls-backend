@@ -10,6 +10,9 @@ export const LocationFormSchema = z.object({
   post_code: z.string().min(1, "Post Code is required"),
   phone: z.string().min(1, "Phone is required"),
   gst: z.string().optional().or(z.literal("")),
+  cmp_name: z.string().min(1, "Company Name is required"),
+  cmp_code: z.string().min(1, "Company Code is required"),
+
 });
 
 export type LocationFormType = z.infer<typeof LocationFormSchema>;

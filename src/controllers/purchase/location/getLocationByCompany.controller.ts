@@ -20,7 +20,7 @@ export const getLocationByCompany = async (req: Request, res: Response) => {
 
     //  Fetch from database
     const result = await pool.query(
-      'SELECT * FROM posdb.location WHERE location_code = $1 ORDER BY location_code ASC',
+      'SELECT * FROM posdb.location WHERE cmp_code = $1 ORDER BY location_code ASC',
       [id]
     );
 

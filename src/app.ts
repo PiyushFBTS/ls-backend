@@ -31,6 +31,7 @@ import vendorPaymentTerms from './routes/vendor/vendorPaymentTerms.routes';
 import vendorPriceList from './routes/vendor/vendorPriceList.routes';
 import vendorSection from './routes/vendor/vendorSection.routes';
 import location from './routes/purchase/location.routes';
+import purchaseOrder from './routes/purchase/purchaseOrder.routes';
 import pos from './routes/pos/pos.routes';
 
 const app = express();
@@ -91,7 +92,8 @@ app.use("/api/pos", pos)
 
 
 // purchase routes
-app.use('/api/purchase', location)
+app.use('/api/purchase/location', location)
+app.use('/api/purchase/purchaseOrder', purchaseOrder)
 
 
 app.get('/', (_, res) => res.send('Backend running 🚀'));
