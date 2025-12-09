@@ -1,0 +1,4715 @@
+{
+	"info": {
+		"_postman_id": "44427990-6e9bba44-0f56-4dce-94bb-32138dccf1e4",
+		"name": "LS-Backend",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "control",
+			"item": [
+				{
+					"name": "company",
+					"item": [
+						{
+							"name": "getCompany",
+							"id": "44427990-7046ac18-1ca7-463e-a575-2064a75a4ba7",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/api/company/getCompany",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"company",
+										"getCompany"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addCompany",
+							"id": "44427990-9a6b7dd6-a7fa-49f7-8152-e735e6b7580e",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"cmp_code\": \"C001\",\r\n    \"cmp_name\": \"TechCorp\",\r\n    \"add1\": \"Street 1\",\r\n    \"add2\": \"Street 2\",\r\n    \"country_code\": \"IN\",\r\n    \"state_code\": \"MH\",\r\n    \"city_code\": 1001,\r\n    \"phone\": \"9876543210\",\r\n    \"email\": \"info@techcorp.com\",\r\n    \"contact_person\": \"John Doe\",\r\n    \"contact_phone\": \"9999999999\",\r\n    \"contact_mail\": \"john@techcorp.com\",\r\n    \"blocked\": \"N\",\r\n    \"vat_regn_no\": \"12345\",\r\n    \"tan_no\": \"TAN123\",\r\n    \"gstin\": \"GSTIN123\",\r\n    \"arn_no\": \"ARN123\",\r\n    \"tcan_no\": \"TCAN123\",\r\n    \"cmp_logo\": \"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA...\",\r\n    \"pan_no\": \"ABCDE1234F\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/api/company/addCompany",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"company",
+										"addCompany"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "updateCompany",
+							"id": "44427990-f1cdf06f-4285-4b4e-9f4e-b5a44596874f",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"cmp_code\": \"C001\",\r\n    \"cmp_name\": \"TechCorp\",\r\n    \"add1\": \"Street 1\",\r\n    \"add2\": \"Street 2\",\r\n    \"country_code\": \"IN\",\r\n    \"state_code\": \"MH\",\r\n    \"city_code\": 1001,\r\n    \"phone\": \"9876543210\",\r\n    \"email\": \"info@techcorp.com\",\r\n    \"contact_person\": \"John Doe\",\r\n    \"contact_phone\": \"9999999999\",\r\n    \"contact_mail\": \"john@techcorp.com\",\r\n    \"blocked\": \"N\",\r\n    \"vat_regn_no\": \"12345\",\r\n    \"tan_no\": \"TAN123\",\r\n    \"gstin\": \"GSTIN123\",\r\n    \"arn_no\": \"ARN123\",\r\n    \"tcan_no\": \"TCAN123\",\r\n    \"cmp_logo\": \"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA...\",\r\n    \"pan_no\": \"ABCDE1234F\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/api/company/updateCompany?cmp_code=C001",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"company",
+										"updateCompany"
+									],
+									"query": [
+										{
+											"key": "cmp_code",
+											"value": "C001"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getCompanyById",
+							"id": "44427990-6f73330f-26ed-41b1-a102-2446a0092f99",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/api/company/getCompany/FR001",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"company",
+										"getCompany",
+										"FR001"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "deleteCompany",
+							"id": "44427990-0ae0a056-b4f5-4286-815a-b5c966eab5a5",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"ids\": [\"C00132\"]\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/company/deleteCompany",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"company",
+										"deleteCompany"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"id": "44427990-61ee3b52-76c3-447f-ba8b-a36c2a182663"
+				},
+				{
+					"name": "operatingUnit",
+					"item": [
+						{
+							"name": "addOperatingUnit",
+							"id": "44427990-e88049bd-21b5-4dfd-9b8a-c8254e6a25e9",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"cmp_code\": \"C001\",\r\n  \"cmp_name\": \"TechCorp\",\r\n  \"ou_code\": 101,\r\n  \"ou_name\": \"Mumbai HQ\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/operatingUnit/addOperatingUnit",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"operatingUnit",
+										"addOperatingUnit"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "updateOperatingUnit",
+							"id": "44427990-a27965ed-65c3-4ca0-9d19-82e0b35cc3ff",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"cmp_code\": \"C001\",\r\n  \"cmp_name\": \"TechCorp\",\r\n  \"ou_code\": 101,\r\n  \"ou_name\": \"Delhi HQ\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/operatingUnit/updateOperatingUnit",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"operatingUnit",
+										"updateOperatingUnit"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getOperatingUnitByCompany",
+							"id": "44427990-e86ad64f-74ed-4a73-9963-44b410c35260",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"cmp_code\": \"C001\",\r\n  \"cmp_name\": \"TechCorp\",\r\n  \"ou_code\": 101,\r\n  \"ou_name\": \"Mumbai HQ\"\r\n}\r\n"
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/operatingUnit/getOperatingUnitByCompany/C001",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"operatingUnit",
+										"getOperatingUnitByCompany",
+										"C001"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getOperatingUnitById",
+							"id": "44427990-baf8c050-7baa-4ea5-a620-bbaae4b03995",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"cmp_code\": \"C001\",\r\n  \"cmp_name\": \"TechCorp\",\r\n  \"ou_code\": 101,\r\n  \"ou_name\": \"Mumbai HQ\"\r\n}\r\n"
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/operatingUnit/getOperatingUnitById?ou_code=101&cmp_code=C001",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"operatingUnit",
+										"getOperatingUnitById"
+									],
+									"query": [
+										{
+											"key": "ou_code",
+											"value": "101"
+										},
+										{
+											"key": "cmp_code",
+											"value": "C001"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "deleteOperatingUnit",
+							"id": "44427990-f63aa723-c013-4e13-a7b0-9865dbe4fd80",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"records\": [\r\n    { \"cmp_code\": \"C001\", \"ou_code\": 1011 }\r\n  ]\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/operatingUnit/deleteOperatingUnit",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"operatingUnit",
+										"deleteOperatingUnit"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"id": "44427990-247d3cc1-f41b-4d70-af23-ad42a43b794e"
+				},
+				{
+					"name": "storeGroup",
+					"item": [
+						{
+							"name": "deleteStoreGroup",
+							"id": "44427990-4045d1d8-5b5b-4ed9-bfbd-12fab25c5b24",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"records\": [\r\n    { \"cmp_code\": \"C001\", \"sg_code\": \"SG0011\" }\r\n  ]\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/storeGroup/deleteStoreGroup",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"storeGroup",
+										"deleteStoreGroup"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "updateStoreGroup",
+							"id": "44427990-bd5fbae5-3631-45da-ab96-c1b633639302",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"cmp_code\": \"C001\",\r\n  \"cmp_name\": \"TechCorp\",\r\n  \"ou_code\": 101,\r\n  \"ou_name\": \"Mumbai HQ\",\r\n  \"sg_code\": \"SG001\",\r\n  \"sg_name\": \"Retail Stores\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/storeGroup/updateStoreGroup",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"storeGroup",
+										"updateStoreGroup"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getStoreGroupByCompany",
+							"id": "44427990-2128bdc2-f79d-405d-afbe-3dbb300cf801",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"cmp_code\": \"C001\",\r\n  \"cmp_name\": \"TechCorp\",\r\n  \"ou_code\": 101,\r\n  \"ou_name\": \"Mumbai HQ\"\r\n}\r\n"
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/storeGroup/getStoreGroupByCompany/C001",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"storeGroup",
+										"getStoreGroupByCompany",
+										"C001"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addStoreGroup",
+							"id": "44427990-c3753dde-1e09-44fb-a365-32a7eb48cc79",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"cmp_code\": \"C001\",\r\n  \"cmp_name\": \"TechCorp\",\r\n  \"ou_code\": 101,\r\n  \"ou_name\": \"Mumbai HQ\",\r\n  \"sg_code\": \"SG001\",\r\n  \"sg_name\": \"Retail Stores\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/storeGroup/addStoreGroup",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"storeGroup",
+										"addStoreGroup"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getStoreGroupById",
+							"id": "44427990-94ab5af9-f9f4-4c26-9635-aa09cfae13fe",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"cmp_code\": \"C001\",\r\n  \"cmp_name\": \"TechCorp\",\r\n  \"ou_code\": 101,\r\n  \"ou_name\": \"Mumbai HQ\"\r\n}\r\n"
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/storeGroup/getStoreGroupById?sg_code=SG001&cmp_code=C001",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"storeGroup",
+										"getStoreGroupById"
+									],
+									"query": [
+										{
+											"key": "sg_code",
+											"value": "SG001"
+										},
+										{
+											"key": "cmp_code",
+											"value": "C001"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"id": "44427990-f15ec84f-aba6-43f9-aa75-343283fa690d"
+				},
+				{
+					"name": "Store",
+					"item": [
+						{
+							"name": "deleteStore",
+							"id": "44427990-d5ca96be-9bf2-42fa-87f2-d047b47ac295",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"records\": [\r\n    { \"cmp_code\": \"C001\", \"store_code\": \"ST0011\" }\r\n  ]\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/store/deleteStore",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"store",
+										"deleteStore"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "updateStore",
+							"id": "44427990-848bf525-4580-4bb9-8cfc-15f47390d8f5",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"cmp_code\": \"C001\",\r\n  \"cmp_name\": \"TechCorp\",\r\n  \"ou_code\": 101,\r\n  \"ou_name\": \"Mumbai HQ\",\r\n  \"sg_code\": \"SG001\",\r\n  \"sg_name\": \"Retail Group\",\r\n  \"store_code\": \"ST001\",\r\n  \"store_name\": \"TechCorp Mumbai Store\",\r\n  \"add1\": \"123 Tech Street\",\r\n  \"country_code\": \"IN\",\r\n  \"state_code\": \"MH\",\r\n  \"city_code\": 1001,\r\n  \"pin\": 400001,\r\n  \"phone\": \"9876543210\",\r\n  \"email\": \"store@techcorp.com\",\r\n  \"contact_person\": \"John Doe\",\r\n  \"contact_phone\": \"9876543210\",\r\n  \"contact_mail\": \"john@techcorp.com\",\r\n  \"blocked\": \"N\",\r\n  \"restaurant\": \"Y\",\r\n  \"currency_code\": \"INR\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/store/updateStore",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"store",
+										"updateStore"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getStoreByCompany",
+							"id": "44427990-0672acce-0a8b-4c5d-b13d-b6d00497cd0a",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"cmp_code\": \"C001\",\r\n  \"cmp_name\": \"TechCorp\",\r\n  \"ou_code\": 101,\r\n  \"ou_name\": \"Mumbai HQ\"\r\n}\r\n"
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/store/getStoresByCompany/ST001",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"store",
+										"getStoresByCompany",
+										"ST001"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addStore",
+							"id": "44427990-91cf2e0c-a9d6-48ef-b6c8-d37a4e749c66",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"cmp_code\": \"C001\",\r\n  \"cmp_name\": \"TechCorp\",\r\n  \"ou_code\": 101,\r\n  \"ou_name\": \"Mumbai HQ\",\r\n  \"sg_code\": \"SG001\",\r\n  \"sg_name\": \"Retail Group\",\r\n  \"store_code\": \"ST001\",\r\n  \"store_name\": \"TechCorp Mumbai Store\",\r\n  \"add1\": \"123 Tech Street\",\r\n  \"country_code\": \"IN\",\r\n  \"state_code\": \"MH\",\r\n  \"city_code\": 1001,\r\n  \"pin\": 400001,\r\n  \"phone\": \"9876543210\",\r\n  \"email\": \"store@techcorp.com\",\r\n  \"contact_person\": \"John Doe\",\r\n  \"contact_phone\": \"9876543210\",\r\n  \"contact_mail\": \"john@techcorp.com\",\r\n  \"blocked\": \"N\",\r\n  \"restaurant\": \"Y\",\r\n  \"currency_code\": \"INR\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/store/addStore",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"store",
+										"addStore"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getStoreById",
+							"id": "44427990-b07ac15c-b950-4513-9466-c337a4ad5c08",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"cmp_code\": \"C001\",\r\n  \"cmp_name\": \"TechCorp\",\r\n  \"ou_code\": 101,\r\n  \"ou_name\": \"Mumbai HQ\"\r\n}\r\n"
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/store/getStoreById?store_code=ST001&cmp_code=C001",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"store",
+										"getStoreById"
+									],
+									"query": [
+										{
+											"key": "store_code",
+											"value": "ST001"
+										},
+										{
+											"key": "cmp_code",
+											"value": "C001"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getStoresByStoreGroup",
+							"id": "44427990-0582b40a-ada8-49d3-a0f4-b60950f0484a",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"cmp_code\": \"C001\",\r\n  \"cmp_name\": \"TechCorp\",\r\n  \"ou_code\": 101,\r\n  \"ou_name\": \"Mumbai HQ\",\r\n  \"sg_code\": \"SG001\",\r\n  \"sg_name\": \"Retail Group\",\r\n  \"store_code\": \"ST001\",\r\n  \"store_name\": \"TechCorp Mumbai Store\",\r\n  \"add1\": \"123 Tech Street\",\r\n  \"country_code\": \"IN\",\r\n  \"state_code\": \"MH\",\r\n  \"city_code\": 1001,\r\n  \"pin\": 400001,\r\n  \"phone\": \"9876543210\",\r\n  \"email\": \"store@techcorp.com\",\r\n  \"contact_person\": \"John Doe\",\r\n  \"contact_phone\": \"9876543210\",\r\n  \"contact_mail\": \"john@techcorp.com\",\r\n  \"blocked\": \"N\",\r\n  \"restaurant\": \"Y\",\r\n  \"currency_code\": \"INR\"\r\n}\r\n"
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/store/getStoresByStoreGroup/SG001",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"store",
+										"getStoresByStoreGroup",
+										"SG001"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"id": "44427990-20adcc2f-6468-4d68-854d-6f23350fbf3f"
+				},
+				{
+					"name": "Terminal",
+					"item": [
+						{
+							"name": "deleteTerminal",
+							"id": "44427990-691e95ae-e8c0-41c9-8e5a-1bb5279df79e",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"records\": [\r\n    { \"cmp_code\": \"C001\", \"terminal_id\": \"T000011\" }\r\n  ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/terminal/deleteTerminal",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"terminal",
+										"deleteTerminal"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "updateTerminal",
+							"id": "44427990-5f4d5c03-6c36-4109-9093-58f2d91393f3",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"cmp_code\": \"C001\",\r\n  \"cmp_name\": \"TechCorp\",\r\n  \"ou_code\": 101,\r\n  \"ou_name\": \"Mumbai HQ\",\r\n  \"store_code\": \"ST001\",\r\n  \"store_name\": \"TechCorp Store\",\r\n  \"terminal_id\": \"T00001\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/terminal/updateTerminal",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"terminal",
+										"updateTerminal"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getTerminalByCompany",
+							"id": "44427990-d59ae247-f681-4298-b8b1-d383bbd19541",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"cmp_code\": \"C001\",\r\n  \"cmp_name\": \"TechCorp\",\r\n  \"ou_code\": 101,\r\n  \"ou_name\": \"Mumbai HQ\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/terminal/getTerminalByCompany/C001",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"terminal",
+										"getTerminalByCompany",
+										"C001"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addTerminal",
+							"id": "44427990-cd2c7648-4a9d-4366-a6d7-ea55c3fa816c",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"cmp_code\": \"C001\",\r\n  \"cmp_name\": \"TechCorp\",\r\n  \"ou_code\": 101,\r\n  \"ou_name\": \"Mumbai HQ\",\r\n  \"store_code\": \"ST001\",\r\n  \"store_name\": \"TechCorp Store\",\r\n  \"terminal_id\": \"T00001\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/terminal/addTerminal",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"terminal",
+										"addTerminal"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getTerminalById",
+							"id": "44427990-1a226179-2459-4304-b8df-1aec7d937e36",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"cmp_code\": \"C001\",\r\n  \"cmp_name\": \"TechCorp\",\r\n  \"ou_code\": 101,\r\n  \"ou_name\": \"Mumbai HQ\"\r\n}\r\n"
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/terminal/getTerminalById?terminal_id=T00001&cmp_code=C001",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"terminal",
+										"getTerminalById"
+									],
+									"query": [
+										{
+											"key": "terminal_id",
+											"value": "T00001"
+										},
+										{
+											"key": "cmp_code",
+											"value": "C001"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"id": "44427990-30cac54e-69cf-4341-81cc-5fd775e311f9"
+				},
+				{
+					"name": "DropDown",
+					"item": [
+						{
+							"name": "control",
+							"item": [
+								{
+									"name": "getOperatingUnitByCmp",
+									"id": "44427990-0e8d2210-6a34-4dc5-80a0-20399d08278c",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"cmp_code\": \"fbts\",\r\n    \"cmp_name\": \"Flamboyant technologies\",\r\n    \"user_code\": 1,\r\n    \"user_name\": \"PiyushFBTS\",\r\n    \"user_full_name\": \"Piyush Malviya\",\r\n    \"user_email\": \"piyush@fbts.in\",\r\n    \"role_name\": \"Super Admin\",\r\n    \"role_code\": 1,\r\n    \"Permission\": {\r\n        \"Company\": {\r\n            \"module_code\": 1,\r\n            \"can_read\": true,\r\n            \"can_add\": true,\r\n            \"can_update\": true,\r\n            \"can_delete\": true\r\n        },\r\n        \"Operating Unit\": {\r\n            \"module_code\": 2,\r\n            \"can_read\": true,\r\n            \"can_add\": true,\r\n            \"can_update\": true,\r\n            \"can_delete\": true\r\n        },\r\n        \"Store\": {\r\n            \"module_code\": 3,\r\n            \"can_read\": true,\r\n            \"can_add\": true,\r\n            \"can_update\": true,\r\n            \"can_delete\": true\r\n        },\r\n        \"Terminal\": {\r\n            \"module_code\": 4,\r\n            \"can_read\": true,\r\n            \"can_add\": true,\r\n            \"can_update\": true,\r\n            \"can_delete\": true\r\n        },\r\n        \"User\": {\r\n            \"module_code\": 5,\r\n            \"can_read\": true,\r\n            \"can_add\": true,\r\n            \"can_update\": true,\r\n            \"can_delete\": true\r\n        },\r\n        \"UserRole\": {\r\n            \"module_code\": 6,\r\n            \"can_read\": true,\r\n            \"can_add\": true,\r\n            \"can_update\": true,\r\n            \"can_delete\": true\r\n        },\r\n        \"Item_Hierarchy\": {\r\n            \"module_code\": 7,\r\n            \"can_read\": true,\r\n            \"can_add\": true,\r\n            \"can_update\": true,\r\n            \"can_delete\": true\r\n        },\r\n        \"GST Group\": {\r\n            \"module_code\": 8,\r\n            \"can_read\": true,\r\n            \"can_add\": true,\r\n            \"can_update\": true,\r\n            \"can_delete\": true\r\n        },\r\n        \"VAT\": {\r\n            \"module_code\": 9,\r\n            \"can_read\": true,\r\n            \"can_add\": true,\r\n            \"can_update\": true,\r\n            \"can_delete\": true\r\n        },\r\n        \"Unit of Measure\": {\r\n            \"module_code\": 10,\r\n            \"can_read\": true,\r\n            \"can_add\": true,\r\n            \"can_update\": true,\r\n            \"can_delete\": true\r\n        },\r\n        \"Item\": {\r\n            \"module_code\": 11,\r\n            \"can_read\": true,\r\n            \"can_add\": true,\r\n            \"can_update\": true,\r\n            \"can_delete\": true\r\n        },\r\n        \"Item Variant\": {\r\n            \"module_code\": 12,\r\n            \"can_read\": true,\r\n            \"can_add\": true,\r\n            \"can_update\": true,\r\n            \"can_delete\": true\r\n        },\r\n        \"Item Unit Of Measure\": {\r\n            \"module_code\": 13,\r\n            \"can_read\": true,\r\n            \"can_add\": true,\r\n            \"can_update\": true,\r\n            \"can_delete\": true\r\n        },\r\n        \"Item Barcode\": {\r\n            \"module_code\": 14,\r\n            \"can_read\": true,\r\n            \"can_add\": true,\r\n            \"can_update\": true,\r\n            \"can_delete\": true\r\n        },\r\n        \"Sales Price\": {\r\n            \"module_code\": 15,\r\n            \"can_read\": true,\r\n            \"can_add\": true,\r\n            \"can_update\": true,\r\n            \"can_delete\": true\r\n        },\r\n        \"Currency Master\": {\r\n            \"module_code\": 16,\r\n            \"can_read\": true,\r\n            \"can_add\": true,\r\n            \"can_update\": true,\r\n            \"can_delete\": true\r\n        },\r\n        \"Store Group\": {\r\n            \"module_code\": 17,\r\n            \"can_read\": true,\r\n            \"can_add\": true,\r\n            \"can_update\": true,\r\n            \"can_delete\": true\r\n        },\r\n        \"Roles\": {\r\n            \"module_code\": 18,\r\n            \"can_read\": true,\r\n            \"can_add\": true,\r\n            \"can_update\": true,\r\n            \"can_delete\": true\r\n        },\r\n        \"Vendor Master\": {\r\n            \"module_code\": 19,\r\n            \"can_read\": true,\r\n            \"can_add\": true,\r\n            \"can_update\": true,\r\n            \"can_delete\": true\r\n        },\r\n        \"Vendor Payment Terms\": {\r\n            \"module_code\": 20,\r\n            \"can_read\": true,\r\n            \"can_add\": true,\r\n            \"can_update\": true,\r\n            \"can_delete\": true\r\n        },\r\n        \"Vendor Contact\": {\r\n            \"module_code\": 21,\r\n            \"can_read\": true,\r\n            \"can_add\": true,\r\n            \"can_update\": true,\r\n            \"can_delete\": true\r\n        },\r\n        \"Vendor Price List\": {\r\n            \"module_code\": 22,\r\n            \"can_read\": true,\r\n            \"can_add\": true,\r\n            \"can_update\": true,\r\n            \"can_delete\": true\r\n        },\r\n        \"Vendor Assessee Code\": {\r\n            \"module_code\": 23,\r\n            \"can_read\": true,\r\n            \"can_add\": true,\r\n            \"can_update\": true,\r\n            \"can_delete\": true\r\n        },\r\n        \"Vendor Section\": {\r\n            \"module_code\": 24,\r\n            \"can_read\": true,\r\n            \"can_add\": true,\r\n            \"can_update\": true,\r\n            \"can_delete\": true\r\n        }\r\n    }\r\n}"
+										},
+										"url": {
+											"raw": "http://localhost:3000/api/controlDropDown/getOperatingUnitByCmp?cmp_code=xyz",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"controlDropDown",
+												"getOperatingUnitByCmp"
+											],
+											"query": [
+												{
+													"key": "cmp_code",
+													"value": "xyz"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "getCompany",
+									"id": "44427990-418dcb84-7fcf-4ea6-b752-adb63be04547",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:3000/api/controlDropDown/getCompany",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"controlDropDown",
+												"getCompany"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "getStoreGroupByOU",
+									"id": "44427990-0e4de4b3-ba3f-4b4d-9f20-0278900887d0",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:3000/api/controlDropDown/getStoreGroupByOU?ou_code=3243",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"controlDropDown",
+												"getStoreGroupByOU"
+											],
+											"query": [
+												{
+													"key": "ou_code",
+													"value": "3243"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "getStoreByOU",
+									"id": "44427990-73e4d3c1-b911-4b0e-8483-c0694f46846d",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:3000/api/controlDropDown/getStoreByOu?ou_code=3243",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"controlDropDown",
+												"getStoreByOu"
+											],
+											"query": [
+												{
+													"key": "ou_code",
+													"value": "3243"
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							],
+							"id": "44427990-a7828562-bca2-4c7f-b3b5-2acfade61ba6"
+						},
+						{
+							"name": "Address",
+							"item": [
+								{
+									"name": "getCountry",
+									"id": "44427990-ab810356-edae-4bec-b9bf-ecc4240b5f9e",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:3000/api/addressDropDown/country/all",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"addressDropDown",
+												"country",
+												"all"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "getStateByCountry",
+									"id": "44427990-d6eeacfb-24ea-465a-ad1a-26f6af746d1c",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:3000/api/addressDropDown/state?country_code=IN",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"addressDropDown",
+												"state"
+											],
+											"query": [
+												{
+													"key": "country_code",
+													"value": "IN"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "getCityByStateCode",
+									"id": "44427990-b986efaa-a2b2-4c05-aa54-da222df2ac2f",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:3000/api/addressDropDown/city?state_code=UP",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"addressDropDown",
+												"city"
+											],
+											"query": [
+												{
+													"key": "state_code",
+													"value": "UP"
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							],
+							"id": "44427990-25497135-1ae0-47ea-b678-59d09bd004a7"
+						}
+					],
+					"id": "44427990-a8c41f4a-2c7a-4c36-a7ab-0a23349430b3"
+				}
+			],
+			"id": "44427990-8e780e67-0bb6-48b7-bcf6-f47c91cbcf6b"
+		},
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "login",
+					"id": "44427990-20d7373c-814b-4b12-8084-334583d9ef56",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"piyush@fbts.in\",\r\n  \"password\": \"123456\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"id": "44427990-16a7e6c9-fce1-4088-8e0f-8a1eb222afb4"
+		},
+		{
+			"name": "userAndRole",
+			"item": [
+				{
+					"name": "role",
+					"item": [
+						{
+							"name": "addRole",
+							"id": "44427990-03e08158-4dd6-4166-b614-c4585ee98cbf",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\r\n    \"role_name\": \"Super Admin\",\r\n    \"role_description\": \"This can Do Anything\",\r\n    \"created_by\": \"Super Admin\",\r\n    \"cmp_code\": \"fbts\",\r\n    \"cmp_name\": \"Flamboyant technologies\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/role/addRole",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"role",
+										"addRole"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getRoleById",
+							"id": "44427990-21b26453-0f81-4e07-937a-8ecad2760913",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/role/getRoleById/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"role",
+										"getRoleById",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getRoleByCompany",
+							"id": "44427990-55b9c86e-b251-435d-b64d-0950ecf140b1",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/role/getRoleByCompany/fbts",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"role",
+										"getRoleByCompany",
+										"fbts"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "updateRole",
+							"id": "44427990-8022bc87-0394-4f03-9d02-249b46587501",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"role_code\": 1,\r\n    \"role_name\": \"Super Admin\",\r\n    \"role_description\": \"This can Do Anything\",\r\n    \"created_by\": \"Super Admin\",\r\n    \"cmp_code\": \"fbts\",\r\n    \"cmp_name\": \"Flamboyant technologies\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/role/updateRole/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"role",
+										"updateRole",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "deleteRole",
+							"id": "44427990-71daf3db-4090-4120-be52-713baca0a6dd",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"ids\": [68]\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/role/deleteRole",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"role",
+										"deleteRole"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"id": "44427990-04bfdbdd-d925-4f22-b1c9-f7b9513537a9"
+				},
+				{
+					"name": "user",
+					"item": [
+						{
+							"name": "addUser",
+							"id": "44427990-d439e59a-af02-4431-b642-f7a3771fff31",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "    {\r\n        \"role_code\": 1,\r\n        \"role_name\": \"Super Admin\",\r\n        \"user_name\": \"PiyushFBTsS\",\r\n        \"user_full_name\": \"Piyush Malviyaa\",\r\n        \"user_mobile\": \"7270862399\",\r\n        \"user_email\": \"piyush@fbts.in\",\r\n        \"user_pass\": \"123456\",\r\n        \"cmp_code\": \"fbts\",\r\n        \"cmp_name\": \"Flamboyant technologies\"\r\n    }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/user/addUser",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"user",
+										"addUser"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getUser",
+							"id": "44427990-c8d90ede-93a8-4991-a6aa-b3bb8ab4ccd5",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"ids\": [101]\r\n}\r\n"
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/user/getUser",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"user",
+										"getUser"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getUserById",
+							"id": "44427990-aa26e44d-f560-4396-8b8f-c3d5a8c91925",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/user/getUserById/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"user",
+										"getUserById",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getUserByCompany",
+							"id": "44427990-48366a6a-137e-4167-8168-f071972a8a14",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/user/getUserByCompany/fbts",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"user",
+										"getUserByCompany",
+										"fbts"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "deleteUser",
+							"id": "44427990-f2f47a9c-41d2-435e-958f-a9539e92e839",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"ids\": [23]\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/user/deleteUser",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"user",
+										"deleteUser"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "updateUser",
+							"id": "44427990-d63641a0-781f-447d-877e-bcd32e9c4e99",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"role_code\": 1,\r\n    \"role_name\": \"Super Admin\",\r\n    \"user_code\": 1,\r\n    \"user_name\": \"PiyushFBTS\",\r\n    \"user_full_name\": \"Piyush Malviya\",\r\n    \"user_mobile\": \"7270862399\",\r\n    \"user_email\": \"piyush@fbts.in\",\r\n    \"user_pass\": \"123456\",\r\n    \"cmp_code\": \"fbts\",\r\n    \"cmp_name\": \"Flamboyant technologies\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/user/updateUser/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"user",
+										"updateUser",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getUserRolesByCompany",
+							"id": "44427990-071fa0a7-13d0-4d43-8635-0cbbdba25972",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/user/getUserRolesByCompany/fbts",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"user",
+										"getUserRolesByCompany",
+										"fbts"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"id": "44427990-179abd29-8f4a-4e75-a821-0523ae15cfbd"
+				}
+			],
+			"id": "44427990-c045b5f3-ea9f-4c1e-b6b5-8338db234dfb"
+		},
+		{
+			"name": "item",
+			"item": [
+				{
+					"name": "CurrencyMaster",
+					"item": [
+						{
+							"name": "getCurrency",
+							"id": "44427990-9ff42955-15e9-499b-b244-6d966815c38e",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/currencyMaster/getCurrency/all",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"currencyMaster",
+										"getCurrency",
+										"all"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addCurrency",
+							"id": "44427990-e7cb8c34-8947-41b1-b95e-df43f7c23451",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "    {\r\n        \"currency_code\": \"PK\",\r\n        \"currency_name\": \"PAK Rupee\"\r\n    }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/currencyMaster/addCurrency",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"currencyMaster",
+										"addCurrency"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getCurrencyById",
+							"id": "44427990-0b55e2dc-b6e0-46e0-9849-01ca75fa10fd",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/currencyMaster/getCurrencyById/INR",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"currencyMaster",
+										"getCurrencyById",
+										"INR"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "deleteCurrency",
+							"id": "44427990-6931a19f-f5f8-4062-991e-8fe60d43ddfb",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"ids\": [\"PK\"]\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/currencyMaster/deleteCurrency",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"currencyMaster",
+										"deleteCurrency"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "updateCurrency",
+							"id": "44427990-31c0ff69-10ff-4838-ba0b-ef26c2493ec9",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "    {\r\n        \"currency_code\": \"PK\",\r\n        \"currency_name\": \"PAK Rupee\"\r\n    }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/currencyMaster/updateCurrency",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"currencyMaster",
+										"updateCurrency"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"id": "44427990-69d1db0a-c88b-4126-9cbc-3bebe809de61"
+				},
+				{
+					"name": "GSTGroup",
+					"item": [
+						{
+							"name": "getGST",
+							"id": "44427990-0507a638-e2f6-4774-96d8-3db8c7795797",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/gstGroup/getGST",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"gstGroup",
+										"getGST"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addGST",
+							"id": "44427990-b40a6cd1-4c23-4ddf-bde7-602c9c6b8d73",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "    {\r\n        \"gst_group_code\": \"F\",\r\n        \"gst_percentage\": \"28.00\"\r\n    }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/gstGroup/addGST",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"gstGroup",
+										"addGST"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getGSTById",
+							"id": "44427990-e0bab321-0b9d-4521-b79c-706cc7ca22c1",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/gstGroup/getGSTById/F",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"gstGroup",
+										"getGSTById",
+										"F"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "deleteGST",
+							"id": "44427990-df0255a7-c724-494a-9dd9-abb91b910134",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"ids\": [\"F\"]\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/gstGroup/deleteGST",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"gstGroup",
+										"deleteGST"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "updateGST",
+							"id": "44427990-f86b4ae2-e4bb-4f28-af72-e8e6b7f3a10f",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "    {\r\n        \"gst_group_code\": \"E\",\r\n        \"gst_percentage\": \"28.00\"\r\n    }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/gstGroup/updateGST",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"gstGroup",
+										"updateGST"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"id": "44427990-ab780ae7-48c7-4ab8-b373-14f4db334ae8"
+				},
+				{
+					"name": "ItemHierarchy",
+					"item": [
+						{
+							"name": "getItemHierarchyByCmp",
+							"id": "44427990-48957c14-334f-4eee-b6bd-a70603140b63",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/itemHierarchy/getItemHierarchyByCmp/FR001",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"itemHierarchy",
+										"getItemHierarchyByCmp",
+										"FR001"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getItemHierarchyById",
+							"id": "44427990-dfa01a68-a135-4606-b453-eca71c724157",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/itemHierarchy/getItemHierarchyById?category_code=Food&cmp_code=FR001",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"itemHierarchy",
+										"getItemHierarchyById"
+									],
+									"query": [
+										{
+											"key": "category_code",
+											"value": "Food"
+										},
+										{
+											"key": "cmp_code",
+											"value": "FR001"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addItemHierarchy",
+							"id": "44427990-939d3276-e61c-4aea-84c4-5af253828346",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"level\": 1,\r\n    \"category_code\": \"Foods\",\r\n    \"category_name\": \"Foods\",\r\n    \"parent_code\": \"P001\",\r\n    \"cmp_name\": \"Flamboyant Retail\",\r\n    \"cmp_code\": \"FR001\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/itemHierarchy/addItemHierarchy",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"itemHierarchy",
+										"addItemHierarchy"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "updateItemHierarchy",
+							"id": "44427990-712bd6fb-4fa8-4e9e-a1a6-7de1683ca178",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"level\": 1,\r\n    \"category_code\": \"Foods\",\r\n    \"category_name\": \"Foods\",\r\n    \"parent_code\": \"P001\",\r\n    \"cmp_name\": \"Flamboyant Retail\",\r\n    \"cmp_code\": \"FR001\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/itemHierarchy/updateItemHierarchy",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"itemHierarchy",
+										"updateItemHierarchy"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "deleteItemHierarchy",
+							"id": "44427990-669bc86d-2ed5-4050-b5f8-3a4c34a272f0",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"ids\": [\"Foods\"]\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/itemHierarchy/deleteItemHierarchy",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"itemHierarchy",
+										"deleteItemHierarchy"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"id": "44427990-3d88c031-3a33-4371-806c-4149473a5f4b"
+				},
+				{
+					"name": "item",
+					"item": [
+						{
+							"name": "getItemsByCompany",
+							"id": "44427990-ffeffbe8-8cac-4903-b0b4-f2b28977f7d1",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"ids\": [\"Foods\"]\r\n}\r\n"
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/item/getItemsByCompany/FR001",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"item",
+										"getItemsByCompany",
+										"FR001"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getItemById",
+							"id": "44427990-e144d673-ea43-420a-9f71-57ddbf5d8cf5",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/item/getItemById?item_code=FG0002&cmp_code=FR001",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"item",
+										"getItemById"
+									],
+									"query": [
+										{
+											"key": "item_code",
+											"value": "FG0002"
+										},
+										{
+											"key": "cmp_code",
+											"value": "FR001"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addItem",
+							"id": "44427990-8a3f92a3-c2d7-4883-a978-3e226588a4cc",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"item_code\": \"FG0015\",\r\n    \"description\": \"Veg Burger\",\r\n    \"base_unit_of_measure\": \"NOS\",\r\n    \"gross_weight\": \"0.00\",\r\n    \"net_weight\": \"0.00\",\r\n    \"division\": \"Veg\",\r\n    \"item_category_code\": \"Food\",\r\n    \"product_group_code\": \"Burger\",\r\n    \"picture\": \"data:image/jpeg;base64,iVBORw0KGgoAAAANSUhEUgAACcQAAAnECAMAAAAZrQUPAAADAFBMVEWfeIEAAADh3dX5+PT+/v3RyKne1LXh1baZj13r3Mfmy6D21JHrx4jbt47Xq3rNnYDe2rT336P2wIXts4Ppp3T56Lb65pL5zoH3xnP0tnLinGbZu6z48Ofwq2LqnYb79tX35Mz31rD78sL22cDww7P333znvHPZoE3cj1r3zaLot1zKmWn0xJfirFLOqpr11WrLjFHMhma/inz67qjjkEq3h2TvtJirrHXAl4/jszjXj18uH4uUKyxhCUtYwkJYye71IGloV7r3Md5TzYdwVylXWMISlrCEhbCSOaxPlK7rR6bLxyLlCktYwhKWsBBWkvlfVD9RusodlSncusHPjQhLWMJCWAjr4IhLPoTVeVjdLV3vqscUbm5QrrCEJSyEhbCOjbgk79eDr6sDSQG1isryAAAAAElFTkSuQmCC\",\r\n    \"lot_nos\": \"LOT002\",\r\n    \"gst_group_code\": \"B\",\r\n    \"hsn_sac_code\": \"996331\",\r\n    \"exempted\": \"N\",\r\n    \"price_include_gst\": \"N\",\r\n    \"restaurant_gst_group_code\": \"B\",\r\n    \"restaurant_hsn_sac_code\": \"996331\",\r\n    \"special_group_code\": \"SG002\",\r\n    \"qty_not_in_decimal\": \"N\",\r\n    \"oum_pop_up_on_pos\": \"N\",\r\n    \"sales_unit_of_measure\": \"NOS\",\r\n    \"zero_price_valid\": \"N\",\r\n    \"no_discount_allowed\": \"N\",\r\n    \"qty_becomes_negative\": \"N\",\r\n    \"keying_in_price\": \"N\",\r\n    \"keying_in_quantity\": \"N\",\r\n    \"skip_compression_when_scanned\": \"N\",\r\n    \"variant_aplicable\": \"N\",\r\n    \"cmp_name\": \"Flamboyant Retail\",\r\n    \"cmp_code\": \"FR001\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/item/addItem",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"item",
+										"addItem"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "updateItem",
+							"id": "44427990-795f2d90-a995-41b9-9a66-71644580d4d1",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"item_code\": \"FG0015\",\r\n    \"description\": \"Veg Burger\",\r\n    \"base_unit_of_measure\": \"NOS\",\r\n    \"gross_weight\": \"0.00\",\r\n    \"net_weight\": \"0.00\",\r\n    \"division\": \"Veg\",\r\n    \"item_category_code\": \"Food\",\r\n    \"product_group_code\": \"Burger\",\r\n    \"picture\": \"data:image/jpeg;base64,iVBORw0KGgoAAAANSUhEUgAACcQAAAnECAMAAAAZrQUPAAADAFBMVEWfeIEAAADh3dX5+PT+/v3RyKne1LXh1baZj13r3Mfmy6D21JHrx4jbt47Xq3rNnYDe2rT336P2wIXts4Ppp3T56Lb65pL5zoH3xnP0tnLinGbZu6z48Ofwq2LqnYb79tX35Mz31rD78sL22cDww7P333znvHPZoE3cj1r3zaLot1zKmWn0xJfirFLOqpr11WrLjFHMhma/inz67qjjkEq3h2TvtJirrHXAl4/jszjXj18uH4uUKyxhCUtYwkJYye71IGloV7r3Md5TzYdwVylXWMISlrCEhbCSOaxPlK7rR6bLxyLlCktYwhKWsBBWkvlfVD9RusodlSncusHPjQhLWMJCWAjr4IhLPoTVeVjdLV3vqscUbm5QrrCEJSyEhbCOjbgk79eDr6sDSQG1isryAAAAAElFTkSuQmCC\",\r\n    \"lot_nos\": \"LOT002\",\r\n    \"gst_group_code\": \"B\",\r\n    \"hsn_sac_code\": \"996331\",\r\n    \"exempted\": \"N\",\r\n    \"price_include_gst\": \"N\",\r\n    \"restaurant_gst_group_code\": \"B\",\r\n    \"restaurant_hsn_sac_code\": \"996331\",\r\n    \"special_group_code\": \"SG002\",\r\n    \"qty_not_in_decimal\": \"N\",\r\n    \"oum_pop_up_on_pos\": \"N\",\r\n    \"sales_unit_of_measure\": \"NOS\",\r\n    \"zero_price_valid\": \"N\",\r\n    \"no_discount_allowed\": \"N\",\r\n    \"qty_becomes_negative\": \"N\",\r\n    \"keying_in_price\": \"N\",\r\n    \"keying_in_quantity\": \"N\",\r\n    \"skip_compression_when_scanned\": \"N\",\r\n    \"variant_aplicable\": \"N\",\r\n    \"cmp_name\": \"Flamboyant Retail\",\r\n    \"cmp_code\": \"FR001\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/item/updateItem",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"item",
+										"updateItem"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "deleteItem",
+							"id": "44427990-cf311681-9a72-42fe-afeb-89e036d4f615",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"records\": [\r\n    {\r\n      \"item_code\": \"FG0015\",\r\n      \"cmp_code\": \"FR001\"\r\n    }\r\n  ]\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/item/deleteItem",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"item",
+										"deleteItem"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"id": "44427990-31e62d65-bf5b-4253-9fe3-67404a0499d3"
+				},
+				{
+					"name": "itemSale",
+					"item": [
+						{
+							"name": "getItemSaleByCompany",
+							"id": "44427990-38b99389-c954-4841-9076-6eb12a8222ba",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/itemSales/getItemSalesByCmp/FR001",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"itemSales",
+										"getItemSalesByCmp",
+										"FR001"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getItemSalesById",
+							"id": "44427990-02151d51-e471-4ac3-aec2-6e47052762bb",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/itemSales/getItemSalesById?cmp_code=FR001&sales_code=All&item_code=FG0001&starting_date=2025-11-01",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"itemSales",
+										"getItemSalesById"
+									],
+									"query": [
+										{
+											"key": "cmp_code",
+											"value": "FR001"
+										},
+										{
+											"key": "sales_code",
+											"value": "All"
+										},
+										{
+											"key": "item_code",
+											"value": "FG0001"
+										},
+										{
+											"key": "starting_date",
+											"value": "2025-11-01"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addItemSales",
+							"id": "44427990-e1610b57-eef4-44a2-8268-9db5b7e07705",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"sales_code\": \"Alll\",\r\n    \"item_code\": \"FG00011\",\r\n    \"currency_code\": \"INR\",\r\n    \"starting_date\": \"2025-08-31T18:30:00.000Z\",\r\n    \"unit_price\": \"99.00\",\r\n    \"minimum_quantity\": \"1.00\",\r\n    \"ending_date\": \"2025-12-30T18:30:00.000Z\",\r\n    \"item_unit_of_measure_code\": \"NOS\",\r\n    \"item_variant_code\": \"\",\r\n    \"cmp_code\": \"FR001\",\r\n    \"cmp_name\": \"Flamboyant Retail\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/itemSales/addItemSales",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"itemSales",
+										"addItemSales"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "updateItemSales",
+							"id": "44427990-43f6b0f4-7c75-443d-bc9a-928fbb71804d",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"sales_code\": \"Alll\",\r\n    \"item_code\": \"FG00011\",\r\n    \"currency_code\": \"INR\",\r\n    \"starting_date\": \"2025-09-01\",\r\n    \"unit_price\": \"99.00\",\r\n    \"minimum_quantity\": \"1.00\",\r\n    \"ending_date\": \"2025-12-31\",\r\n    \"item_unit_of_measure_code\": \"NOS\",\r\n    \"item_variant_code\": \"\",\r\n    \"cmp_code\": \"FR001\",\r\n    \"cmp_name\": \"Flamboyant Retail\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/itemSales/updateItemSales",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"itemSales",
+										"updateItemSales"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "deleteItemSales",
+							"id": "44427990-156ca392-8570-4780-88cc-59ef5a97e3a0",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"ids\": [\r\n        {\r\n            \"sales_code\": \"Alll\",\r\n            \"item_code\": \"FG00011\",\r\n            \"starting_date\": \"2025-09-01\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/itemSales/deleteItemSales",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"itemSales",
+										"deleteItemSales"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"id": "44427990-ff59cb75-27f3-4a85-8725-213baed102f6"
+				},
+				{
+					"name": "ItemUnitOfMeasure",
+					"item": [
+						{
+							"name": "getItemUnitOfMeasureByCompany",
+							"id": "44427990-e384e6fe-fb69-47f3-ba87-0b522a39db72",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/ItemUnitOfMeasure/getItemUnitOfMeasureByCompany/FR001",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"ItemUnitOfMeasure",
+										"getItemUnitOfMeasureByCompany",
+										"FR001"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getItemUnitOfMeasureById",
+							"id": "44427990-8ad3e13f-7228-405a-b1ea-66e941ab90c5",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/ItemUnitOfMeasure/getItemUnitOfMeasureById?cmp_code=FR001&item_unit_of_measure_code=NOS",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"ItemUnitOfMeasure",
+										"getItemUnitOfMeasureById"
+									],
+									"query": [
+										{
+											"key": "cmp_code",
+											"value": "FR001"
+										},
+										{
+											"key": "item_unit_of_measure_code",
+											"value": "NOS"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addItemUnitOfMeasure",
+							"id": "44427990-ffb73dab-22a1-47dc-b2f5-675b6775c845",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"item_unit_of_measure_code\": \"NOSS\",\r\n    \"item_code\": \"FG0001\",\r\n    \"qty_per_unit_of_measure\": \"1.00\",\r\n    \"length\": \"1.00\",\r\n    \"width\": \"1.00\",\r\n    \"height\": \"1.00\",\r\n    \"cubage\": \"1.00\",\r\n    \"weight\": \"1.00\",\r\n    \"id\": 10,\r\n    \"cmp_name\": \"Flamboyant Retail\",\r\n    \"cmp_code\": \"FR001\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/ItemUnitOfMeasure/addItemUnitOfMeasure",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"ItemUnitOfMeasure",
+										"addItemUnitOfMeasure"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "updateItemUnitOfMeasure",
+							"id": "44427990-cfc815ba-ace1-4d85-bf12-d9f583a2d58a",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"item_unit_of_measure_code\": \"NOSS\",\r\n    \"item_code\": \"FG0001\",\r\n    \"qty_per_unit_of_measure\": \"1.00\",\r\n    \"length\": \"1.00\",\r\n    \"width\": \"1.00\",\r\n    \"height\": \"1.00\",\r\n    \"cubage\": \"1.00\",\r\n    \"weight\": \"1.00\",\r\n    \"id\": 10,\r\n    \"cmp_name\": \"Flamboyant Retail\",\r\n    \"cmp_code\": \"FR001\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/ItemUnitOfMeasure/updateItemUnitOfMeasure",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"ItemUnitOfMeasure",
+										"updateItemUnitOfMeasure"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "deleteItemUnitOfMeasure",
+							"id": "44427990-d1066540-1b17-4491-ba7e-767efc93e1a7",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"records\": [\r\n    { \"cmp_code\": \"FR001\", \"item_unit_of_measure_code\": \"NOSS\" }\r\n  ]\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/ItemUnitOfMeasure/deleteItemUnitOfMeasure",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"ItemUnitOfMeasure",
+										"deleteItemUnitOfMeasure"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"id": "44427990-5d79eaae-f304-4c1d-b001-dec44da3f59c"
+				},
+				{
+					"name": "unitOfMeasure",
+					"item": [
+						{
+							"name": "addUnitOfMeasure",
+							"id": "44427990-d3e01ebd-e4cb-4168-b089-18f696168d88",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "    {\r\n        \"uom_code\": \"NOSS\",\r\n        \"uom_description\": \"Numbers\",\r\n        \"decimal_allowed\": false,\r\n        \"cmp_name\": \"Flamboyant Retail\",\r\n        \"cmp_code\": \"FR001\"\r\n    }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/unitOfMeasure/addUnitOfMeasure",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"unitOfMeasure",
+										"addUnitOfMeasure"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getUnitOfMeasureByCmp",
+							"id": "44427990-e353a546-4a5a-455b-926d-79fdae0c9c75",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/unitOfMeasure/getUnitOfMeasureByCompany/FR001",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"unitOfMeasure",
+										"getUnitOfMeasureByCompany",
+										"FR001"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getUnitOfMeasureById",
+							"id": "44427990-7d9ea746-d6f8-476e-830d-3716173180b3",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/unitOfMeasure/getUnitOfMeasureById?cmp_code=FR001&uom_code=NOSS",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"unitOfMeasure",
+										"getUnitOfMeasureById"
+									],
+									"query": [
+										{
+											"key": "cmp_code",
+											"value": "FR001"
+										},
+										{
+											"key": "uom_code",
+											"value": "NOSS"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "deleteUnitOfMeasure",
+							"id": "44427990-1c49ec6a-34f4-4b8f-9a22-43a202e84f29",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"records\": [\r\n    { \"cmp_code\": \"FR001\", \"uom_code\": \"NOSS\" }\r\n  ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/unitOfMeasure/deleteUnitOfMeasure",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"unitOfMeasure",
+										"deleteUnitOfMeasure"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "updateUnitOfMeasure",
+							"id": "44427990-3f5d8472-7bbc-49ea-b9bb-40451a85b215",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "    {\r\n        \"uom_code\": \"NOSS\",\r\n        \"uom_description\": \"Numbers\",\r\n        \"decimal_allowed\": false,\r\n        \"cmp_name\": \"Flamboyant Retail\",\r\n        \"cmp_code\": \"FR001\"\r\n    }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/unitOfMeasure/updateUnitOfMeasure",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"unitOfMeasure",
+										"updateUnitOfMeasure"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"id": "44427990-574467b6-ae83-4cf7-ac7d-e506d467dfcd"
+				},
+				{
+					"name": "itemVariant",
+					"item": [
+						{
+							"name": "addItemVariant",
+							"id": "44427990-2baddae2-9d96-4a4c-bd5f-333104275457",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "    {\r\n        \"item_variant_code\": \"V00111\",\r\n        \"item_code\": \"FG0001\",\r\n        \"description\": \"Veg Sandwich\",\r\n        \"cmp_name\": \"Flamboyant Retail\",\r\n        \"cmp_code\": \"FR001\"\r\n    }\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/itemVariant/addItemVariant",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"itemVariant",
+										"addItemVariant"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getItemVariantById",
+							"id": "44427990-246a78cc-5ecd-421e-b81a-236f3727b443",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/itemVariant/getItemVariantById?cmp_code=FR001&item_variant_code=V00111",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"itemVariant",
+										"getItemVariantById"
+									],
+									"query": [
+										{
+											"key": "cmp_code",
+											"value": "FR001"
+										},
+										{
+											"key": "item_variant_code",
+											"value": "V00111"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getItemVariantByCompany",
+							"id": "44427990-4f53d0a8-f2eb-41a2-b2cf-8c615749106f",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/ItemVariant/getItemVariantByCompany/FR001",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"ItemVariant",
+										"getItemVariantByCompany",
+										"FR001"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "updateItemVariant",
+							"id": "44427990-c0255a8d-65f4-4761-87f2-35a498ed8439",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "    {\r\n        \"item_variant_code\": \"V0011\",\r\n        \"item_code\": \"FG0001\",\r\n        \"description\": \"Veg Sandwich\",\r\n        \"cmp_name\": \"Flamboyant Retail\",\r\n        \"cmp_code\": \"FR001\"\r\n    }\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/itemVariant/updateItemVariant",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"itemVariant",
+										"updateItemVariant"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "deleteItemVariant",
+							"id": "44427990-541bd6d6-75da-481d-8e33-d061584b8eae",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"records\": [\r\n        {\r\n            \"item_variant_code\": \"V00111\",\r\n            \"cmp_code\": \"FR001\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/itemVariant/deleteItemVariant",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"itemVariant",
+										"deleteItemVariant"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"id": "44427990-64a6d7f3-0410-4744-819f-18adb2f9461d"
+				},
+				{
+					"name": "vat",
+					"item": [
+						{
+							"name": "addItemVariant",
+							"id": "44427990-036e13b3-dbc8-4d5d-8787-697b3036bbb4",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "    {\r\n        \"vat_code\": \"A\",\r\n        \"vat_percentage\": \"2.50\",\r\n        \"cess\": \"2.50\"\r\n    }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/vat/addVat",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"vat",
+										"addVat"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getVat",
+							"id": "44427990-b7885e53-fa21-4311-9321-064b3d4225e1",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/vat/getVat",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"vat",
+										"getVat"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getVatById",
+							"id": "44427990-8a991e76-7c6c-408f-bbee-17a5c8ab5485",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/vat/getVatById/A",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"vat",
+										"getVatById",
+										"A"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "updateVat",
+							"id": "44427990-9ba4d555-0e12-4ea0-b7c0-b03934fc99e6",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "    {\r\n        \"vat_code\": \"A\",\r\n        \"vat_percentage\": \"2.50\",\r\n        \"cess\": \"2.50\"\r\n    }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/vat/updateVat",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"vat",
+										"updateVat"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "deleteVat",
+							"id": "44427990-5eb3ca35-b844-4cf6-a774-1f65adbc423a",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"ids\": [\"aA\"]\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/vat/deleteVat",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"vat",
+										"deleteVat"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"id": "44427990-0afe262b-f5d1-4d29-8748-81063a49cb99"
+				}
+			],
+			"id": "44427990-fad474c0-c7b4-4a92-ad09-b2c707fae90e"
+		},
+		{
+			"name": "Module",
+			"item": [
+				{
+					"name": "getAllModules",
+					"id": "44427990-740a9ac0-78ef-4d9c-b4e2-5a871f13baa1",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/module/getAllModules",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"module",
+								"getAllModules"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"id": "44427990-353497a6-6f8b-45d6-b2c6-7a17462a9802"
+		},
+		{
+			"name": "permissions",
+			"item": [
+				{
+					"name": "getUserSessionData",
+					"id": "44427990-928274f9-0782-4bf7-94a0-575633ee4f36",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/permission/session/user/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"permission",
+								"session",
+								"user",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getUserPermissions",
+					"id": "44427990-e4227591-94a7-4d7d-a058-9ad5be8ace42",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/permission/user/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"permission",
+								"user",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "setUserPermissions",
+					"id": "44427990-43b05416-b55d-4f3c-add9-47462f960364",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"cmp_code\": \"fbts\",\r\n    \"cmp_name\": \"Flamboyant technologies\",\r\n    \"user_code\": 1,\r\n    \"user_name\": \"PiyushFBTS\",\r\n    \"user_full_name\": \"Piyush Malviya\",\r\n    \"user_email\": \"piyush@fbts.in\",\r\n    \"role_name\": \"Super Admin\",\r\n    \"role_code\": 1,\r\n    \"Permission\": {\r\n        \"Company\": {\r\n            \"module_code\": 1,\r\n            \"can_read\": true,\r\n            \"can_add\": true,\r\n            \"can_update\": true,\r\n            \"can_delete\": true\r\n        },\r\n        \"Operating Unit\": {\r\n            \"module_code\": 2,\r\n            \"can_read\": true,\r\n            \"can_add\": true,\r\n            \"can_update\": true,\r\n            \"can_delete\": true\r\n        },\r\n        \"Store\": {\r\n            \"module_code\": 3,\r\n            \"can_read\": true,\r\n            \"can_add\": true,\r\n            \"can_update\": true,\r\n            \"can_delete\": true\r\n        },\r\n        \"Terminal\": {\r\n            \"module_code\": 4,\r\n            \"can_read\": true,\r\n            \"can_add\": true,\r\n            \"can_update\": true,\r\n            \"can_delete\": true\r\n        },\r\n        \"User\": {\r\n            \"module_code\": 5,\r\n            \"can_read\": true,\r\n            \"can_add\": true,\r\n            \"can_update\": true,\r\n            \"can_delete\": true\r\n        },\r\n        \"UserRole\": {\r\n            \"module_code\": 6,\r\n            \"can_read\": true,\r\n            \"can_add\": true,\r\n            \"can_update\": true,\r\n            \"can_delete\": true\r\n        },\r\n        \"Item_Hierarchy\": {\r\n            \"module_code\": 7,\r\n            \"can_read\": true,\r\n            \"can_add\": true,\r\n            \"can_update\": true,\r\n            \"can_delete\": true\r\n        },\r\n        \"GST Group\": {\r\n            \"module_code\": 8,\r\n            \"can_read\": true,\r\n            \"can_add\": true,\r\n            \"can_update\": true,\r\n            \"can_delete\": true\r\n        },\r\n        \"VAT\": {\r\n            \"module_code\": 9,\r\n            \"can_read\": true,\r\n            \"can_add\": true,\r\n            \"can_update\": true,\r\n            \"can_delete\": true\r\n        },\r\n        \"Unit of Measure\": {\r\n            \"module_code\": 10,\r\n            \"can_read\": true,\r\n            \"can_add\": true,\r\n            \"can_update\": true,\r\n            \"can_delete\": true\r\n        },\r\n        \"Item\": {\r\n            \"module_code\": 11,\r\n            \"can_read\": true,\r\n            \"can_add\": true,\r\n            \"can_update\": true,\r\n            \"can_delete\": true\r\n        },\r\n        \"Item Variant\": {\r\n            \"module_code\": 12,\r\n            \"can_read\": true,\r\n            \"can_add\": true,\r\n            \"can_update\": true,\r\n            \"can_delete\": true\r\n        },\r\n        \"Item Unit Of Measure\": {\r\n            \"module_code\": 13,\r\n            \"can_read\": true,\r\n            \"can_add\": true,\r\n            \"can_update\": true,\r\n            \"can_delete\": true\r\n        },\r\n        \"Item Barcode\": {\r\n            \"module_code\": 14,\r\n            \"can_read\": true,\r\n            \"can_add\": true,\r\n            \"can_update\": true,\r\n            \"can_delete\": true\r\n        },\r\n        \"Sales Price\": {\r\n            \"module_code\": 15,\r\n            \"can_read\": true,\r\n            \"can_add\": true,\r\n            \"can_update\": true,\r\n            \"can_delete\": true\r\n        },\r\n        \"Currency Master\": {\r\n            \"module_code\": 16,\r\n            \"can_read\": true,\r\n            \"can_add\": true,\r\n            \"can_update\": true,\r\n            \"can_delete\": true\r\n        },\r\n        \"Store Group\": {\r\n            \"module_code\": 17,\r\n            \"can_read\": true,\r\n            \"can_add\": true,\r\n            \"can_update\": true,\r\n            \"can_delete\": true\r\n        },\r\n        \"Roles\": {\r\n            \"module_code\": 18,\r\n            \"can_read\": true,\r\n            \"can_add\": true,\r\n            \"can_update\": true,\r\n            \"can_delete\": true\r\n        },\r\n        \"Vendor Master\": {\r\n            \"module_code\": 19,\r\n            \"can_read\": true,\r\n            \"can_add\": true,\r\n            \"can_update\": true,\r\n            \"can_delete\": true\r\n        },\r\n        \"Vendor Payment Terms\": {\r\n            \"module_code\": 20,\r\n            \"can_read\": true,\r\n            \"can_add\": true,\r\n            \"can_update\": true,\r\n            \"can_delete\": true\r\n        },\r\n        \"Vendor Contact\": {\r\n            \"module_code\": 21,\r\n            \"can_read\": true,\r\n            \"can_add\": true,\r\n            \"can_update\": true,\r\n            \"can_delete\": true\r\n        },\r\n        \"Vendor Price List\": {\r\n            \"module_code\": 22,\r\n            \"can_read\": true,\r\n            \"can_add\": true,\r\n            \"can_update\": true,\r\n            \"can_delete\": true\r\n        },\r\n        \"Vendor Assessee Code\": {\r\n            \"module_code\": 23,\r\n            \"can_read\": true,\r\n            \"can_add\": true,\r\n            \"can_update\": true,\r\n            \"can_delete\": true\r\n        },\r\n        \"Vendor Section\": {\r\n            \"module_code\": 24,\r\n            \"can_read\": true,\r\n            \"can_add\": true,\r\n            \"can_update\": true,\r\n            \"can_delete\": true\r\n        }\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/permission/set",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"permission",
+								"set"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateUserPermissions",
+					"id": "44427990-5a9d2fa1-7d7d-4af6-aae7-f92d33f67fb3",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"cmp_code\": \"fbts\",\r\n    \"cmp_name\": \"Flamboyant technologies\",\r\n    \"user_code\": 1,\r\n    \"user_name\": \"PiyushFBTS\",\r\n    \"user_full_name\": \"Piyush Malviya\",\r\n    \"user_email\": \"piyush@fbts.in\",\r\n    \"role_name\": \"Super Admin\",\r\n    \"role_code\": 1,\r\n    \"Permission\": {\r\n        \"Company\": {\r\n            \"module_code\": 1,\r\n            \"can_read\": true,\r\n            \"can_add\": true,\r\n            \"can_update\": true,\r\n            \"can_delete\": true\r\n        },\r\n        \"Operating Unit\": {\r\n            \"module_code\": 2,\r\n            \"can_read\": true,\r\n            \"can_add\": true,\r\n            \"can_update\": true,\r\n            \"can_delete\": true\r\n        },\r\n        \"Store\": {\r\n            \"module_code\": 3,\r\n            \"can_read\": true,\r\n            \"can_add\": true,\r\n            \"can_update\": true,\r\n            \"can_delete\": true\r\n        },\r\n        \"Terminal\": {\r\n            \"module_code\": 4,\r\n            \"can_read\": true,\r\n            \"can_add\": true,\r\n            \"can_update\": true,\r\n            \"can_delete\": true\r\n        },\r\n        \"User\": {\r\n            \"module_code\": 5,\r\n            \"can_read\": true,\r\n            \"can_add\": true,\r\n            \"can_update\": true,\r\n            \"can_delete\": true\r\n        },\r\n        \"UserRole\": {\r\n            \"module_code\": 6,\r\n            \"can_read\": true,\r\n            \"can_add\": true,\r\n            \"can_update\": true,\r\n            \"can_delete\": true\r\n        },\r\n        \"Item_Hierarchy\": {\r\n            \"module_code\": 7,\r\n            \"can_read\": true,\r\n            \"can_add\": true,\r\n            \"can_update\": true,\r\n            \"can_delete\": true\r\n        },\r\n        \"GST Group\": {\r\n            \"module_code\": 8,\r\n            \"can_read\": true,\r\n            \"can_add\": true,\r\n            \"can_update\": true,\r\n            \"can_delete\": true\r\n        },\r\n        \"VAT\": {\r\n            \"module_code\": 9,\r\n            \"can_read\": true,\r\n            \"can_add\": true,\r\n            \"can_update\": true,\r\n            \"can_delete\": true\r\n        },\r\n        \"Unit of Measure\": {\r\n            \"module_code\": 10,\r\n            \"can_read\": true,\r\n            \"can_add\": true,\r\n            \"can_update\": true,\r\n            \"can_delete\": true\r\n        },\r\n        \"Item\": {\r\n            \"module_code\": 11,\r\n            \"can_read\": true,\r\n            \"can_add\": true,\r\n            \"can_update\": true,\r\n            \"can_delete\": true\r\n        },\r\n        \"Item Variant\": {\r\n            \"module_code\": 12,\r\n            \"can_read\": true,\r\n            \"can_add\": true,\r\n            \"can_update\": true,\r\n            \"can_delete\": true\r\n        },\r\n        \"Item Unit Of Measure\": {\r\n            \"module_code\": 13,\r\n            \"can_read\": true,\r\n            \"can_add\": true,\r\n            \"can_update\": true,\r\n            \"can_delete\": true\r\n        },\r\n        \"Item Barcode\": {\r\n            \"module_code\": 14,\r\n            \"can_read\": true,\r\n            \"can_add\": true,\r\n            \"can_update\": true,\r\n            \"can_delete\": true\r\n        },\r\n        \"Sales Price\": {\r\n            \"module_code\": 15,\r\n            \"can_read\": true,\r\n            \"can_add\": true,\r\n            \"can_update\": true,\r\n            \"can_delete\": true\r\n        },\r\n        \"Currency Master\": {\r\n            \"module_code\": 16,\r\n            \"can_read\": true,\r\n            \"can_add\": true,\r\n            \"can_update\": true,\r\n            \"can_delete\": true\r\n        },\r\n        \"Store Group\": {\r\n            \"module_code\": 17,\r\n            \"can_read\": true,\r\n            \"can_add\": true,\r\n            \"can_update\": true,\r\n            \"can_delete\": true\r\n        },\r\n        \"Roles\": {\r\n            \"module_code\": 18,\r\n            \"can_read\": true,\r\n            \"can_add\": true,\r\n            \"can_update\": true,\r\n            \"can_delete\": true\r\n        },\r\n        \"Vendor Master\": {\r\n            \"module_code\": 19,\r\n            \"can_read\": true,\r\n            \"can_add\": true,\r\n            \"can_update\": true,\r\n            \"can_delete\": true\r\n        },\r\n        \"Vendor Payment Terms\": {\r\n            \"module_code\": 20,\r\n            \"can_read\": true,\r\n            \"can_add\": true,\r\n            \"can_update\": true,\r\n            \"can_delete\": true\r\n        },\r\n        \"Vendor Contact\": {\r\n            \"module_code\": 21,\r\n            \"can_read\": true,\r\n            \"can_add\": true,\r\n            \"can_update\": true,\r\n            \"can_delete\": true\r\n        },\r\n        \"Vendor Price List\": {\r\n            \"module_code\": 22,\r\n            \"can_read\": true,\r\n            \"can_add\": true,\r\n            \"can_update\": true,\r\n            \"can_delete\": true\r\n        },\r\n        \"Vendor Assessee Code\": {\r\n            \"module_code\": 23,\r\n            \"can_read\": true,\r\n            \"can_add\": true,\r\n            \"can_update\": true,\r\n            \"can_delete\": true\r\n        },\r\n        \"Vendor Section\": {\r\n            \"module_code\": 24,\r\n            \"can_read\": true,\r\n            \"can_add\": true,\r\n            \"can_update\": true,\r\n            \"can_delete\": true\r\n        }\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/permission/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"permission",
+								"update"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"id": "44427990-ea6bbb62-75ff-4d85-bb05-04448c2896dd"
+		},
+		{
+			"name": "common",
+			"item": [
+				{
+					"name": "getAllCurrency",
+					"id": "44427990-1a9d5258-059e-4d8d-9a1b-5194c2179265",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/commonDropDown/getAllCurrency",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"commonDropDown",
+								"getAllCurrency"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllGSTGroup",
+					"id": "44427990-20af4fa6-05d2-4696-85e5-0633420b43de",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/commonDropDown/getAllGSTGroup",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"commonDropDown",
+								"getAllGSTGroup"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"id": "44427990-154684d7-d630-42df-acce-31ba31d31b1f"
+		},
+		{
+			"name": "vendor",
+			"item": [
+				{
+					"name": "VendorMaster",
+					"item": [
+						{
+							"name": "getVendorMasterByCompany",
+							"id": "44427990-40713d04-1068-447c-a094-310ea281e56b",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"ids\": [\"aA\"]\r\n}\r\n"
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/vendorMaster/getVendorMasterByCompany/abc",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"vendorMaster",
+										"getVendorMasterByCompany",
+										"abc"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getVendorMasterById",
+							"id": "44427990-53f050ca-649a-478e-a6b4-187a7e3d42c4",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/vendorMaster/getVendorMasterById?vendor_code=V001&cmp_code=abc",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"vendorMaster",
+										"getVendorMasterById"
+									],
+									"query": [
+										{
+											"key": "vendor_code",
+											"value": "V001"
+										},
+										{
+											"key": "cmp_code",
+											"value": "abc"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addVendorMaster",
+							"id": "44427990-e80cdb24-f7e4-4681-9ab1-8f5544b350b6",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "    {\r\n        \"cmp_code\": \"abc\",\r\n        \"cmp_name\": \"abc sports\",\r\n        \"vendor_code\": \"V0011\",\r\n        \"name\": \"Pedro Duarte\",\r\n        \"search_name\": \"ABC\",\r\n        \"address\": \"\",\r\n        \"address_2\": \"\",\r\n        \"city\": \"\",\r\n        \"contact\": \"\",\r\n        \"phone_no\": \"\",\r\n        \"currency_code\": \"\",\r\n        \"language_code\": \"\",\r\n        \"registration_no\": \"\",\r\n        \"payment_terms_code\": \"\",\r\n        \"country_region_code\": \"\",\r\n        \"blocked\": \"All\",\r\n        \"pay_to_vendor_no\": \"\",\r\n        \"payment_method_code\": \"\",\r\n        \"last_modified_date_time\": \"2025-10-27T12:50:13.000Z\",\r\n        \"last_date_modified\": \"2025-10-26T18:30:00.000Z\",\r\n        \"vat_registration_no\": \"\",\r\n        \"post_code\": null,\r\n        \"county\": \"\",\r\n        \"eori_number\": \"\",\r\n        \"email\": \"admin@abc.com\",\r\n        \"home_page\": \"https://f-app.in/\",\r\n        \"primary_contact_no\": \"\",\r\n        \"mobile_phone_no\": \"\",\r\n        \"location_code\": \"\",\r\n        \"gst_registration_no\": \"\",\r\n        \"gst_vendor_type\": \"\",\r\n        \"aggregate_turnover\": \"\",\r\n        \"arn_no\": \"\",\r\n        \"transporter\": false,\r\n        \"subcontractor\": false,\r\n        \"assessee_code\": \"\",\r\n        \"pan_no\": \"\",\r\n        \"pan_status\": \"\",\r\n        \"pan_reference_no\": \"\",\r\n        \"state_code\": \"\",\r\n        \"tax_code\": \"\",\r\n        \"fssi_code\": \"\",\r\n        \"fssi_expiry_date\": null,\r\n        \"msme_no\": \"\",\r\n        \"msme_status\": \"\",\r\n        \"msme_type\": \"\",\r\n        \"msme_applicable\": false,\r\n        \"email_2\": \"team@fbts.in\",\r\n        \"api_gst_reg_no\": \"24F42F255\",\r\n        \"status\": \"\"\r\n    }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/vendorMaster/addVendorMaster",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"vendorMaster",
+										"addVendorMaster"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "updateVendorMaster",
+							"id": "44427990-bb852368-5a3b-4ebe-987e-1e310aed96a7",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "    {\r\n        \"cmp_code\": \"abc\",\r\n        \"cmp_name\": \"abc sports\",\r\n        \"vendor_code\": \"V0011\",\r\n        \"name\": \"Pedro Duarte\",\r\n        \"search_name\": \"ABC\",\r\n        \"address\": \"\",\r\n        \"address_2\": \"\",\r\n        \"city\": \"\",\r\n        \"contact\": \"\",\r\n        \"phone_no\": \"\",\r\n        \"currency_code\": \"\",\r\n        \"language_code\": \"\",\r\n        \"registration_no\": \"\",\r\n        \"payment_terms_code\": \"\",\r\n        \"country_region_code\": \"\",\r\n        \"blocked\": \"All\",\r\n        \"pay_to_vendor_no\": \"\",\r\n        \"payment_method_code\": \"\",\r\n        \"last_modified_date_time\": \"2025-10-27T12:50:13.000Z\",\r\n        \"last_date_modified\": \"2025-10-26T18:30:00.000Z\",\r\n        \"vat_registration_no\": \"\",\r\n        \"post_code\": null,\r\n        \"county\": \"\",\r\n        \"eori_number\": \"\",\r\n        \"email\": \"admin@abc.com\",\r\n        \"home_page\": \"https://f-app.in/\",\r\n        \"primary_contact_no\": \"\",\r\n        \"mobile_phone_no\": \"\",\r\n        \"location_code\": \"\",\r\n        \"gst_registration_no\": \"\",\r\n        \"gst_vendor_type\": \"\",\r\n        \"aggregate_turnover\": \"\",\r\n        \"arn_no\": \"\",\r\n        \"transporter\": false,\r\n        \"subcontractor\": false,\r\n        \"assessee_code\": \"\",\r\n        \"pan_no\": \"\",\r\n        \"pan_status\": \"\",\r\n        \"pan_reference_no\": \"\",\r\n        \"state_code\": \"\",\r\n        \"tax_code\": \"\",\r\n        \"fssi_code\": \"\",\r\n        \"fssi_expiry_date\": null,\r\n        \"msme_no\": \"\",\r\n        \"msme_status\": \"\",\r\n        \"msme_type\": \"\",\r\n        \"msme_applicable\": false,\r\n        \"email_2\": \"team@fbts.in\",\r\n        \"api_gst_reg_no\": \"24F42F255\",\r\n        \"status\": \"\"\r\n    }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/vendorMaster/updateVendorMaster",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"vendorMaster",
+										"updateVendorMaster"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "deleteVendorMaster",
+							"id": "44427990-4b180ae4-ca6c-459b-b4af-e6e50a491155",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"items\": [\r\n    { \"cmp_code\": \"abc\", \"vendor_code\": \"V0011\" }\r\n  ]\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/vendorMaster/deleteVendorMaster",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"vendorMaster",
+										"deleteVendorMaster"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"id": "44427990-4656354e-2975-4945-b327-c8522e17f4b4"
+				},
+				{
+					"name": "vendorAssesseeCode",
+					"item": [
+						{
+							"name": "deleteVendorAssesseeCode",
+							"id": "44427990-e9d44959-9d2a-4781-9794-09234020cfc6",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"ids\": [\r\n    \"AOOP\"\r\n  ]\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/VendorAssesseeCode/deleteVendorAssesseeCode",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"VendorAssesseeCode",
+										"deleteVendorAssesseeCode"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getVendorAssesseeCode",
+							"id": "44427990-bd82b469-0ec4-49de-bac8-de7d49818e73",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/VendorAssesseeCode/getVendorAssesseeCode",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"VendorAssesseeCode",
+										"getVendorAssesseeCode"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getVendorAssesseeCodeById",
+							"id": "44427990-5e0fb3bf-f08f-42fe-a747-b82e98c9f0f3",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/VendorAssesseeCode/getVendorAssesseeCodeById/AOP",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"VendorAssesseeCode",
+										"getVendorAssesseeCodeById",
+										"AOP"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addVendorAssesseeCode",
+							"id": "44427990-ce6bc0cb-e08b-4d6b-adf8-3fa3b318a28c",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"assessee_code\": \"AOOP\",\r\n    \"description\": \"Association of Persons\",\r\n    \"type\": \"Others\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/VendorAssesseeCode/addVendorAssesseeCode",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"VendorAssesseeCode",
+										"addVendorAssesseeCode"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "updateVendorAssesseeCode",
+							"id": "44427990-c5bea48d-5b7c-403f-a9ba-c8c190303a0e",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"assessee_code\": \"AOP\",\r\n    \"description\": \"Association of Persons\",\r\n    \"type\": \"Others\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/VendorAssesseeCode/updateVendorAssesseeCode",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"VendorAssesseeCode",
+										"updateVendorAssesseeCode"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"id": "44427990-4460dca5-330d-4a9d-b1e1-834a7b27089e"
+				},
+				{
+					"name": "vendorContact",
+					"item": [
+						{
+							"name": "deleteVendorContact",
+							"id": "44427990-98207ed2-974d-44c4-97f6-47958d961555",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"items\": [\r\n    { \"cmp_code\": \"xyz\", \"contact_code\": \"CD0011\" }\r\n  ]\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/vendorContact/deleteVendorContact",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"vendorContact",
+										"deleteVendorContact"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "updateVendorContact",
+							"id": "44427990-18c8da2f-643d-45ca-a445-d4c85455c3bc",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"cmp_code\": \"xyz\",\r\n    \"cmp_name\": \"xyz limited\",\r\n    \"contact_code\": \"CD001\",\r\n    \"job_title\": \"\",\r\n    \"name\": \"Pedro Duarte\",\r\n    \"search_name\": \"\",\r\n    \"address\": \"\",\r\n    \"address_2\": \"\",\r\n    \"county\": \"\",\r\n    \"state\": \"\",\r\n    \"city\": \"\",\r\n    \"post_code\": null,\r\n    \"phone_no\": \"\",\r\n    \"mobile_phone_no\": \"\",\r\n    \"email\": \"\",\r\n    \"last_date_modified\": \"2025-10-28T18:30:00.000Z\",\r\n    \"last_time_modified\": \"16:21:29\",\r\n    \"image\": null\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/vendorContact/updateVendorContact",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"vendorContact",
+										"updateVendorContact"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getVendorContactbyCompany",
+							"id": "44427990-a6b2c569-6e17-45ae-a300-681497352ad3",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/vendorContact/getVendorContactByCompany/xyz",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"vendorContact",
+										"getVendorContactByCompany",
+										"xyz"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getVendorContactById",
+							"id": "44427990-361cc2d7-03d8-4a34-b076-bd15306cb7fe",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/vendorContact/getVendorContactById?contact_code=CD001&cmp_code=xyz",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"vendorContact",
+										"getVendorContactById"
+									],
+									"query": [
+										{
+											"key": "contact_code",
+											"value": "CD001"
+										},
+										{
+											"key": "cmp_code",
+											"value": "xyz"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addVendorContact",
+							"id": "44427990-1f71ac9c-6e5f-4157-bc5f-b02a95ea8870",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"cmp_code\": \"xyz\",\r\n    \"cmp_name\": \"xyz limited\",\r\n    \"contact_code\": \"CD0011\",\r\n    \"job_title\": \"\",\r\n    \"name\": \"Pedro Duarte\",\r\n    \"search_name\": \"\",\r\n    \"address\": \"\",\r\n    \"address_2\": \"\",\r\n    \"county\": \"\",\r\n    \"state\": \"\",\r\n    \"city\": \"\",\r\n    \"post_code\": null,\r\n    \"phone_no\": \"\",\r\n    \"mobile_phone_no\": \"\",\r\n    \"email\": \"\",\r\n    \"last_date_modified\": \"2025-10-28T18:30:00.000Z\",\r\n    \"last_time_modified\": \"16:21:29\",\r\n    \"image\": null\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/vendorContact/addVendorContact",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"vendorContact",
+										"addVendorContact"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"id": "44427990-50585577-771a-400a-9e7a-96f50c4f22d8"
+				},
+				{
+					"name": "vendorPaymentTerms",
+					"item": [
+						{
+							"name": "deleteVendorPaymentTerms",
+							"id": "44427990-5c04b6a0-cafe-4920-bbe0-961c342e365a",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"items\": [\r\n    { \"cmp_code\": \"xyz\", \"payment_terms_code\": \"PT300\" }\r\n  ]\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/vendorPaymentTerms/deleteVendorPaymentTerms",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"vendorPaymentTerms",
+										"deleteVendorPaymentTerms"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getVendorPaymentTermsByCompany",
+							"id": "44427990-2c71dbf3-edd9-4245-8ff1-19bffa99e0c5",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/vendorPaymentTerms/getVendorPaymentTermsByCompany/xyz",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"vendorPaymentTerms",
+										"getVendorPaymentTermsByCompany",
+										"xyz"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getVendorPaymentTermsById",
+							"id": "44427990-ce2c59c7-3d30-4082-bcc0-13691f0fbbbf",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/vendorPaymentTerms/getVendorPaymentTermsById?payment_terms_code=PT30&cmp_code=xyz",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"vendorPaymentTerms",
+										"getVendorPaymentTermsById"
+									],
+									"query": [
+										{
+											"key": "payment_terms_code",
+											"value": "PT30"
+										},
+										{
+											"key": "cmp_code",
+											"value": "xyz"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addVendorPaymentTerms",
+							"id": "44427990-81ff110c-9842-44a7-b7b1-a172dbc85781",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"cmp_code\": \"xyz\",\r\n    \"cmp_name\": \"xyz limited\",\r\n    \"payment_terms_code\": \"PT300\",\r\n    \"due_date_calculations\": \"10D\",\r\n    \"discount_date_calculation\": \"10D\",\r\n    \"discount_percent\": 5,\r\n    \"description\": \"Net 30 days payment terms with 5% discount if paid within 10 days\",\r\n    \"calc_pmt_disc_on_cr_memos\": true,\r\n    \"last_modified_date_time\": \"2025-10-26T18:30:00.000Z\",\r\n    \"coupled_to_dataverse\": false\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/vendorPaymentTerms/addVendorPaymentTerms",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"vendorPaymentTerms",
+										"addVendorPaymentTerms"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "updateVendorPaymentTerms",
+							"id": "44427990-b1427d0f-8c6f-4efa-a4b8-5e7c50b9318f",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"cmp_code\": \"xyz\",\r\n    \"cmp_name\": \"xyz limited\",\r\n    \"payment_terms_code\": \"PT30\",\r\n    \"due_date_calculations\": \"10D\",\r\n    \"discount_date_calculation\": \"10D\",\r\n    \"discount_percent\": 5,\r\n    \"description\": \"Net 30 days payment terms with 5% discount if paid within 10 days\",\r\n    \"calc_pmt_disc_on_cr_memos\": true,\r\n    \"last_modified_date_time\": \"2025-10-26T18:30:00.000Z\",\r\n    \"coupled_to_dataverse\": false\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/vendorPaymentTerms/updateVendorPaymentTerms",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"vendorPaymentTerms",
+										"updateVendorPaymentTerms"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"id": "44427990-04bc76ec-62ee-449c-9d31-07d68f6bfd24"
+				},
+				{
+					"name": "vendorPriceList",
+					"item": [
+						{
+							"name": "deleteVendorPriceList",
+							"id": "44427990-56e03d35-ff8c-4919-a6bd-08e818c5fabb",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"items\": [\r\n    { \"cmp_code\": \"fbts\", \"price_list_code\": \"S000011\"}\r\n  ]\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/vendorPriceList/deleteVendorPriceList",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"vendorPriceList",
+										"deleteVendorPriceList"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addVendorPriceList",
+							"id": "44427990-d602bd75-e3d0-44dc-8e7e-59c3daff317f",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"cmp_code\": \"fbts\",\r\n    \"cmp_name\": \"Flamboyant technologies\",\r\n    \"price_list_code\": \"S000011\",\r\n    \"description\": \"GT-NAMKEEN 1 SS\",\r\n    \"assign_to_group\": \"Customer\",\r\n    \"assign_to_type\": \"All Vendor\",\r\n    \"assign_to_no\": \"DR0032\",\r\n    \"assign_to_parent_no_projects\": null,\r\n    \"assign_to_id\": \"{AB042D2A-6010-F011-BDC7-7C1E523BEBB5}\",\r\n    \"price_type\": \"Any\",\r\n    \"defines\": \"Price\",\r\n    \"currency_code\": \"INR\",\r\n    \"starting_date\": \"2025-10-31T18:30:00.000Z\",\r\n    \"ending_date\": \"2025-11-29T18:30:00.000Z\",\r\n    \"price_includes_vat\": true,\r\n    \"vat_bus_posting_gr_price\": \"DOMESTIC\",\r\n    \"allow_line_disc\": true,\r\n    \"allow_invoice_disc\": true,\r\n    \"no_series\": \"J-PL\",\r\n    \"status\": \"Active\",\r\n    \"filter_source_no\": \"SS\",\r\n    \"allow_updating_default\": true,\r\n    \"assign_to_no_alt\": null,\r\n    \"assign_to_parent_no_alt\": null,\r\n    \"approval_status\": \"Pending\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/vendorPriceList/addVendorPriceList",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"vendorPriceList",
+										"addVendorPriceList"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "updateVendorPriceList",
+							"id": "44427990-b1d955ad-822f-4f32-86be-58f7f9505149",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"cmp_code\": \"fbts\",\r\n    \"cmp_name\": \"Flamboyant technologies\",\r\n    \"price_list_code\": \"S00001\",\r\n    \"description\": \"GT-NAMKEEN 1 SS\",\r\n    \"assign_to_group\": \"Customer\",\r\n    \"assign_to_type\": \"All Vendor\",\r\n    \"assign_to_no\": \"DR0032\",\r\n    \"assign_to_parent_no_projects\": null,\r\n    \"assign_to_id\": \"{AB042D2A-6010-F011-BDC7-7C1E523BEBB5}\",\r\n    \"price_type\": \"Any\",\r\n    \"defines\": \"Price\",\r\n    \"currency_code\": \"INR\",\r\n    \"starting_date\": \"2025-10-31T18:30:00.000Z\",\r\n    \"ending_date\": \"2025-11-29T18:30:00.000Z\",\r\n    \"price_includes_vat\": true,\r\n    \"vat_bus_posting_gr_price\": \"DOMESTIC\",\r\n    \"allow_line_disc\": true,\r\n    \"allow_invoice_disc\": true,\r\n    \"no_series\": \"J-PL\",\r\n    \"status\": \"Active\",\r\n    \"filter_source_no\": \"SS\",\r\n    \"allow_updating_default\": true,\r\n    \"assign_to_no_alt\": null,\r\n    \"assign_to_parent_no_alt\": null,\r\n    \"approval_status\": \"Pending\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/vendorPriceList/updateVendorPriceList",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"vendorPriceList",
+										"updateVendorPriceList"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getVendorPriceListById",
+							"id": "44427990-90ee2198-1df6-484f-a790-c0111cf5a96c",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/vendorPriceList/getVendorPriceListById?price_list_code=S00001&cmp_code=fbts",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"vendorPriceList",
+										"getVendorPriceListById"
+									],
+									"query": [
+										{
+											"key": "price_list_code",
+											"value": "S00001"
+										},
+										{
+											"key": "cmp_code",
+											"value": "fbts"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getVendorPriceListByCompany",
+							"id": "44427990-0b61c94a-8fb7-4b09-b9a2-0b38b23bb30f",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/vendorPriceList/getVendorPriceListByCompany/fbts",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"vendorPriceList",
+										"getVendorPriceListByCompany",
+										"fbts"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"id": "44427990-bd56bea5-cd01-45d4-94a6-00f5a4a7a966"
+				},
+				{
+					"name": "vendorSection",
+					"item": [
+						{
+							"name": "updateVendorSection",
+							"id": "44427990-19defeec-1e73-41e6-a92d-673c132c6b38",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "    {\r\n        \"section_code\": \"192\",\r\n        \"description\": \"TDS Payable - Salary\",\r\n        \"ecode\": \"demo ecode\",\r\n        \"detail\": \"demo deatil\",\r\n        \"presentation_order\": \"1\",\r\n        \"indentation_level\": \"1\",\r\n        \"parent_code\": \"P001\",\r\n        \"section_order\": \"0\"\r\n    }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/vendorSection/updateVendorSection",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"vendorSection",
+										"updateVendorSection"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getVendorSection",
+							"id": "44427990-3b96f096-8c17-4221-a5ac-8a122124fbe8",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/vendorSection/getVendorSection",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"vendorSection",
+										"getVendorSection"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getVendorSectionById",
+							"id": "44427990-6d6b6ebb-6faa-48ec-86ac-0b8933a36c3a",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/vendorSection/getVendorSectionById/192",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"vendorSection",
+										"getVendorSectionById",
+										"192"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "deleteVendorSection",
+							"id": "44427990-ae8a0adf-3354-4fba-bfc5-c5cb86a44753",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"ids\": [\r\n        \"1922\"\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/vendorSection/deleteVendorSection",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"vendorSection",
+										"deleteVendorSection"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addVendorSection",
+							"id": "44427990-31ab3cb1-f154-4328-81d2-a0522bf3d28d",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "    {\r\n        \"section_code\": \"1922\",\r\n        \"description\": \"TDS Payable - Salary\",\r\n        \"ecode\": \"demo ecode\",\r\n        \"detail\": \"demo deatil\",\r\n        \"presentation_order\": \"1\",\r\n        \"indentation_level\": \"1\",\r\n        \"parent_code\": \"P001\",\r\n        \"section_order\": \"0\"\r\n    }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/vendorSection/addVendorSection",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"vendorSection",
+										"addVendorSection"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"id": "44427990-160b6127-e8f6-49fb-8458-be463a05fe52"
+				}
+			],
+			"id": "44427990-a5509469-bd8c-42a7-9f51-d2860bffa9ed"
+		},
+		{
+			"name": "pos",
+			"item": [
+				{
+					"name": "getPOSItemSales",
+					"id": "44427990-6726492d-5c0d-4f78-bedc-78426d4bf0ad",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/pos/getPOSItemSales/FR001",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"pos",
+								"getPOSItemSales",
+								"FR001"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"id": "44427990-33b7d69a-2ff0-4814-836a-4aadd5c07f88"
+		},
+		{
+			"name": "purchase",
+			"item": [
+				{
+					"name": "location",
+					"item": [
+						{
+							"name": "addLocation",
+							"id": "44427990-5fc7e29c-12b4-4d3c-922a-04d5dcdedde8",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"location_code\": \"LD001\",\r\n    \"name\": \"BD Warehous\",\r\n    \"address1\": \"123 church road\",\r\n    \"county\": \"India\",\r\n    \"state\": \"uttar pradesh\",\r\n    \"city\": \"kanput\",\r\n    \"post_code\": \"3213\",\r\n    \"phone\": \"7658745698\",\r\n    \"gst\": \"098765456\",\r\n    \"cmp_name\": \"Flamboyant Retail\",\r\n    \"cmp_code\": \"FR001\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/api/purchase/location/addLocation",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"purchase",
+										"location",
+										"addLocation"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "updateLocation",
+							"id": "44427990-39ca4f06-a97c-4cdd-94bb-a3738645756f",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"location_code\": \"LD001\",\r\n    \"name\": \"BD Warehous\",\r\n    \"address1\": \"123 church road\",\r\n    \"county\": \"India\",\r\n    \"state\": \"uttar pradesh\",\r\n    \"city\": \"kanput\",\r\n    \"post_code\": \"3213\",\r\n    \"phone\": \"7658745698\",\r\n    \"gst\": \"098765456\",\r\n    \"cmp_name\": \"Flamboyant Retail\",\r\n    \"cmp_code\": \"FR001\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/api/purchase/location/updateLocation?location_code=LD001",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"purchase",
+										"location",
+										"updateLocation"
+									],
+									"query": [
+										{
+											"key": "location_code",
+											"value": "LD001"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getLocationById",
+							"id": "44427990-5a9b9cdb-60f5-4fb0-acd4-e67cdd8c32d2",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/api/purchase/location/getLocationById?location_code=LD001",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"purchase",
+										"location",
+										"getLocationById"
+									],
+									"query": [
+										{
+											"key": "location_code",
+											"value": "LD001"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getLocationByCompany",
+							"id": "44427990-3ceb3969-6342-4316-b257-303d7d846c3d",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/api/purchase/location/getLocationByCompany/FR001",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"purchase",
+										"location",
+										"getLocationByCompany",
+										"FR001"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "deleteLocation",
+							"id": "44427990-cccee83a-85d2-4990-99bf-bdc99aaf5e60",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"ids\": [\"LD001\"]\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/api/purchase/deleteLocation",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"purchase",
+										"deleteLocation"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"id": "44427990-1da946e6-b68d-4f4d-b6d9-636856e20079"
+				},
+				{
+					"name": "purchaseOrder",
+					"item": [
+						{
+							"name": "addPurchaseOrder",
+							"id": "44427990-80a619c2-8ef8-44d0-bc93-9aa585d7b2a0",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"header\": {\r\n    \"purchase_id\": \"PO001\",\r\n    \"vendor_code\": \"VEND001\",\r\n    \"address\": \"Indore, MP\",\r\n    \"vendor_gst_reg_no\": \"22ABCDE1234A1Z5\",\r\n    \"ship_to_code\": \"LD001\"\r\n  },\r\n  \"lines\": [\r\n    {\r\n      \"type\": \"Item\",\r\n      \"item_code\": \"ITEM001\",\r\n      \"location_code\": \"LD001\",\r\n      \"quantity\": 10,\r\n      \"qty_to_receive\": 10,\r\n      \"vat\": \"18%\"\r\n    }\r\n  ]\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/api/purchase/purchaseOrder/addPurchaseOrder",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"purchase",
+										"purchaseOrder",
+										"addPurchaseOrder"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getPurchaseOrders",
+							"id": "44427990-c73608a6-884d-44c3-9a96-083e987fd68d",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/api/purchase/purchaseOrder/getPurchaseOrders",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"purchase",
+										"purchaseOrder",
+										"getPurchaseOrders"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getPurchaseOrderById",
+							"id": "44427990-663d0a2f-1942-44ad-9feb-1269b10cdd36",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/api/purchase/purchaseOrder/getPurchaseOrderById?purchase_id=PO001",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"purchase",
+										"purchaseOrder",
+										"getPurchaseOrderById"
+									],
+									"query": [
+										{
+											"key": "purchase_id",
+											"value": "PO001"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "updatePurchaseOrder",
+							"id": "44427990-7d36468f-5461-4808-8086-3280f8855b83",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"header\": {\r\n    \"purchase_id\": \"PO001\",\r\n    \"vendor_code\": \"VEND001\",\r\n    \"posting_date\": \"2025-02-01T10:00:00.000Z\",\r\n    \"address\": \"Indore, MP\",\r\n    \"vendor_gst_reg_no\": \"22ABCDE1234A1Z5\",\r\n    \"location_code\": \"LD001\"\r\n  },\r\n  \"lines\": [\r\n    {\r\n      \"type\": \"Item\",\r\n      \"item_code\": \"ITEM001\",\r\n      \"location_code\": \"LD001\",\r\n      \"quantity\": 10,\r\n      \"qty_to_receive\": 10,\r\n      \"vat\": \"18%\"\r\n    },\r\n    {\r\n      \"type\": \"Item\",\r\n      \"item_code\": \"ITEM002\",\r\n      \"location_code\": \"LD001\",\r\n      \"quantity\": 5,\r\n      \"qty_to_receive\": 5,\r\n      \"vat\": \"12%\"\r\n    }\r\n  ]\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/api/purchase/purchaseOrder/updatePurchaseOrder?purchase_id=PO001",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"purchase",
+										"purchaseOrder",
+										"updatePurchaseOrder"
+									],
+									"query": [
+										{
+											"key": "purchase_id",
+											"value": "PO001"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "deletePurchaseOrder",
+							"id": "44427990-2684a0f1-658c-492f-9a37-a73f82896b6b",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"ids\": [\r\n        \"PO001\"\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/api/purchase/purchaseOrder/deletePurchaseOrder",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"purchase",
+										"purchaseOrder",
+										"deletePurchaseOrder"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"id": "44427990-1359f943-4d28-4563-85d8-6ee1a6d29d6a"
+				}
+			],
+			"id": "44427990-6136698f-0666-44f5-9b83-385c7f74782d"
+		},
+		{
+			"name": "New Request",
+			"id": "44427990-ed5722a4-5e95-4b06-903d-eba1eec230fe",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}
